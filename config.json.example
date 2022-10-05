@@ -1,0 +1,12 @@
+{
+    "botToken":"DISCORD-BOT-TOKEN",
+    "clientId":"DISCORD-BOT-ID",
+    "geniusApiKey":"GENIUS-API-KEY",
+    "embedColour":"#2F3136",
+    "stopEmoji":{"full":"<:Stop:1012117322330292244>", "id":"1012117322330292244"},
+    "skipEmoji":{"full":"<:SkipSong:1012117321185239090>", "id":"1012117321185239090"},
+    "queueEmoji":{"full":"<:Queue:1012117319956316170>", "id":"1012117319956316170"},
+    "pauseEmoji":{"full":"<:Pause:1012117318756733040>", "id":"1012117318756733040"},
+    "lyricsEmoji":{"full":"<:Lyrics:1012117315271278623>", "id":"1012117315271278623"},
+    "backEmoji":{"full":"<:BackSong:1012117314600194099>", "id":"1012117314600194099"}
+}

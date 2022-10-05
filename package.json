@@ -1,0 +1,25 @@
+{
+  "name": "melody",
+  "version": "1.0.0",
+  "description": "Discord music bot",
+  "main": "src/bot.js",
+  "scripts": {
+    "test": "node src/bot.js"
+  },
+  "author": "NerdyTechy",
+  "license": "ISC",
+  "dependencies": {
+    "@discord-player/downloader": "^3.0.1",
+    "@discord-player/extractor": "^3.0.2",
+    "@discordjs/builders": "^1.2.0",
+    "@discordjs/opus": "^0.8.0",
+    "@discordjs/rest": "^1.1.0",
+    "discord-api-types": "^0.37.4",
+    "discord-player": "^5.3.1",
+    "discord.js": "^14.3.0",
+    "ffmpeg": "^0.0.4",
+    "ffmpeg-static": "^5.0.2",
+    "node-opus": "^0.3.3",
+    "ytdl-core": "^4.11.2"
+  }
+}
