@@ -8,7 +8,6 @@ module.exports = {
         .setName('stats')
         .setDescription('Shows global Melody statistics.'),
     async execute(interaction, client){
-        
         let rawdata = fs.readFileSync('src/data.json');
         var data = JSON.parse(rawdata);
         
@@ -16,6 +15,6 @@ module.exports = {
         embed.setDescription(`Melody is currently in **${client.guilds.cache.size} servers**, has played **${data["songs-played"]} songs**, skipped **${data["songs-skipped"]} songs**, and shuffled **${data["queues-shuffled"]} queues**.`);
         embed.setColor(config.embedColour);
 
-        interaction.reply({embeds: [embed]});
+        interaction.reply({ embeds: [embed] });
     },
 };

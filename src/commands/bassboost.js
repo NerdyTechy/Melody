@@ -7,7 +7,6 @@ module.exports = {
         .setName('bassboost')
         .setDescription('Applies the bass boost effect to the current music.'),
     async execute(interaction, client){
-        
         const queue = player.getQueue(interaction.guild.id);
         
         const embed = new EmbedBuilder();
@@ -16,13 +15,10 @@ module.exports = {
         if (!queue || !queue.playing){
             embed.setDescription("There isn't currently any music playing.");
         } else{
-            queue.setFilters({
-            	"bassboost": !queue.getFiltersEnabled().includes('bassboost'),
-        	});
-
+            queue.setFilters({ "bassboost": !queue.getFiltersEnabled().includes('bassboost'), });
         	embed.setDescription(`The **bass boost** filter is now ${queue.getFiltersEnabled().includes('bassboost') ? 'enabled.' : 'disabled.'}`);
         }
         
-        interaction.reply({embeds: [embed]});
+        interaction.reply({ embeds: [embed] });
     },
 };

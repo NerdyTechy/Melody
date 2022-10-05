@@ -27,18 +27,16 @@ module.exports = (client) => {
 
 				await rest.put(
 					Routes.applicationGuildCommands(clientId, guildId),
+					{ body: [] },
+				);
+
+				await rest.put(
+					Routes.applicationCommands(clientId),
 					{ body: client.commandArray },
 				);
 
-				/*await rest.put(
-					Routes.applicationCommands(clientId),
-					{ body: client.commandArray },
-				);*/
-
 				console.log('Successfully reloaded application (/) commands.');
-			} catch (error) {
-				console.error(error);
-			}
+			} catch (error) { console.error(error); }
 		})();
 	};
 }

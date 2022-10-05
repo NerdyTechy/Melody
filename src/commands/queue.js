@@ -18,7 +18,7 @@ module.exports = {
         } 
 
         if (!queue.tracks[0]){
-            embed.setDescription(`There aren't any other songs in the queue. Use **/nowplaying** to show information about this song.`)
+            embed.setDescription(`There aren't any other songs in the queue. Use **/nowplaying** to show information about this song.`);
             return await interaction.reply({ embeds: [embed] });
         }  
 

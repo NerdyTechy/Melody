@@ -7,7 +7,6 @@ module.exports = {
         .setName('vaporwave')
         .setDescription('Applies the vaporwave effect to the current music.'),
     async execute(interaction, client){
-        
         const queue = player.getQueue(interaction.guild.id);
         
         const embed = new EmbedBuilder();
@@ -16,13 +15,10 @@ module.exports = {
         if (!queue || !queue.playing){
             embed.setDescription("There isn't currently any music playing.");
         } else{
-            queue.setFilters({
-            	"vaporwave": !queue.getFiltersEnabled().includes('vaporwave'),
-        	});
-
+            queue.setFilters({ "vaporwave": !queue.getFiltersEnabled().includes('vaporwave'), });
         	embed.setDescription(`The **vaporwave** filter is now ${queue.getFiltersEnabled().includes('vaporwave') ? 'enabled.' : 'disabled.'}`);
         }
         
-        interaction.reply({embeds: [embed]});
+        interaction.reply({ embeds: [embed] });
     },
 };

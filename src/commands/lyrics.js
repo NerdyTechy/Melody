@@ -19,10 +19,8 @@ module.exports = {
         await lyricsClient.search(interaction.options.getString("query")).then(x => {
             embed.setAuthor({ name: `${x.title} - ${x.artist.name}`, url: x.url });
             embed.setDescription(x.lyrics);
-            embed.setFooter({ text: "Courtesy of Genius" })
-        }).catch(err => {
-            embed.setDescription(`I couldn't find a track with the name **${interaction.options.getString("query")}**.`);
-        });
+            embed.setFooter({ text: "Courtesy of Genius" });
+        }).catch(err => { embed.setDescription(`I couldn't find a track with the name **${interaction.options.getString("query")}**.`); });
 
         return await interaction.editReply({ embeds: [embed], ephemeral: true });
     },

@@ -4,7 +4,7 @@ const config = require('../../../config.json');
 module.exports = {
     name: 'error',
     async execute(queue, error, client){
-        console.log(error);
+        console.error(error);
     
         const errEmbed = new EmbedBuilder();
         errEmbed.setDescription(`An error occurred whilst attempting to perform this action. This media may not be supported.`);
@@ -15,7 +15,6 @@ module.exports = {
         const embed = new EmbedBuilder();
         embed.setTitle("Melody Player Error");
         embed.setDescription(`${error}`);
-        //embed.addField("Song", `[${queue.current.title}](${queue.current.url})`);
         
         const channel = client.channels.cache.find(channel => channel.id == '950014701901852722');
         channel.send({embeds: [embed]});

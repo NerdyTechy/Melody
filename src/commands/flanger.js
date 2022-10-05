@@ -7,7 +7,6 @@ module.exports = {
         .setName('flanger')
         .setDescription('Applies the flanger effect to the current music.'),
     async execute(interaction, client){
-        
         const queue = player.getQueue(interaction.guild.id);
         
         const embed = new EmbedBuilder();
@@ -16,13 +15,10 @@ module.exports = {
         if (!queue || !queue.playing){
             embed.setDescription("There isn't currently any music playing.");
         } else{
-            queue.setFilters({
-            	"flanger": !queue.getFiltersEnabled().includes('flanger'),
-        	});
-
+            queue.setFilters({ "flanger": !queue.getFiltersEnabled().includes('flanger'), });
         	embed.setDescription(`The **flanger** filter is now ${queue.getFiltersEnabled().includes('flanger') ? 'enabled.' : 'disabled.'}`);
         }
         
-        interaction.reply({embeds: [embed]});
+        interaction.reply({ embeds: [embed] });
     },
 };

@@ -44,11 +44,10 @@ module.exports = {
             }
         });
 
-        try{
-            if (!queue.connection) await queue.connect(interaction.member.voice.channel);
+        try{ if (!queue.connection) await queue.connect(interaction.member.voice.channel);
         } catch(err){
             await queue.destroy();
-            embed.setDescription("I can't join that voice channel.")
+            embed.setDescription("I can't join that voice channel.");
             return await interaction.editReply({ embeds: [embed] });
         }
 
@@ -79,7 +78,7 @@ module.exports = {
                 }
             }
 
-            console.log(err);
+            console.error(err);
 
             await queue.destroy();
             embed.setDescription("This media doesn't seem to be working right now, please try again later.");

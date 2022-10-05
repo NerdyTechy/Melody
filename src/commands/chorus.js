@@ -7,7 +7,6 @@ module.exports = {
         .setName('chorus')
         .setDescription('Applies the chorus effect to the current music.'),
     async execute(interaction, client){
-        
         const queue = player.getQueue(interaction.guild.id);
         
         const embed = new EmbedBuilder();
@@ -16,13 +15,10 @@ module.exports = {
         if (!queue || !queue.playing){
             embed.setDescription("There isn't currently any music playing.");
         } else{
-            queue.setFilters({
-            	"chorus": !queue.getFiltersEnabled().includes('chorus'),
-        	});
-
+            queue.setFilters({ "chorus": !queue.getFiltersEnabled().includes('chorus'), });
         	embed.setDescription(`The **chorus** filter is now ${queue.getFiltersEnabled().includes('chorus') ? 'enabled.' : 'disabled.'}`);
         }
         
-        interaction.reply({embeds: [embed]});
+        interaction.reply({ embeds: [embed] });
     },
 };

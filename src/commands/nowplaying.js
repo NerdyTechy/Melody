@@ -13,7 +13,7 @@ module.exports = {
         embed.setColor(config.embedColour);
         
         if (!queue){
-            embed.setDescription("There isn't currently any music playing.")
+            embed.setDescription("There isn't currently any music playing.");
             return interaction.reply({ embeds: [embed] });
         } 
 

@@ -30,6 +30,6 @@ module.exports = {
         let newdata = JSON.stringify(data);
         fs.writeFileSync('src/data.json', newdata);
         
-        return interaction.reply({embeds: [embed]});
+        return interaction.reply({ embeds: [embed] });
     },
 };

@@ -2,7 +2,6 @@ const { EmbedBuilder } = require("discord.js");
 const { Lyrics } = require('@discord-player/extractor');
 const fs = require('node:fs');
 const config = require('../../../config.json');
-
 const lyricsClient = Lyrics.init(config.geniusApiKey);
 
 module.exports = {
@@ -27,16 +26,8 @@ module.exports = {
                 embed.setDescription("There isn't currently any music playing.");
                 return await interaction.reply({ embeds: [embed], ephemeral: true });
             }
-
-            /*console.log(interaction.guild.voiceStates);
-
-            if (interaction.guild.me.voice.channel && interaction.member.voice.channel.id !== interaction.guild.me.voice.channel.id){
-                embed.setDescription("You must be in the same channel as me to use these controls.");
-                return await interaction.reply({ embeds: [embed] });
-            }*/
                 
             if (interaction.customId.startsWith("melody_back_song_")){
-
                 if (!queue || !queue.playing) {
                     embed.setDescription(`There isn't currently any music playing.`);
                     return await interaction.reply({ embeds: [embed], ephemeral: true });
@@ -49,9 +40,7 @@ module.exports = {
                 }
                 
                 return await interaction.reply({ embeds: [embed] });
-
             } else if (interaction.customId.startsWith("melody_pause_song_")){
-
                 if (!queue){
                     embed.setDescription("There isn't currently any music playing.")
                     return await interaction.reply({ embeds: [embed], ephemeral: true });
@@ -62,9 +51,7 @@ module.exports = {
                 embed.setDescription(`<@${interaction.user.id}>: Successfully ${queue.connection.paused ? "paused" : "unpaused"} **[${queue.current.title}](${queue.current.url})**.`);
         
                 return await interaction.reply({ embeds: [embed] });
-
             } else if (interaction.customId.startsWith("melody_skip_song_")){
-
                 if (!queue || !queue.playing) {
                     embed.setDescription(`There isn't currently any music playing.`);
                     return await interaction.reply({ embeds: [embed], ephemeral: true });
@@ -83,16 +70,14 @@ module.exports = {
                 fs.writeFileSync('src/data.json', newdata);
                 
                 return await interaction.reply({ embeds: [embed] });
-
             } else if (interaction.customId.startsWith("melody_queue_")){
-
                 if (!queue){
                     embed.setDescription(`There isn't currently any music playing.`);
                     return await interaction.reply({ embeds: [embed], ephemeral: true });
                 } 
         
                 if (!queue.tracks[0]){
-                    embed.setDescription(`There aren't any other songs in the queue. Use **/nowplaying** to show information about this song.`)
+                    embed.setDescription(`There aren't any other songs in the queue. Use **/nowplaying** to show information about this song.`);
                     return await interaction.reply({ embeds: [embed], ephemeral: true });
                 }  
         
@@ -128,12 +113,10 @@ module.exports = {
                         .setCustomId(`melody_song_lyrics_${interaction.user.id}`)
                         .setEmoji({ id: config.lyricsEmoji.id })
                         .setStyle(ButtonStyle.Secondary),
-                )
+                );
         
                 return await interaction.reply({ embeds: [embed], components: [row] });
-
             } else if (interaction.customId.startsWith("melody_stop_")){
-
                 if (!queue || !queue.playing) {
                     embed.setDescription(`There isn't currently any music playing.`);
                     return await interaction.reply({ embeds: [embed], ephemeral: true });
@@ -143,24 +126,20 @@ module.exports = {
                 }
         
                 return await interaction.reply({ embeds: [embed] });
-
             } else if (interaction.customId.startsWith("melody_song_lyrics_")){
-
                 await interaction.deferReply({ ephemeral: true });
 
                 await lyricsClient.search(`${queue.current.title} ${queue.current.author}`).then(x => {
                     embed.setAuthor({ name: `${x.title} - ${x.artist.name}`, url: x.url });
                     embed.setDescription(x.lyrics);
-                    embed.setFooter({ text: "Courtesy of Genius" })
+                    embed.setFooter({ text: "Courtesy of Genius" });
                 }).catch(err => {
                     embed.setDescription(`I couldn't find any lyrics for this song.`);
                 });
 
                 return await interaction.editReply({ embeds: [embed] });
-
             }
         } else if (interaction.isSelectMenu()){
-
             const buttonOwner = interaction.customId.substring(interaction.customId.length - 18, interaction.customId.length);
 
             const embed = new EmbedBuilder();
@@ -170,7 +149,6 @@ module.exports = {
                 embed.setDescription(`Only <@${buttonOwner}> can use this menu.`);
                 return await interaction.reply({ embeds: [embed], ephemeral: true });
             }
-
 
             if (interaction.values[0] == "melody_help_category_general"){
                 embed.setAuthor({ name: "Melody Help" });

@@ -21,6 +21,6 @@ module.exports = {
             embed.setDescription(`Returning to the previous track in queue.`);
         }
         
-        interaction.reply({embeds: [embed]});
+        interaction.reply({ embeds: [embed] });
     },
 };

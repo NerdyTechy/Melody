@@ -43,11 +43,10 @@ module.exports = {
             }
         });
 
-        try{
-            if (!queue.connection) await queue.connect(interaction.member.voice.channel);
+        try{ if (!queue.connection) await queue.connect(interaction.member.voice.channel);
         } catch(err){
             queue.destroy();
-            embed.setDescription("I can't join that voice channel.")
+            embed.setDescription("I can't join that voice channel.");
             return await interaction.editReply({ embeds: [embed] });
         }
 
@@ -71,18 +70,15 @@ module.exports = {
                 }
             }
 
-            console.log(err);
+            console.error(err);
 
             await queue.destroy();
             embed.setDescription("This media doesn't seem to be working right now, please try again later.");
             return await interaction.followUp({ embeds: [embed] });
         }
 
-        if (!res.playlist){
-            embed.setDescription(`Loaded **[${res.tracks[0].title}](${res.tracks[0].url})** by **${res.tracks[0].author}** into the server queue.`);
-        } else{
-            embed.setDescription(`**${res.tracks.length} tracks** from the ${res.playlist.type} **[${res.playlist.title}](${res.playlist.url})** have been loaded into the server queue.`);
-        }
+        if (!res.playlist){ embed.setDescription(`Loaded **[${res.tracks[0].title}](${res.tracks[0].url})** by **${res.tracks[0].author}** into the server queue.`);
+        } else{ embed.setDescription(`**${res.tracks.length} tracks** from the ${res.playlist.type} **[${res.playlist.title}](${res.playlist.url})** have been loaded into the server queue.`); }
 
         return await interaction.editReply({ embeds: [embed] });
     },

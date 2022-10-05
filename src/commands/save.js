@@ -13,7 +13,7 @@ module.exports = {
         embed.setColor(config.embedColour);
         
         if (!queue){
-            embed.setDescription("There isn't currently any music playing.")
+            embed.setDescription("There isn't currently any music playing.");
             return await interaction.reply({ embeds: [embed] });
         }
 
@@ -31,7 +31,7 @@ module.exports = {
             message += `**Playlist:** [${queue.current.playlist.title}](${queue.current.playlist.url})\n`;
         }
 
-        message += `**Saved:** <t:${Math.round(Date.now() / 1000)}:R>`
+        message += `**Saved:** <t:${Math.round(Date.now() / 1000)}:R>`;
 
         info.setDescription(message);
         info.setThumbnail(queue.current.thumbnail);

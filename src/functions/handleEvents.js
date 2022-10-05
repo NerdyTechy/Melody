@@ -3,18 +3,14 @@ const path = require('node:path');
 
 module.exports = (client) => {
 	client.handleEvents = async() => {
-
 		const botEventsPath = path.join(__dirname, '../events/bot');
 		const botEventFiles = fs.readdirSync(botEventsPath).filter(file => file.endsWith('.js'));
 
 		for (const file of botEventFiles) {
 			const filePath = path.join(botEventsPath, file);
 			const event = require(filePath);
-			if (event.once) {
-				client.once(event.name, (...args) => event.execute(...args, client));
-			} else {
-				client.on(event.name, (...args) => event.execute(...args, client));
-			}
+			if (event.once) { client.once(event.name, (...args) => event.execute(...args, client));
+			} else { client.on(event.name, (...args) => event.execute(...args, client)); }
 		}
 		
 		const playerEventsPath = path.join(__dirname, '../events/player');
