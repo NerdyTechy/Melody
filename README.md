@@ -16,5 +16,11 @@
   <li>Launch bot with <strong>node src/bot.js</strong>.</li>
 </ol>
 
+<h2>Emojis</h2>
+Melody utilises many custom emojis for menus, and so if you would like to use them, they are available in the /emojis directory. Simply upload them to your server, and edit the config.json file to have the correct names and IDs. If you would like to make your own emojis, or use default Discord emojis, simply change the config file accordingly.
+
+<h2>Genius</h2>
+Melody utilises Genius' API to find lyrics for songs. A Genius API key is therefore required to use the bot. Obtaining one is free, and can be done so <a href="https://genius.com/api-clients">here</a>.
+
 <h2>Hosting</h2>
 Want to host this bot online? Any hosting company that provides Discord bot hosting will work, but I highly recommend <a href="https://techy.lol/revivenode">Revivenode</a> (Affiliate Link).
