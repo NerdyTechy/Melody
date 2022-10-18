@@ -4,6 +4,26 @@
 <h1 align="center">Melody</h1>
 <p align="center">Discord music bot with many useful commands and effects.</p>
 
+<p align="center">
+  <a href="https://github.com/NerdyTechy/Melody/actions">
+    <img alt="Tests Passing" src="https://github.com/NerdyTechy/Melody/workflows/CodeQL/badge.svg" />
+  </a>
+  <a href="https://github.com/NerdyTechy/Melody/graphs/contributors">
+    <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/NerdyTechy/Melody" />
+  </a>
+  <a href="https://github.com/NerdyTechy/Melody/issues">
+    <img alt="Issues" src="https://img.shields.io/github/issues/NerdyTechy/Melody" />
+  </a>
+  <a href="https://github.com/NerdyTechy/Melody/blob/master/LICENSE">
+    <img alt="Issues" src="https://img.shields.io/github/license/NerdyTechy/Melody" />
+  </a>
+  <a href="https://github.com/NerdyTechy/Melody/pulls">
+    <img alt="Issues" src="https://img.shields.io/github/issues-pr-closed/NerdyTechy/Melody" />
+  </a>
+  <a href="https://github.com/NerdyTechy/Melody/commits">
+    <img alt="Issues" src="https://img.shields.io/github/last-commit/NerdyTechy/Melody" />
+  </a>
+</p>
 
 <h2>Installation</h2>
 <ol>
