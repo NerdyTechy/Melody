@@ -1,12 +1,20 @@
-# Melody
-Discord music bot with many useful commands and effects.
+<p align="center">
+  <img src="https://i.imgur.com/phFnOFf.png" />
+</p>
+<h1 align="center">Melody</h1>
+<p align="center">Discord music bot with many useful commands and effects.</p>
 
-## Installation
-1. Rename `config.json.example` to `config.json`.
-2. Enter Discord bot token, Discord bot client ID, and Genius API key into `config.json`.
-3. Rename `src/data.json.example` to `src/data.json`.
-4. Install dependencies listed in package.json.
-5. Launch bot.
 
-## Hosting
-Want to host this bot online? Any hosting company that provides Discord bot hosting will work, but I highly recommend [Revivenode](https://techy.lol/revivenode) (Affiliate Link).
+<h2>Installation</h2>
+<ol>
+  <li>Download the source code from this repository.</li>
+  <li>Upload to your hosting and extract the files. (Or just extract locally)</li>
+  <li>Rename <strong>config.json.example</strong> to <strong>config.json</strong>.</li>
+  <li>Enter Discord bot token, Discord bot client ID, and Genius API key into <strong>config.json</strong>.</li>
+  <li>Rename <strong>src/data.json.example</strong> to <strong>src/data.json</strong>.</li>
+  <li>Install dependencies listed in package.json.</li>
+  <li>Launch bot with <strong>node src/bot.js</strong>.</li>
+</ol>
+
+<h2>Hosting</h2>
+Want to host this bot online? Any hosting company that provides Discord bot hosting will work, but I highly recommend <a href="https://techy.lol/revivenode">Revivenode</a> (Affiliate Link).
