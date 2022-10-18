@@ -7,7 +7,6 @@ const commandFiles = fs.readdirSync('src/commands').filter(file => file.endsWith
 
 const token = config.botToken;
 const clientId = config.clientId;
-const guildId = '885224887835320330';
 
 module.exports = (client) => {
 	client.handleCommands = async() => {
@@ -24,11 +23,6 @@ module.exports = (client) => {
 		(async () => {
 			try {
 				console.log('Started refreshing application (/) commands.');
-
-				await rest.put(
-					Routes.applicationGuildCommands(clientId, guildId),
-					{ body: [] },
-				);
 
 				await rest.put(
 					Routes.applicationCommands(clientId),
