@@ -23,6 +23,7 @@
   <a href="https://github.com/NerdyTechy/Melody/commits">
     <img alt="Issues" src="https://img.shields.io/github/last-commit/NerdyTechy/Melody" />
   </a>
+  <img alt="Statistics Graphs" src="https://repobeats.axiom.co/api/embed/966fb1f700b2ca070b73426ccafcc5dd2b7576fb.svg">
 </p>
 
 <h2>Installation</h2>
