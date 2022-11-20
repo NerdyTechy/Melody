@@ -3,6 +3,7 @@
     "clientId":"DISCORD-BOT-ID",
     "geniusApiKey":"GENIUS-API-KEY",
     "embedColour":"#2F3136",
+    "enableAnalytics":true,
     "stopEmoji":"⏹",
     "skipEmoji":"⏭",
     "queueEmoji":"📜",

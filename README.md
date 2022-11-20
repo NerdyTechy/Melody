@@ -37,6 +37,18 @@
   <li>Launch bot with <strong>node src/bot.js</strong> or <strong>npm run test</strong>. (If your hosting is managed and you can't change the startup command, you should be able to set the file that is run at launch. This must be set to <strong>src/bot.js</strong>).</li>
 </ol>
 
+<h2>Analytics</h2>
+By default, Melody sends a HTTP request to a custom analytics service when it boots up with a non-identifiable token (A SHA-256 hash of your client ID). This is purely done so that I can see the usage of my projects. The service does not track anything other than the amount of times that you start the bot, and the time that you last started the bot. I use these statistics to know the popularity of my projects over time, and how the general usage trend looks.
+<br>
+<br>
+The API that runs this service is developed by me, so the information is not shared with any third parties. The analytics project is also open-source, and can be found <a href="https://github.com/NerdyTechy/Analytics">here</a>.
+<br>
+<br>
+If you do not want to contribute to these analytics, you can disable the <strong>enableAnalytics</strong> option in the bot's configuration file, and no requests will be made to this service.
+<br>
+<br>
+While leaving these analytics enabled helps me to understand the demand of my projects, which can help me to decide which projects deserve more attention in terms of updates, I respect that you may not agree to providing these analytics, and so I have tried to make it as easy to opt out of as possible.
+
 <h2>Emojis</h2>
 Melody utilises many custom emojis for menus, and so if you would like to use them, they are available in the <strong>/emojis/</strong> directory. Simply upload them to your server, and edit the config.json file to have the correct names and IDs. If you would like to make your own emojis, or use default Discord emojis, simply change the config file accordingly.
 
