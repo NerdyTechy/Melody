@@ -32,6 +32,7 @@
   <li>Upload to your hosting and extract the files. (Or just extract locally)</li>
   <li>Rename <strong>config.json.example</strong> to <strong>config.json</strong>.</li>
   <li>Enter Discord bot token, Discord bot client ID, and Genius API key into <strong>config.json</strong>.</li>
+  <li><strong>Optional:</strong> Upload the custom emojis found in the <strong>/emojis/</strong> directory to your server, and set the IDs of the emojis in the configuration file. (Replace the default emoji with the ID of the custom emoji)</li>
   <li>Install dependencies listed in package.json.</li>
   <li>Launch bot with <strong>node src/bot.js</strong> or <strong>npm run test</strong>. (If your hosting is managed and you can't change the startup command, you should be able to set the file that is run at launch. This must be set to <strong>src/bot.js</strong>).</li>
 </ol>
