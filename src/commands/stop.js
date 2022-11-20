@@ -19,6 +19,6 @@ module.exports = {
         	embed.setDescription("The music has been stopped.");
         }
 
-        interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed] });
     },
 };

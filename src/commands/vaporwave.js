@@ -19,6 +19,6 @@ module.exports = {
         	embed.setDescription(`The **vaporwave** filter is now ${queue.getFiltersEnabled().includes('vaporwave') ? 'enabled.' : 'disabled.'}`);
         }
         
-        interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed] });
     },
 };

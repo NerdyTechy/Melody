@@ -14,18 +14,18 @@ module.exports = {
         
         if (!queue){
             embed.setDescription("There isn't currently any music playing.");
-            return interaction.reply({ embeds: [embed] });
+            return await interaction.reply({ embeds: [embed] });
         }
 
         if (queue.connection.paused){
             embed.setDescription("The queue is already paused.");
-            return interaction.reply({ embeds: [embed] });
+            return await interaction.reply({ embeds: [embed] });
         }
 
         queue.setPaused(true);
 
         embed.setDescription(`Successfully paused **[${queue.current.title}](${queue.current.url})**.`);
 
-        return interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed] });
     },
 };

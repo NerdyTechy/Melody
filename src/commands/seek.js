@@ -16,7 +16,7 @@ module.exports = {
         
         if (!queue){
             embed.setDescription("There isn't currently any music playing.");
-            return interaction.reply({ embeds: [embed] });
+            return await interaction.reply({ embeds: [embed] });
         }
 
         const minutes = interaction.options.getInteger('minutes');
@@ -28,6 +28,6 @@ module.exports = {
 
         embed.setDescription(`The current song has been seeked to **${minutes !== 0 ? `${minutes} minutes and ` : ""} ${seconds} seconds**.`);
 
-        return interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed] });
     },
 };

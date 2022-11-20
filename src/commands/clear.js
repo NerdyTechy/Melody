@@ -21,6 +21,6 @@ module.exports = {
             embed.setDescription("The server queue has been cleared.");
         }
 
-        interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed] });
     },
 };

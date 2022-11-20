@@ -19,6 +19,6 @@ module.exports = {
         	embed.setDescription(`The **reverse** filter is now ${queue.getFiltersEnabled().includes('reverse') ? 'enabled.' : 'disabled.'}`);
         }
         
-        interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed] });
     },
 };

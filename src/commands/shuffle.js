@@ -15,12 +15,12 @@ module.exports = {
         
         if (!queue || !queue.playing){
             embed.setDescription("There isn't currently any music playing.");
-            return interaction.reply({ embeds: [embed] });
+            return await interaction.reply({ embeds: [embed] });
         } 
 
         if (!queue.tracks[0]){
             embed.setDescription(`There isn't any other songs in the queue. Use **/play** to add some more.`);
-            return interaction.reply({ embeds: [embed] });
+            return await interaction.reply({ embeds: [embed] });
         } 
 
         await queue.shuffle();
@@ -34,6 +34,6 @@ module.exports = {
         fs.writeFileSync('src/data.json', newdata);
 
         embed.setDescription(queue.tracks.length > 1 ? `Successfully shuffled **${queue.tracks.length} songs**!` : `Successfully shuffled **${queue.tracks.length} song**!`);
-        return interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed] });
     },
 };

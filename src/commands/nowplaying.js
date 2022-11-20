@@ -14,7 +14,7 @@ module.exports = {
         
         if (!queue){
             embed.setDescription("There isn't currently any music playing.");
-            return interaction.reply({ embeds: [embed] });
+            return await interaction.reply({ embeds: [embed] });
         } 
 
         const progress = queue.createProgressBar();
@@ -46,6 +46,6 @@ module.exports = {
                 .setStyle(ButtonStyle.Secondary),
         );
         
-        return interaction.reply({ embeds: [embed], components: [row] });
+        return await interaction.reply({ embeds: [embed], components: [row] });
     },
 };

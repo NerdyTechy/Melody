@@ -19,6 +19,6 @@ module.exports = {
         	embed.setDescription(`The **surround** filter is now ${queue.getFiltersEnabled().includes('surrounding') ? 'enabled.' : 'disabled.'}`);
         }
         
-        interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed] });
     },
 };

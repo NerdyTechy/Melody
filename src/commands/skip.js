@@ -15,7 +15,7 @@ module.exports = {
 
         if (!queue || !queue.playing) {
             embed.setDescription(`There isn't currently any music playing.`);
-            return interaction.reply({ embeds: [embed] });
+            return await interaction.reply({ embeds: [embed] });
         }
 
         queue.skip();
@@ -30,6 +30,6 @@ module.exports = {
         let newdata = JSON.stringify(data);
         fs.writeFileSync('src/data.json', newdata);
         
-        return interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed] });
     },
 };

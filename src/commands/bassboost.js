@@ -19,6 +19,6 @@ module.exports = {
         	embed.setDescription(`The **bass boost** filter is now ${queue.getFiltersEnabled().includes('bassboost') ? 'enabled.' : 'disabled.'}`);
         }
         
-        interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed] });
     },
 };

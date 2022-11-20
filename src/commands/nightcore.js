@@ -19,6 +19,6 @@ module.exports = {
         	embed.setDescription(`The **nightcore** filter is now ${queue.getFiltersEnabled().includes('nightcore') ? 'enabled.' : 'disabled.'}`);
         }
         
-        interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed] });
     },
 };

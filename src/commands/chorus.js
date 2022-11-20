@@ -19,6 +19,6 @@ module.exports = {
         	embed.setDescription(`The **chorus** filter is now ${queue.getFiltersEnabled().includes('chorus') ? 'enabled.' : 'disabled.'}`);
         }
         
-        interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed] });
     },
 };

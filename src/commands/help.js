@@ -36,6 +36,6 @@ module.exports = {
                 )
         );
 
-        interaction.reply({ embeds: [embed], components: [row] });
+        return await interaction.reply({ embeds: [embed], components: [row] });
     },
 };

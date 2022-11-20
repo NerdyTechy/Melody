@@ -19,6 +19,6 @@ module.exports = {
         	embed.setDescription(`The **compressor** filter is now ${queue.getFiltersEnabled().includes('compressor') ? 'enabled.' : 'disabled.'}`);
         }
         
-        interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed] });
     },
 };

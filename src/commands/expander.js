@@ -19,6 +19,6 @@ module.exports = {
         	embed.setDescription(`The **expander** filter is now ${queue.getFiltersEnabled().includes('expander') ? 'enabled.' : 'disabled.'}`);
         }
         
-        interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed] });
     },
 };

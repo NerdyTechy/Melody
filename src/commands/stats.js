@@ -15,6 +15,6 @@ module.exports = {
         embed.setDescription(`Melody is currently in **${client.guilds.cache.size} servers**, has played **${data["songs-played"]} songs**, skipped **${data["songs-skipped"]} songs**, and shuffled **${data["queues-shuffled"]} queues**.`);
         embed.setColor(config.embedColour);
 
-        interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed] });
     },
 };

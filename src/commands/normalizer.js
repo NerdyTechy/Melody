@@ -19,6 +19,6 @@ module.exports = {
         	embed.setDescription(`The **normalizer** filter is now ${queue.getFiltersEnabled().includes('normalizer2') ? 'enabled.' : 'disabled.'}`);
         }
         
-        interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed] });
     },
 };

@@ -34,6 +34,6 @@ module.exports = {
             }
         }
         
-        return interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed] });
     },
 };

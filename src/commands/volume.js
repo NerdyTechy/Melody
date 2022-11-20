@@ -20,20 +20,20 @@ module.exports = {
         
             if (queue.volume === vol) {
                 embed.setDescription(`The current queue volume is already set to ${vol}%.`);
-                return interaction.reply({ embeds: [embed] });
+                return await interaction.reply({ embeds: [embed] });
             }
 
             const maxVolume = 1000;
 
             if (vol < 0 || vol > maxVolume) {
                 embed.setDescription(`The number that you have specified is not valid. Please enter a number between **0 and ${maxVolume}**.`);
-                return interaction.reply({ embeds: [embed] });
+                return await interaction.reply({ embeds: [embed] });
             }
 
             const success = queue.setVolume(vol);
             success ? embed.setDescription(`The current music's volume was set to **${vol}%**.`) : embed.setDescription(`An error occurred whilst attempting to set the volume.`);
         }
         
-        interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed] });
     },
 };

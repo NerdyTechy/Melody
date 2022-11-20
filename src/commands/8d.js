@@ -19,6 +19,6 @@ module.exports = {
         	embed.setDescription(`The **8D** filter is now ${queue.getFiltersEnabled().includes('8D') ? 'enabled.' : 'disabled.'}`);
         }
         
-        interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed] });
     },
 };
