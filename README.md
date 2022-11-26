@@ -77,3 +77,6 @@ Melody utilises Genius' API to find lyrics for songs. A Genius API key is theref
 
 ## Hosting
 Want to host this bot online? Any hosting company that provides Discord bot hosting will work, but I highly recommend <a href="https://techy.lol/revivenode">Revivenode</a> (Affiliate Link).
+
+## Like Melody?
+There are many ways you can support Melody, and its development. One of the best ways that you can support the project is by starring it. It's free, and really helps out. Other than that, you can support Melody's development by using my [Revivenode affiliate link](https://techy.lol/revivenode) which will give me a small percentage of what you spend at Revivenode, without charging you anything extra, or you can donate directly to me via [GitHub Sponsors](https://github.com/sponsors/NerdyTechy), or [buymeacoffee.com](https://www.buymeacoffee.com/techy). All donations are highly appreciated! <3
