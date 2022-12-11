@@ -18,6 +18,7 @@ if (!config.geniusApiKey || config.geniusApiKey == "GENIUS-API-KEY"){ return con
 const client = new Client({ intents: [32767] });
 global.player = new Player(client);
 client.commands = new Collection();
+client.buttons = new Collection();
 
 const functions = fs.readdirSync("./src/functions").filter(file => file.endsWith(".js"));
 
@@ -25,5 +26,6 @@ const functions = fs.readdirSync("./src/functions").filter(file => file.endsWith
     for (file of functions){ require(`./functions/${file}`)(client); }
     client.handleCommands();
 	client.handleEvents();
+    client.handleButtons();
     client.login(config.botToken);
 })();

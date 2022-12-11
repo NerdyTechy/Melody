@@ -1,8 +1,5 @@
 const { EmbedBuilder } = require("discord.js");
-const { Lyrics } = require('@discord-player/extractor');
-const fs = require('node:fs');
 const config = require('../../../config.json');
-const lyricsClient = Lyrics.init(config.geniusApiKey);
 
 module.exports = {
     name: 'interactionCreate',
@@ -10,134 +7,21 @@ module.exports = {
     async execute(interaction, client) {
         if (interaction.isChatInputCommand()) {
             const command = client.commands.get(interaction.commandName);
-
             if (!command) return;
-
             try { await command.execute(interaction, client);
             } catch (error) { console.error(error); }
         } else if (interaction.isButton()){
-
-            const queue = player.getQueue(interaction.guild.id);
-
-            const embed = new EmbedBuilder();
-            embed.setColor(config.embedColour);
-
-            if (!queue || !queue.playing){
-                embed.setDescription("There isn't currently any music playing.");
-                return await interaction.reply({ embeds: [embed], ephemeral: true });
-            }
-                
-            if (interaction.customId.startsWith("melody_back_song_")){
-                if (!queue || !queue.playing) {
-                    embed.setDescription(`There isn't currently any music playing.`);
-                    return await interaction.reply({ embeds: [embed], ephemeral: true });
-                } else if (!queue.previousTracks[1]){
-                    embed.setDescription(`There was no music played before this track.`);
-                    return await interaction.reply({ embeds: [embed], ephemeral: true });
-                } else {
-                    await queue.back();
-                    embed.setDescription(`<@${interaction.user.id}>: Returning to the previous track in queue.`);
-                }
-                
-                return await interaction.reply({ embeds: [embed] });
-            } else if (interaction.customId.startsWith("melody_pause_song_")){
-                if (!queue){
-                    embed.setDescription("There isn't currently any music playing.")
-                    return await interaction.reply({ embeds: [embed], ephemeral: true });
-                }
-        
-                queue.setPaused(!queue.connection.paused);
-        
-                embed.setDescription(`<@${interaction.user.id}>: Successfully ${queue.connection.paused ? "paused" : "unpaused"} **[${queue.current.title}](${queue.current.url})**.`);
-        
-                return await interaction.reply({ embeds: [embed] });
-            } else if (interaction.customId.startsWith("melody_skip_song_")){
-                if (!queue || !queue.playing) {
-                    embed.setDescription(`There isn't currently any music playing.`);
-                    return await interaction.reply({ embeds: [embed], ephemeral: true });
-                }
-
-                queue.skip();
-                
-                let rawdata = fs.readFileSync('src/data.json');
-                var data = JSON.parse(rawdata);
-
-                data["songs-skipped"] += 1;
-                
-                embed.setDescription(`<@${interaction.user.id}>: The track **[${queue.current.title}](${queue.current.url})** was skipped.`);
-
-                let newdata = JSON.stringify(data);
-                fs.writeFileSync('src/data.json', newdata);
-                
-                return await interaction.reply({ embeds: [embed] });
-            } else if (interaction.customId.startsWith("melody_queue_")){
-                if (!queue){
-                    embed.setDescription(`There isn't currently any music playing.`);
-                    return await interaction.reply({ embeds: [embed], ephemeral: true });
-                } 
-        
-                if (!queue.tracks[0]){
-                    embed.setDescription(`There aren't any other songs in the queue. Use **/nowplaying** to show information about this song.`);
-                    return await interaction.reply({ embeds: [embed], ephemeral: true });
-                }  
-        
-                embed.setThumbnail(interaction.guild.iconURL({ size: 2048, dynamic: true }));
-                embed.setAuthor({name: `Server Queue - ${interaction.guild.name}`});
-        
-                const tracks = queue.tracks.map((track, i) => `\`${i + 1}\` [${track.title}](${track.url}) by **${track.author}** (Requested by <@${track.requestedBy.id}>)`);
-                const songs = queue.tracks.length;
-                const nextSongs = songs > 5 ? `And **${songs - 5}** other song(s)` : `**${songs}** song(s) currently in queue.`;
-                const progress = queue.createProgressBar();
-        
-                embed.setDescription(`**Current Song:** [${queue.current.title}](${queue.current.url}) by **${queue.current.author}**\n${progress}\n\n${tracks.slice(0, 5).join('\n')}\n\n${nextSongs}`);
-                
-                const row = new ActionRowBuilder()
-                .addComponents(
-                    new ButtonBuilder()
-                        .setCustomId(`melody_back_song_${interaction.user.id}`)
-                        .setEmoji({ id: config.backEmoji.id })
-                        .setStyle(ButtonStyle.Secondary),
-                    new ButtonBuilder()
-                        .setCustomId(`melody_pause_song_${interaction.user.id}`)
-                        .setEmoji({ id: config.pauseEmoji.id })
-                        .setStyle(ButtonStyle.Secondary),
-                    new ButtonBuilder()
-                        .setCustomId(`melody_skip_song_${interaction.user.id}`)
-                        .setEmoji({ id: config.skipEmoji.id })
-                        .setStyle(ButtonStyle.Secondary),
-                    new ButtonBuilder()
-                        .setCustomId(`melody_stop_${interaction.user.id}`)
-                        .setEmoji({ id: config.stopEmoji.id })
-                        .setStyle(ButtonStyle.Secondary),
-                    new ButtonBuilder()
-                        .setCustomId(`melody_song_lyrics_${interaction.user.id}`)
-                        .setEmoji({ id: config.lyricsEmoji.id })
-                        .setStyle(ButtonStyle.Secondary),
-                );
-        
-                return await interaction.reply({ embeds: [embed], components: [row] });
-            } else if (interaction.customId.startsWith("melody_stop_")){
-                if (!queue || !queue.playing) {
-                    embed.setDescription(`There isn't currently any music playing.`);
-                    return await interaction.reply({ embeds: [embed], ephemeral: true });
-                } else{
-                    queue.destroy();
-                    embed.setDescription(`<@${interaction.user.id}>: The music has been stopped.`);
-                }
-        
-                return await interaction.reply({ embeds: [embed] });
-            } else if (interaction.customId.startsWith("melody_song_lyrics_")){
-                await interaction.deferReply({ ephemeral: true });
-
-                await lyricsClient.search(`${queue.current.title} ${queue.current.author}`).then(x => {
-                    embed.setAuthor({ name: `${x.title} - ${x.artist.name}`, url: x.url });
-                    embed.setDescription(x.lyrics);
-                    embed.setFooter({ text: "Courtesy of Genius" });
-                }).catch(err => {
-                    embed.setDescription(`I couldn't find any lyrics for this song.`);
-                });
-
-                return await interaction.editReply({ embeds: [embed] });
+            if (interaction.customId.includes("-")){
+                const dashIndex = interaction.customId.indexOf("-");
+                const button = client.buttons.get(interaction.customId.substring(0, dashIndex));
+                if (!button) return;
+                try { await button.execute(interaction, client);
+                } catch (error) { console.error(error); }
+            } else {
+                const button = client.buttons.get(interaction.customId);
+                if (!button) return;
+                try { await button.execute(interaction, client);
+                } catch (error) { console.error(error); }
             }
         } else if (interaction.isSelectMenu()){
             const buttonOwner = interaction.customId.substring(interaction.customId.length - 18, interaction.customId.length);
