@@ -75,6 +75,11 @@ Melody utilises many custom emojis for menus, and so if you would like to use th
 ## Genius
 Melody utilises Genius' API to find lyrics for songs. A Genius API key is therefore required to use the bot. Obtaining one is free, and can be done so <a href="https://genius.com/api-clients">here</a>.
 
+## Common Issues
+If you are experiencing an issue, check below to see if it is listed. If it's not listed, open an issue and we'll be happy to help.
+1. `Error: FFmpeg/avconv not found!`: If you are experiencing this issue, please try removing `ffmpeg-static` with `npm remove ffmpeg-static`, then install `ffmpeg` with `npm install ffmpeg`. If this does not fix the issue, please open an issue on GitHub.
+2. `[Aborted] Unable to find config.json file.`: Rename the `config.json.example` file to `config.json`, then change all of your settings in the file accordingly and restart the bot.
+
 ## Hosting
 Want to host this bot online? Any hosting company that provides Discord bot hosting will work, but I highly recommend <a href="https://techy.lol/revivenode">Revivenode</a> (Affiliate Link).
 
