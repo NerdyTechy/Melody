@@ -2,9 +2,9 @@
   "name": "melody",
   "version": "1.0.0",
   "description": "Discord music bot",
-  "main": "src/bot.js",
+  "main": "index.js",
   "scripts": {
-    "test": "node src/bot.js"
+    "test": "node index.js"
   },
   "author": "NerdyTechy",
   "license": "ISC",
