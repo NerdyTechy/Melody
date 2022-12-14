@@ -5,7 +5,8 @@ const config = require('../../../config.json');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('surround')
-        .setDescription('Applies the surround effect to the current music.'),
+        .setDescription('Applies the surround effect to the current music.')
+        .setDMPermission(false),
     async execute(interaction, client){
         const queue = player.getQueue(interaction.guild.id);
         

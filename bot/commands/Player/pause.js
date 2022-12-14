@@ -5,7 +5,8 @@ const config = require('../../../config.json');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('pause')
-        .setDescription('Pauses the current song.'),
+        .setDescription('Pauses the current song.')
+        .setDMPermission(false),
     async execute(interaction, client){
         const queue = player.getQueue(interaction.guild.id);
 

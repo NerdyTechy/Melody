@@ -5,7 +5,8 @@ const config = require('../../../config.json');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('clear')
-        .setDescription('Clears the queue.'),
+        .setDescription('Clears the queue.')
+        .setDMPermission(false),
     async execute(interaction, client){
         const queue = player.getQueue(interaction.guild.id);
 

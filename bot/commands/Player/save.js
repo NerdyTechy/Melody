@@ -5,7 +5,8 @@ const config = require('../../../config.json');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('save')
-        .setDescription('Sends you a direct message with details about the current song.'),
+        .setDescription('Sends you a direct message with details about the current song.')
+        .setDMPermission(false),
     async execute(interaction, client){
         const queue = player.getQueue(interaction.guild.id);
 

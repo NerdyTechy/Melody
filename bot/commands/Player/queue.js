@@ -5,7 +5,8 @@ const config = require('../../../config.json');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('queue')
-        .setDescription('Shows all songs currently in the server queue.'),
+        .setDescription('Shows all songs currently in the server queue.')
+        .setDMPermission(false),
     async execute(interaction, client){
         const queue = player.getQueue(interaction.guild.id);
         

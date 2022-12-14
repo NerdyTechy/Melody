@@ -6,6 +6,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('volume')
         .setDescription('Adjusts the volume of the current music.')
+        .setDMPermission(false)
     	.addIntegerOption(option => option.setName('volume').setDescription("The volume to set the music to.").setRequired(true)),
     async execute(interaction, client){
         const queue = player.getQueue(interaction.guild.id);

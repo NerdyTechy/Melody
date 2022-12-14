@@ -5,7 +5,8 @@ const config = require('../../../config.json');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('nightcore')
-        .setDescription('Applies the nightcore effect to the current music.'),
+        .setDescription('Applies the nightcore effect to the current music.')
+        .setDMPermission(false),
     async execute(interaction, client){
         const queue = player.getQueue(interaction.guild.id);
         
