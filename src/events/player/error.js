@@ -11,13 +11,6 @@ module.exports = {
         errEmbed.setColor(config.embedColour);
         
         queue.metadata.channel.send({embeds: [errEmbed]});
-        
-        const embed = new EmbedBuilder();
-        embed.setTitle("Melody Player Error");
-        embed.setDescription(`${error}`);
-        
-        const channel = client.channels.cache.find(channel => channel.id == '950014701901852722');
-        channel.send({embeds: [embed]});
         return;
     }
 };
