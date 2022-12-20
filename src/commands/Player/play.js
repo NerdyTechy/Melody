@@ -6,8 +6,8 @@ const config = require('../../../config.json');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('play')
-        .setDescription('Adds a song to the end of the server queue.')
-        .addStringOption(option => option.setName("query").setDescription("Enter a song name, artist name, or URL.").setRequired(true)),
+        .setDescription('Adds a track to the end of the server queue.')
+        .addStringOption(option => option.setName("query").setDescription("Enter a track name, artist name, or URL.").setRequired(true)),
     async execute(interaction, client){
         await interaction.deferReply();
         

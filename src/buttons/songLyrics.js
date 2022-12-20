@@ -23,7 +23,7 @@ module.exports = {
             embed.setDescription(x.lyrics);
             embed.setFooter({ text: "Courtesy of Genius" });
         }).catch(err => {
-            embed.setDescription(`I couldn't find any lyrics for this song.`);
+            embed.setDescription(`I couldn't find any lyrics for this track.`);
         });
 
         return await interaction.editReply({ embeds: [embed] });

@@ -5,7 +5,7 @@ const config = require('../../../config.json');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('stop')
-        .setDescription('Stops the current song and clears the queue.'),
+        .setDescription('Stops the current track and clears the queue.'),
     async execute(interaction, client){
         const queue = player.getQueue(interaction.guild.id);
 

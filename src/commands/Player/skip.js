@@ -6,7 +6,7 @@ const config = require('../../../config.json');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('skip')
-        .setDescription('Skips the current song.'),
+        .setDescription('Skips the current track.'),
     async execute(interaction, client){
         const queue = player.getQueue(interaction.guild.id);
         

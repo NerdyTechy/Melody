@@ -8,8 +8,8 @@ const lyricsClient = Lyrics.init(config.geniusApiKey);
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('lyrics')
-        .setDescription('View lyrics for the specified song.')
-        .addStringOption(option => option.setName("query").setDescription("Enter a song name, artist name, or URL.").setRequired(true)),
+        .setDescription('View lyrics for the specified track.')
+        .addStringOption(option => option.setName("query").setDescription("Enter a track name, artist name, or URL.").setRequired(true)),
     async execute(interaction, client){
         await interaction.deferReply();
         

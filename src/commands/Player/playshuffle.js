@@ -7,7 +7,7 @@ const config = require('../../../config.json');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('playshuffle')
-        .setDescription('Play shuffles the specified playlist.')
+        .setDescription('Plays the specified playlist with a random track order.')
         .addStringOption(option => option.setName("playlist").setDescription("Enter a playlist URL here to playshuffle.").setRequired(true)),
     async execute(interaction, client){
         await interaction.deferReply();

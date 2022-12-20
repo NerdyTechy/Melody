@@ -5,7 +5,7 @@ const config = require('../../../config.json');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('queue')
-        .setDescription('Shows all songs currently in the server queue.'),
+        .setDescription('Shows all tracks currently in the server queue.'),
     async execute(interaction, client){
         const queue = player.getQueue(interaction.guild.id);
         
@@ -18,7 +18,7 @@ module.exports = {
         } 
 
         if (!queue.tracks[0]){
-            embed.setDescription(`There aren't any other songs in the queue. Use **/nowplaying** to show information about this song.`);
+            embed.setDescription(`There aren't any other tracks in the queue. Use **/nowplaying** to show information about the current track.`);
             return await interaction.reply({ embeds: [embed] });
         }  
 
@@ -27,10 +27,10 @@ module.exports = {
 
         const tracks = queue.tracks.map((track, i) => `\`${i + 1}\` [${track.title}](${track.url}) by **${track.author}** (Requested by <@${track.requestedBy.id}>)`);
         const songs = queue.tracks.length;
-        const nextSongs = songs > 5 ? `And **${songs - 5}** other ${(songs - 5) > 1 ? "songs" : "song"} currently in queue.` : ``;
+        const nextSongs = songs > 5 ? `And **${songs - 5}** other ${(songs - 5) > 1 ? "tracks" : "track"} currently in queue.` : ``;
         const progress = queue.createProgressBar();
 
-        embed.setDescription(`**Current Song:** [${queue.current.title}](${queue.current.url}) by **${queue.current.author}**\n${progress}\n\n${tracks.slice(0, 5).join('\n')}\n\n${nextSongs}`);
+        embed.setDescription(`**Current Track:** [${queue.current.title}](${queue.current.url}) by **${queue.current.author}**\n${progress}\n\n${tracks.slice(0, 5).join('\n')}\n\n${nextSongs}`);
         
         const row = new ActionRowBuilder()
         .addComponents(
