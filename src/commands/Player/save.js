@@ -56,6 +56,6 @@ module.exports = {
             "Successfully saved the current track to your direct messages!"
         );
 
-        return await interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [embed], ephemeral: true });
     },
 };
