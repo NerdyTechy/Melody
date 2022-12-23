@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const {
     EmbedBuilder,
     ActionRowBuilder,
-    SelectMenuBuilder,
+    StringSelectMenuBuilder,
 } = require("discord.js");
 const config = require("../../../config.json");
 
@@ -19,7 +19,7 @@ module.exports = {
         embed.setColor(config.embedColour);
 
         const row = new ActionRowBuilder().addComponents(
-            new SelectMenuBuilder()
+            new StringSelectMenuBuilder()
                 .setCustomId(
                     `melody_help_category_select_${interaction.user.id}`
                 )
