@@ -34,7 +34,7 @@ module.exports = {
                     console.error(error);
                 }
             }
-        } else if (interaction.isSelectMenu()) {
+        } else if (interaction.isStringSelectMenu()) {
             const buttonOwner = interaction.customId.substring(
                 interaction.customId.length - 18,
                 interaction.customId.length
