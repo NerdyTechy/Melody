@@ -1,7 +1,7 @@
 module.exports = {
-    name: 'shardError',
+    name: "shardError",
     once: false,
-    async execute(error, client){
+    async execute(error, client) {
         return console.error(error);
     },
 };
