@@ -16,7 +16,7 @@ If you want to contribute directy to the code base, you can do so through a pull
 
 1. Fork this repository
 2. Add your code, and test it (We want all code on the main repo to be working)
-3. Format all of your code with prettier using the configuration file provided
+3. Format all of your code with prettier using `npm run format`
 4. Ensure that none of the documentation is incorrect after your changes
 5. Create a pull request to merge it back into the main repository!
 

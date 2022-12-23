@@ -4,7 +4,8 @@
     "description": "Discord music bot",
     "main": "src/bot.js",
     "scripts": {
-        "test": "node src/bot.js"
+        "test": "node src/bot.js",
+        "format": "npx prettier --write ."
     },
     "author": "NerdyTechy",
     "license": "ISC",
