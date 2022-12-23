@@ -61,6 +61,7 @@ Installing Melody is very simple and easy to do. If you have any issues, please 
 </ol>
 
 ## Analytics
+
 By default, Melody sends a HTTP request to a custom analytics service when it boots up with a non-identifiable token (A SHA-256 hash of your client ID). This is purely done so that I can see the usage of my projects. The service does not track anything other than the amount of times that you start the bot, and the time that you last started the bot. I use these statistics to know the popularity of my projects over time, and how the general usage trend looks.
 
 The API that runs this service is developed by me, so the information is not shared with any third parties. The analytics project is also open-source, and can be found <a href="https://github.com/NerdyTechy/Analytics">here</a>.
@@ -70,18 +71,24 @@ If you do not want to contribute to these analytics, you can disable the <strong
 While leaving these analytics enabled helps me to understand the demand of my projects, which can help me to decide which projects deserve more attention in terms of updates, I respect that you may not agree to providing these analytics, and so I have tried to make it as easy to opt out of as possible.
 
 ## Emojis
+
 Melody utilises many custom emojis for menus, and so if you would like to use them, they are available in the <strong>/emojis/</strong> directory. Simply upload them to your server, and edit the config.json file to have the correct names and IDs. If you would like to make your own emojis, or use default Discord emojis, simply change the config file accordingly.
 
 ## Genius
+
 Melody utilises Genius' API to find lyrics for songs. A Genius API key is therefore required to use the bot. Obtaining one is free, and can be done so <a href="https://genius.com/api-clients">here</a>.
 
 ## Common Issues
+
 If you are experiencing an issue, check below to see if it is listed. If it's not listed, open an issue and we'll be happy to help.
+
 1. `Error: FFmpeg/avconv not found!`: If you are experiencing this issue, please try removing `ffmpeg-static` with `npm remove ffmpeg-static`, then install `ffmpeg` with `npm install ffmpeg`. If this does not fix the issue, please open an issue on GitHub.
 2. `[Aborted] Unable to find config.json file.`: Rename the `config.json.example` file to `config.json`, then change all of your settings in the file accordingly and restart the bot.
 
 ## Hosting
+
 Want to host this bot online? Any hosting company that provides Discord bot hosting will work, but I highly recommend <a href="https://techy.lol/revivenode">Revivenode</a> (Affiliate Link).
 
 ## Like Melody?
+
 There are many ways you can support Melody, and its development. One of the best ways that you can support the project is by starring it. It's free, and really helps out. Other than that, you can support Melody's development by using my [Revivenode affiliate link](https://techy.lol/revivenode) which will give me a small percentage of what you spend at Revivenode, without charging you anything extra, or you can donate directly to me via [GitHub Sponsors](https://github.com/sponsors/NerdyTechy), or [buymeacoffee.com](https://www.buymeacoffee.com/techy). All donations are highly appreciated! <3
