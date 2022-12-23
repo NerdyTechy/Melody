@@ -9,3 +9,5 @@ When reporting a vulnerability, please go into as much detail as possible about 
 ## Fixing Vulnerabilities via Pull Requests
 
 If you see an easy fix to a security vulnerability, please report the vulnerability first and reference the report in your pull request. Your code will be reviewed before being merged to ensure it doesn't cause any conflicts, and to ensure that we are satisfied that the vulnerability has actually been patched by your changes.
+
+All pull requests must follow our [contribution guidelines](https://github.com/NerdyTechy/Melody/blob/master/CONTRIBUTING.md).
