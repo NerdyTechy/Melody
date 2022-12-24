@@ -1,12 +1,9 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
 const fs = require("fs");
-const config = require("../../../config.json");
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName("shuffle")
-        .setDescription("Shuffles all tracks currently in the queue."),
+    data: new SlashCommandBuilder().setName("shuffle").setDescription("Shuffles all tracks currently in the queue."),
     async execute(interaction, client) {
         const queue = player.getQueue(interaction.guild.id);
 
@@ -19,9 +16,7 @@ module.exports = {
         }
 
         if (!queue.tracks[0]) {
-            embed.setDescription(
-                `There aren't any other tracks in the queue. Use **/play** to add some more.`
-            );
+            embed.setDescription(`There aren't any other tracks in the queue. Use **/play** to add some more.`);
             return await interaction.reply({ embeds: [embed] });
         }
 
@@ -35,11 +30,7 @@ module.exports = {
         let newdata = JSON.stringify(data);
         fs.writeFileSync("src/data.json", newdata);
 
-        embed.setDescription(
-            queue.tracks.length > 1
-                ? `Successfully shuffled **${queue.tracks.length} tracks**!`
-                : `Successfully shuffled **${queue.tracks.length} track**!`
-        );
+        embed.setDescription(queue.tracks.length > 1 ? `Successfully shuffled **${queue.tracks.length} tracks**!` : `Successfully shuffled **${queue.tracks.length} track**!`);
         return await interaction.reply({ embeds: [embed] });
     },
 };

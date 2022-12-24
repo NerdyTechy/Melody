@@ -1,6 +1,5 @@
 const { EmbedBuilder } = require("discord.js");
 const fs = require("node:fs");
-const config = require("../../config.json");
 
 module.exports = {
     name: "melody_skip_song",
@@ -25,9 +24,7 @@ module.exports = {
 
         data["songs-skipped"] += 1;
 
-        embed.setDescription(
-            `<@${interaction.user.id}>: The track **[${queue.current.title}](${queue.current.url})** was skipped.`
-        );
+        embed.setDescription(`<@${interaction.user.id}>: The track **[${queue.current.title}](${queue.current.url})** was skipped.`);
 
         let newdata = JSON.stringify(data);
         fs.writeFileSync("src/data.json", newdata);

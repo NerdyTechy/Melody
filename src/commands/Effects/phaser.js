@@ -1,11 +1,8 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
-const config = require("../../../config.json");
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName("phaser")
-        .setDescription("Applies the phaser effect to the current music."),
+    data: new SlashCommandBuilder().setName("phaser").setDescription("Applies the phaser effect to the current music."),
     async execute(interaction, client) {
         const queue = player.getQueue(interaction.guild.id);
 
@@ -18,13 +15,7 @@ module.exports = {
             queue.setFilters({
                 phaser: !queue.getFiltersEnabled().includes("phaser"),
             });
-            embed.setDescription(
-                `The **phaser** filter is now ${
-                    queue.getFiltersEnabled().includes("phaser")
-                        ? "enabled."
-                        : "disabled."
-                }`
-            );
+            embed.setDescription(`The **phaser** filter is now ${queue.getFiltersEnabled().includes("phaser") ? "enabled." : "disabled."}`);
         }
 
         return await interaction.reply({ embeds: [embed] });

@@ -1,6 +1,5 @@
 const { EmbedBuilder } = require("discord.js");
 const fs = require("node:fs");
-const config = require("../../../config.json");
 
 module.exports = {
     name: "trackStart",
@@ -14,9 +13,7 @@ module.exports = {
 
         fs.writeFileSync("src/data.json", JSON.stringify(parsed));
 
-        embed.setDescription(
-            `Now playing **[${track.title}](${track.url})** by **${track.author}**.`
-        );
+        embed.setDescription(`Now playing **[${track.title}](${track.url})** by **${track.author}**.`);
         embed.setColor(config.embedColour);
         queue.metadata.channel.send({ embeds: [embed] });
     },

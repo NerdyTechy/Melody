@@ -1,11 +1,8 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
-const config = require("../../../config.json");
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName("expander")
-        .setDescription("Applies the expander effect to the current music."),
+    data: new SlashCommandBuilder().setName("expander").setDescription("Applies the expander effect to the current music."),
     async execute(interaction, client) {
         const queue = player.getQueue(interaction.guild.id);
 
@@ -18,13 +15,7 @@ module.exports = {
             queue.setFilters({
                 expander: !queue.getFiltersEnabled().includes("expander"),
             });
-            embed.setDescription(
-                `The **expander** filter is now ${
-                    queue.getFiltersEnabled().includes("expander")
-                        ? "enabled."
-                        : "disabled."
-                }`
-            );
+            embed.setDescription(`The **expander** filter is now ${queue.getFiltersEnabled().includes("expander") ? "enabled." : "disabled."}`);
         }
 
         return await interaction.reply({ embeds: [embed] });

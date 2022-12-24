@@ -1,9 +1,8 @@
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord.js");
 const fs = require("node:fs");
-const config = require("../../config.json");
 
-const token = config.botToken;
+const token = config.token;
 const clientId = config.clientId;
 
 module.exports = (client) => {

@@ -1,11 +1,8 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
-const config = require("../../../config.json");
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName("surround")
-        .setDescription("Applies the surround effect to the current music."),
+    data: new SlashCommandBuilder().setName("surround").setDescription("Applies the surround effect to the current music."),
     async execute(interaction, client) {
         const queue = player.getQueue(interaction.guild.id);
 
@@ -18,13 +15,7 @@ module.exports = {
             queue.setFilters({
                 surrounding: !queue.getFiltersEnabled().includes("surrounding"),
             });
-            embed.setDescription(
-                `The **surround** filter is now ${
-                    queue.getFiltersEnabled().includes("surrounding")
-                        ? "enabled."
-                        : "disabled."
-                }`
-            );
+            embed.setDescription(`The **surround** filter is now ${queue.getFiltersEnabled().includes("surrounding") ? "enabled." : "disabled."}`);
         }
 
         return await interaction.reply({ embeds: [embed] });

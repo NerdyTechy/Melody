@@ -1,5 +1,4 @@
 const { EmbedBuilder } = require("discord.js");
-const config = require("../../config.json");
 
 module.exports = {
     name: "melody_stop",
@@ -18,9 +17,7 @@ module.exports = {
         }
 
         queue.destroy();
-        embed.setDescription(
-            `<@${interaction.user.id}>: The music has been stopped.`
-        );
+        embed.setDescription(`<@${interaction.user.id}>: The music has been stopped.`);
 
         return await interaction.reply({ embeds: [embed] });
     },

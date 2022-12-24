@@ -1,5 +1,4 @@
 const { EmbedBuilder } = require("discord.js");
-const config = require("../../config.json");
 
 module.exports = {
     name: "melody_pause_song",
@@ -27,11 +26,7 @@ module.exports = {
 
         queue.setPaused(!queue.connection.paused);
 
-        embed.setDescription(
-            `<@${interaction.user.id}>: Successfully ${
-                queue.connection.paused ? "paused" : "unpaused"
-            } **[${queue.current.title}](${queue.current.url})**.`
-        );
+        embed.setDescription(`<@${interaction.user.id}>: Successfully ${queue.connection.paused ? "paused" : "unpaused"} **[${queue.current.title}](${queue.current.url})**.`);
 
         return await interaction.reply({ embeds: [embed] });
     },

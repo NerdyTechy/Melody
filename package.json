@@ -17,7 +17,8 @@
         "@discordjs/voice": "^0.14.0",
         "discord-player": "^5.3.2",
         "discord.js": "^14.7.1",
-        "ffmpeg-static": "^5.1.0"
+        "ffmpeg-static": "^5.1.0",
+        "js-yaml": "^4.1.0"
     },
     "devDependencies": {
         "prettier": "2.8.1"

@@ -53,8 +53,8 @@ Installing Melody is very simple and easy to do. If you have any issues, please 
 <ol>
   <li>Download the source code from this repository.</li>
   <li>Upload to your hosting and extract the files. (Or just extract locally)</li>
-  <li>Rename <strong>config.json.example</strong> to <strong>config.json</strong>.</li>
-  <li>Enter Discord bot token, Discord bot client ID, and <a href="#Genius">Genius API key</a> into <strong>config.json</strong>.</li>
+  <li>Rename <strong>config.yml.example</strong> to <strong>config.yml</strong>.</li>
+  <li>Enter Discord bot token, Discord bot client ID, and <a href="#Genius">Genius API key</a> into <strong>config.yml</strong>.</li>
   <li><strong>Optional:</strong> Upload the <a href="#Emojis">custom emojis</a> found in the <strong>/emojis/</strong> directory to your server, and set the IDs of the emojis in the configuration file. (Replace the default emoji with the ID of the custom emoji)</li>
   <li>Install dependencies listed in package.json.</li>
   <li>Launch bot with <strong>node src/bot.js</strong> or <strong>npm run test</strong>. (If your hosting is managed and you can't change the startup command, you should be able to set the file that is run at launch. This must be set to <strong>src/bot.js</strong>).</li>
@@ -72,7 +72,7 @@ While leaving these analytics enabled helps me to understand the demand of my pr
 
 ## Emojis
 
-Melody utilises many custom emojis for menus, and so if you would like to use them, they are available in the <strong>/emojis/</strong> directory. Simply upload them to your server, and edit the config.json file to have the correct names and IDs. If you would like to make your own emojis, or use default Discord emojis, simply change the config file accordingly.
+Melody utilises many custom emojis for menus, and so if you would like to use them, they are available in the <strong>/emojis/</strong> directory. Simply upload them to your server, and edit the config.yml file to have the correct names and IDs. If you would like to make your own emojis, or use default Discord emojis, simply change the config file accordingly.
 
 ## Genius
 
@@ -83,7 +83,7 @@ Melody utilises Genius' API to find lyrics for songs. A Genius API key is theref
 If you are experiencing an issue, check below to see if it is listed. If it's not listed, open an issue and we'll be happy to help.
 
 1. `Error: FFmpeg/avconv not found!`: If you are experiencing this issue, please try removing `ffmpeg-static` with `npm remove ffmpeg-static`, then install `ffmpeg` with `npm install ffmpeg`. If this does not fix the issue, please open an issue on GitHub.
-2. `[Aborted] Unable to find config.json file.`: Rename the `config.json.example` file to `config.json`, then change all of your settings in the file accordingly and restart the bot.
+2. `[Aborted] Unable to find config.yml file.`: Rename the `config.yml.example` file to `config.yml`, then change all of your settings in the file accordingly and restart the bot.
 
 ## Hosting
 

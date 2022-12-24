@@ -1,11 +1,8 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
-const config = require("../../../config.json");
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName("pause")
-        .setDescription("Pauses the current track."),
+    data: new SlashCommandBuilder().setName("pause").setDescription("Pauses the current track."),
     async execute(interaction, client) {
         const queue = player.getQueue(interaction.guild.id);
 
@@ -24,9 +21,7 @@ module.exports = {
 
         queue.setPaused(true);
 
-        embed.setDescription(
-            `Successfully paused **[${queue.current.title}](${queue.current.url})**.`
-        );
+        embed.setDescription(`Successfully paused **[${queue.current.title}](${queue.current.url})**.`);
 
         return await interaction.reply({ embeds: [embed] });
     },

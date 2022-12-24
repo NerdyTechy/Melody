@@ -1,7 +1,6 @@
 const { EmbedBuilder } = require("discord.js");
 const { Lyrics } = require("@discord-player/extractor");
-const config = require("../../config.json");
-const lyricsClient = Lyrics.init(config.geniusApiKey);
+const lyricsClient = Lyrics.init(config.geniusKey);
 
 module.exports = {
     name: "melody_song_lyrics",
@@ -32,9 +31,7 @@ module.exports = {
                 embed.setFooter({ text: "Courtesy of Genius" });
             })
             .catch((err) => {
-                embed.setDescription(
-                    `I couldn't find any lyrics for this track.`
-                );
+                embed.setDescription(`I couldn't find any lyrics for this track.`);
             });
 
         return await interaction.editReply({ embeds: [embed] });
