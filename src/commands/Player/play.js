@@ -6,12 +6,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("play")
         .setDescription("Adds a track to the end of the server queue.")
-        .addStringOption((option) =>
-            option
-                .setName("query")
-                .setDescription("Enter a track name, artist name, or URL.")
-                .setRequired(true)
-        ),
+        .addStringOption((option) => option.setName("query").setDescription("Enter a track name, artist name, or URL.").setRequired(true)),
     async execute(interaction, client) {
         await interaction.deferReply();
 
@@ -23,11 +18,7 @@ module.exports = {
             return await interaction.editReply({ embeds: [embed] });
         }
 
-        if (
-            interaction.guild.members.me.voice.channelId &&
-            interaction.member.voice.channelId !==
-                interaction.guild.members.me.voice.channelId
-        ) {
+        if (interaction.guild.members.me.voice.channelId && interaction.member.voice.channelId !== interaction.guild.members.me.voice.channelId) {
             embed.setDescription("I can't play music in that voice channel.");
             return await interaction.editReply({ embeds: [embed] });
         }
@@ -52,8 +43,7 @@ module.exports = {
         });
 
         try {
-            if (!queue.connection)
-                await queue.connect(interaction.member.voice.channel);
+            if (!queue.connection) await queue.connect(interaction.member.voice.channel);
         } catch (err) {
             queue.destroy();
             embed.setDescription("I can't join that voice channel.");
@@ -66,23 +56,17 @@ module.exports = {
 
         if (!res) {
             await queue.destroy();
-            embed.setDescription(
-                `I couldn't find anything with the name **${query}**.`
-            );
+            embed.setDescription(`I couldn't find anything with the name **${query}**.`);
             return await interaction.editReply({ embeds: [embed] });
         }
 
         try {
-            res.playlist
-                ? queue.addTracks(res.tracks)
-                : queue.addTrack(res.tracks[0]);
+            res.playlist ? queue.addTracks(res.tracks) : queue.addTrack(res.tracks[0]);
             if (!queue.playing) await queue.play();
         } catch (err) {
             if (err instanceof PlayerError) {
                 if (err.statusCode == "InvalidTrack") {
-                    embed.setDescription(
-                        `I couldn't find anything with the name **${query}**.`
-                    );
+                    embed.setDescription(`I couldn't find anything with the name **${query}**.`);
                     await queue.destroy();
                     return await interaction.editReply({ embeds: [embed] });
                 }
@@ -91,20 +75,14 @@ module.exports = {
             console.error(err);
 
             await queue.destroy();
-            embed.setDescription(
-                "This media doesn't seem to be working right now, please try again later."
-            );
+            embed.setDescription("This media doesn't seem to be working right now, please try again later.");
             return await interaction.followUp({ embeds: [embed] });
         }
 
         if (!res.playlist) {
-            embed.setDescription(
-                `Loaded **[${res.tracks[0].title}](${res.tracks[0].url})** by **${res.tracks[0].author}** into the server queue.`
-            );
+            embed.setDescription(`Loaded **[${res.tracks[0].title}](${res.tracks[0].url})** by **${res.tracks[0].author}** into the server queue.`);
         } else {
-            embed.setDescription(
-                `**${res.tracks.length} tracks** from the ${res.playlist.type} **[${res.playlist.title}](${res.playlist.url})** have been loaded into the server queue.`
-            );
+            embed.setDescription(`**${res.tracks.length} tracks** from the ${res.playlist.type} **[${res.playlist.title}](${res.playlist.url})** have been loaded into the server queue.`);
         }
 
         return await interaction.editReply({ embeds: [embed] });

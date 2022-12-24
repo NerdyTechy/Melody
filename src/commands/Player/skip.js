@@ -3,9 +3,7 @@ const { EmbedBuilder } = require("discord.js");
 const fs = require("fs");
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName("skip")
-        .setDescription("Skips the current track."),
+    data: new SlashCommandBuilder().setName("skip").setDescription("Skips the current track."),
     async execute(interaction, client) {
         const queue = player.getQueue(interaction.guild.id);
 
@@ -24,9 +22,7 @@ module.exports = {
 
         data["songs-skipped"] += 1;
 
-        embed.setDescription(
-            `The track **[${queue.current.title}](${queue.current.url})** was skipped.`
-        );
+        embed.setDescription(`The track **[${queue.current.title}](${queue.current.url})** was skipped.`);
 
         let newdata = JSON.stringify(data);
         fs.writeFileSync("src/data.json", newdata);

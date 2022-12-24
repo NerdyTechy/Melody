@@ -2,9 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName("reverse")
-        .setDescription("Applies the reverse effect to the current music."),
+    data: new SlashCommandBuilder().setName("reverse").setDescription("Applies the reverse effect to the current music."),
     async execute(interaction, client) {
         const queue = player.getQueue(interaction.guild.id);
 
@@ -17,13 +15,7 @@ module.exports = {
             queue.setFilters({
                 reverse: !queue.getFiltersEnabled().includes("reverse"),
             });
-            embed.setDescription(
-                `The **reverse** filter is now ${
-                    queue.getFiltersEnabled().includes("reverse")
-                        ? "enabled."
-                        : "disabled."
-                }`
-            );
+            embed.setDescription(`The **reverse** filter is now ${queue.getFiltersEnabled().includes("reverse") ? "enabled." : "disabled."}`);
         }
 
         return await interaction.reply({ embeds: [embed] });

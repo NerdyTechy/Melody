@@ -23,18 +23,14 @@ module.exports = {
                 ephemeral: true,
             });
         } else if (!queue.previousTracks[1]) {
-            embed.setDescription(
-                `There was no music played before this track.`
-            );
+            embed.setDescription(`There was no music played before this track.`);
             return await interaction.reply({
                 embeds: [embed],
                 ephemeral: true,
             });
         } else {
             await queue.back();
-            embed.setDescription(
-                `<@${interaction.user.id}>: Returning to the previous track in queue.`
-            );
+            embed.setDescription(`<@${interaction.user.id}>: Returning to the previous track in queue.`);
         }
 
         return await interaction.reply({ embeds: [embed] });

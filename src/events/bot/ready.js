@@ -9,15 +9,10 @@ module.exports = {
             let options = {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: `{"identifier":"${crypto
-                    .createHash("sha256")
-                    .update(config.clientId)
-                    .digest("hex")}"}`,
+                body: `{"identifier":"${crypto.createHash("sha256").update(config.clientId).digest("hex")}"}`,
             };
 
-            fetch("https://analytics.techy.lol/melody", options).catch(
-                (err) => {}
-            );
+            fetch("https://analytics.techy.lol/melody", options).catch((err) => {});
         }
 
         console.log("The bot is now ready.");

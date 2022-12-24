@@ -5,9 +5,7 @@ const yaml = require("js-yaml");
 const { config } = require("node:process");
 
 if (!fs.existsSync("config.yml")) {
-    return console.error(
-        "[Aborted] Unable to find config.yml file. Please copy the default configuration into a file named config.yml in the root directory. (The same directory as package.json)"
-    );
+    return console.error("[Aborted] Unable to find config.yml file. Please copy the default configuration into a file named config.yml in the root directory. (The same directory as package.json)");
 }
 
 fs.writeFileSync(
@@ -35,14 +33,8 @@ global.config = {
     backEmoji: configFile.emojis.back ?? "⏮",
 };
 
-if (!global.config.token || global.config.token === "")
-    return console.error(
-        "[Aborted] Please supply a bot token in your configuration file."
-    );
-if (!global.config.clientId || global.config.clientId === "")
-    return console.error(
-        "[Aborted] Please supply a client ID in your configuration file."
-    );
+if (!global.config.token || global.config.token === "") return console.error("[Aborted] Please supply a bot token in your configuration file.");
+if (!global.config.clientId || global.config.clientId === "") return console.error("[Aborted] Please supply a client ID in your configuration file.");
 if (global.config.geniusKey === "") global.config.geniusKey = null;
 
 const client = new Client({ intents: [32767] });
@@ -50,9 +42,7 @@ global.player = new Player(client);
 client.commands = new Collection();
 client.buttons = new Collection();
 
-const functions = fs
-    .readdirSync("./src/functions")
-    .filter((file) => file.endsWith(".js"));
+const functions = fs.readdirSync("./src/functions").filter((file) => file.endsWith(".js"));
 
 (async () => {
     for (file of functions) {

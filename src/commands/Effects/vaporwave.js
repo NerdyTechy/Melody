@@ -2,9 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName("vaporwave")
-        .setDescription("Applies the vaporwave effect to the current music."),
+    data: new SlashCommandBuilder().setName("vaporwave").setDescription("Applies the vaporwave effect to the current music."),
     async execute(interaction, client) {
         const queue = player.getQueue(interaction.guild.id);
 
@@ -17,13 +15,7 @@ module.exports = {
             queue.setFilters({
                 vaporwave: !queue.getFiltersEnabled().includes("vaporwave"),
             });
-            embed.setDescription(
-                `The **vaporwave** filter is now ${
-                    queue.getFiltersEnabled().includes("vaporwave")
-                        ? "enabled."
-                        : "disabled."
-                }`
-            );
+            embed.setDescription(`The **vaporwave** filter is now ${queue.getFiltersEnabled().includes("vaporwave") ? "enabled." : "disabled."}`);
         }
 
         return await interaction.reply({ embeds: [embed] });

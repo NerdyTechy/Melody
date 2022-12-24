@@ -8,12 +8,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("lyrics")
         .setDescription("View lyrics for the specified track.")
-        .addStringOption((option) =>
-            option
-                .setName("query")
-                .setDescription("Enter a track name, artist name, or URL.")
-                .setRequired(true)
-        ),
+        .addStringOption((option) => option.setName("query").setDescription("Enter a track name, artist name, or URL.").setRequired(true)),
     async execute(interaction, client) {
         await interaction.deferReply();
 
@@ -31,11 +26,7 @@ module.exports = {
                 embed.setFooter({ text: "Courtesy of Genius" });
             })
             .catch((err) => {
-                embed.setDescription(
-                    `I couldn't find a track with the name **${interaction.options.getString(
-                        "query"
-                    )}**.`
-                );
+                embed.setDescription(`I couldn't find a track with the name **${interaction.options.getString("query")}**.`);
             });
 
         return await interaction.editReply({

@@ -6,9 +6,7 @@ module.exports = {
         console.log(error);
 
         const errEmbed = new EmbedBuilder();
-        errEmbed.setDescription(
-            `A connection error occurred whilst attempting to perform this action.`
-        );
+        errEmbed.setDescription(`A connection error occurred whilst attempting to perform this action.`);
         errEmbed.setColor(config.embedColour);
 
         queue.metadata.channel.send({ embeds: [errEmbed] });

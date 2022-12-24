@@ -2,9 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName("bassboost")
-        .setDescription("Applies the bass boost effect to the current music."),
+    data: new SlashCommandBuilder().setName("bassboost").setDescription("Applies the bass boost effect to the current music."),
     async execute(interaction, client) {
         const queue = player.getQueue(interaction.guild.id);
 
@@ -17,13 +15,7 @@ module.exports = {
             queue.setFilters({
                 bassboost: !queue.getFiltersEnabled().includes("bassboost"),
             });
-            embed.setDescription(
-                `The **bass boost** filter is now ${
-                    queue.getFiltersEnabled().includes("bassboost")
-                        ? "enabled."
-                        : "disabled."
-                }`
-            );
+            embed.setDescription(`The **bass boost** filter is now ${queue.getFiltersEnabled().includes("bassboost") ? "enabled." : "disabled."}`);
         }
 
         return await interaction.reply({ embeds: [embed] });

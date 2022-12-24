@@ -2,11 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName("save")
-        .setDescription(
-            "Sends you a direct message with details about the current track."
-        ),
+    data: new SlashCommandBuilder().setName("save").setDescription("Sends you a direct message with details about the current track."),
     async execute(interaction, client) {
         const queue = player.getQueue(interaction.guild.id);
 
@@ -42,18 +38,14 @@ module.exports = {
         try {
             await interaction.user.send({ embeds: [info] });
         } catch (err) {
-            embed.setDescription(
-                "I cannot send you direct messages. Check your privacy settings and try again."
-            );
+            embed.setDescription("I cannot send you direct messages. Check your privacy settings and try again.");
             return await interaction.reply({
                 embeds: [embed],
                 ephemeral: true,
             });
         }
 
-        embed.setDescription(
-            "Successfully saved the current track to your direct messages!"
-        );
+        embed.setDescription("Successfully saved the current track to your direct messages!");
 
         return await interaction.reply({ embeds: [embed], ephemeral: true });
     },

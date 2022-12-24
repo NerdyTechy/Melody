@@ -2,9 +2,7 @@ const fs = require("node:fs");
 
 module.exports = (client) => {
     client.handleButtons = async () => {
-        const buttonFiles = fs
-            .readdirSync("src/buttons")
-            .filter((file) => file.endsWith(".js"));
+        const buttonFiles = fs.readdirSync("src/buttons").filter((file) => file.endsWith(".js"));
 
         for (file of buttonFiles) {
             const button = require(`../buttons/${file}`);

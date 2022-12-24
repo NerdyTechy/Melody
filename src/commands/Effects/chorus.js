@@ -2,9 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName("chorus")
-        .setDescription("Applies the chorus effect to the current music."),
+    data: new SlashCommandBuilder().setName("chorus").setDescription("Applies the chorus effect to the current music."),
     async execute(interaction, client) {
         const queue = player.getQueue(interaction.guild.id);
 
@@ -17,13 +15,7 @@ module.exports = {
             queue.setFilters({
                 chorus: !queue.getFiltersEnabled().includes("chorus"),
             });
-            embed.setDescription(
-                `The **chorus** filter is now ${
-                    queue.getFiltersEnabled().includes("chorus")
-                        ? "enabled."
-                        : "disabled."
-                }`
-            );
+            embed.setDescription(`The **chorus** filter is now ${queue.getFiltersEnabled().includes("chorus") ? "enabled." : "disabled."}`);
         }
 
         return await interaction.reply({ embeds: [embed] });

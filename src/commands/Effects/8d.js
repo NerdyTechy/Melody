@@ -2,9 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName("8d")
-        .setDescription("Applies the 8D effect to the current music."),
+    data: new SlashCommandBuilder().setName("8d").setDescription("Applies the 8D effect to the current music."),
     async execute(interaction, client) {
         const queue = player.getQueue(interaction.guild.id);
 
@@ -17,13 +15,7 @@ module.exports = {
             queue.setFilters({
                 "8D": !queue.getFiltersEnabled().includes("8D"),
             });
-            embed.setDescription(
-                `The **8D** filter is now ${
-                    queue.getFiltersEnabled().includes("8D")
-                        ? "enabled."
-                        : "disabled."
-                }`
-            );
+            embed.setDescription(`The **8D** filter is now ${queue.getFiltersEnabled().includes("8D") ? "enabled." : "disabled."}`);
         }
 
         return await interaction.reply({ embeds: [embed] });

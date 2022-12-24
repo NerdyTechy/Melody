@@ -2,9 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName("resume")
-        .setDescription("Resumes the current track."),
+    data: new SlashCommandBuilder().setName("resume").setDescription("Resumes the current track."),
     async execute(interaction, client) {
         const queue = player.getQueue(interaction.guild.id);
 
@@ -23,9 +21,7 @@ module.exports = {
 
         queue.setPaused(false);
 
-        embed.setDescription(
-            `Successfully resumed **[${queue.current.title}](${queue.current.url})**.`
-        );
+        embed.setDescription(`Successfully resumed **[${queue.current.title}](${queue.current.url})**.`);
 
         return await interaction.reply({ embeds: [embed] });
     },
