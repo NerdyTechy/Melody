@@ -1,6 +1,5 @@
 const { EmbedBuilder } = require("discord.js");
 const fs = require("node:fs");
-const config = require("../../config.json");
 
 module.exports = {
     name: "melody_skip_song",

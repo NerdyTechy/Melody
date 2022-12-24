@@ -1,6 +1,5 @@
 const { SlashCommandBuilder, ButtonBuilder } = require("@discordjs/builders");
 const { EmbedBuilder, ActionRowBuilder, ButtonStyle } = require("discord.js");
-const config = require("../../../config.json");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -60,9 +59,9 @@ module.exports = {
             new ButtonBuilder()
                 .setCustomId(`melody_song_lyrics-${interaction.user.id}`)
                 .setEmoji(
-                    config.lyricEmoji.length <= 3
-                        ? { name: config.lyricEmoji.trim() }
-                        : { id: config.lyricEmoji.trim() }
+                    config.lyricsEmoji.length <= 3
+                        ? { name: config.lyricsEmoji.trim() }
+                        : { id: config.lyricsEmoji.trim() }
                 )
                 .setStyle(ButtonStyle.Secondary)
         );

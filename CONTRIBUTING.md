@@ -24,6 +24,6 @@ We do ask that once you fork Melody with the intention of merging back in, that 
 
 ## Developing Locally
 
-Developing Melody locally is actually really simple, just clone the repository, rename `config.json.example` to `config.json`, fill in the configuration details, then run `npm run test` to start up the bot.
+Developing Melody locally is actually really simple, just clone the repository, rename `config.yml.example` to `config.yml`, fill in the configuration details, then run `npm run test` to start up the bot.
 
 ### Thanks for contributing to Melody <3

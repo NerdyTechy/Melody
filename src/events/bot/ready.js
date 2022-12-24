@@ -1,10 +1,8 @@
-const config = require("../../../config.json");
-
 module.exports = {
     name: "ready",
     once: true,
     async execute(client) {
-        if (config.enableAnalytics) {
+        if (config.analytics) {
             const fetch = require("node-fetch");
             const crypto = require("node:crypto");
 

@@ -1,0 +1,25 @@
+# Your Discord bot token (Found at https://discord.com/developers/applications)
+botToken: ""
+
+# Your Discord bot client ID
+clientId: ""
+
+# Your Genius API client access token (Found at https://genius.com/developers)
+geniusApiKey: ""
+
+# The colour to use for embeds sent by the bot
+embedColour: "#2F3136"
+
+# Whether analytics should be sent when starting the bot
+# See https://github.com/NerdyTechy/Melody/wiki/Analytics
+enableAnalytics: true
+
+# The emojis to be used in buttons for certain embeds
+# See https://github.com/NerdyTechy/Melody/wiki/Using-Custom-Emojis
+emojis:
+    stop: "⏹"
+    skip: "⏭"
+    queue: "📜"
+    pause: "⏯"
+    lyrics: "📜"
+    back: "⏮"
