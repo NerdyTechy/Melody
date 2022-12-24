@@ -2,20 +2,14 @@ const { Player } = require("discord-player");
 const { Client, Collection } = require("discord.js");
 const fs = require("node:fs");
 const yaml = require("js-yaml");
-const { config } = require("node:process");
 
 if (!fs.existsSync("config.yml")) {
     return console.error("[Aborted] Unable to find config.yml file. Please copy the default configuration into a file named config.yml in the root directory. (The same directory as package.json)");
 }
 
-fs.writeFileSync(
-    "src/data.json",
-    JSON.stringify({
-        "songs-played": 0,
-        "queues-shuffled": 0,
-        "songs-skipped": 0,
-    })
-);
+if (!fs.existsSync("src/data.json")) {
+    fs.writeFileSync("src/data.json", JSON.stringify({ "songs-played": 0, "queues-shuffled": 0, "songs-skipped": 0 }));
+}
 
 const configFile = yaml.load(fs.readFileSync("./config.yml"));
 
@@ -33,9 +27,9 @@ global.config = {
     backEmoji: configFile.emojis.back ?? "⏮",
 };
 
-if (!global.config.token || global.config.token === "") return console.error("[Aborted] Please supply a bot token in your configuration file.");
-if (!global.config.clientId || global.config.clientId === "") return console.error("[Aborted] Please supply a client ID in your configuration file.");
-if (global.config.geniusKey === "") global.config.geniusKey = null;
+if (!config.token || config.token === "") return console.error("[Aborted] Please supply a bot token in your configuration file.");
+if (!config.clientId || config.clientId === "") return console.error("[Aborted] Please supply a client ID in your configuration file.");
+if (config.geniusKey === "") config.geniusKey = null;
 
 const client = new Client({ intents: [32767] });
 global.player = new Player(client);
@@ -51,5 +45,5 @@ const functions = fs.readdirSync("./src/functions").filter((file) => file.endsWi
     client.handleCommands();
     client.handleEvents();
     client.handleButtons();
-    client.login(global.config.token);
+    client.login(config.token);
 })();
