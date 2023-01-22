@@ -1,7 +1,7 @@
 ### Checklist
 - [ ] The pull request has a descriptive title.
-- [ ] All code changed has been thouroughly tested.
-- [ ] All code changed has been formated with prettier using `npm run format`.
+- [ ] All code changed has been thoroughly tested.
+- [ ] All code changed has been formatted with prettier using `npm run format`.
 
 ---
 
