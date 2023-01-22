@@ -5,7 +5,9 @@
     "main": "src/bot.js",
     "scripts": {
         "test": "node src/bot.js",
-        "format": "npx prettier --write ."
+        "format": "npx prettier --write .",
+        "lint": "eslint . --ext .js",
+        "lint:fix": "eslint . --ext .js --fix"
     },
     "author": "NerdyTechy",
     "license": "ISC",
@@ -21,6 +23,7 @@
         "js-yaml": "^4.1.0"
     },
     "devDependencies": {
+        "eslint": "^8.32.0",
         "prettier": "2.8.1"
     }
 }

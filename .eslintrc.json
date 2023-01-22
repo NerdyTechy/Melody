@@ -1,0 +1,27 @@
+{
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "env": {
+        "node": true
+    },
+    "extends": ["eslint:recommended"],
+    "rules": {
+        "semi": "error",
+        "quotes": ["warn", "double"],
+        "no-dupe-args": "error",
+        "no-dupe-else-if": "error",
+        "no-use-before-define": [
+            "error",
+            {
+                "functions": false,
+                "classes": true,
+                "variables": true,
+                "allowNamedExports": false
+            }
+        ],
+        "no-unreachable-loop": "error",
+        "no-unreachable": "error",
+        "no-duplicate-imports": "error"
+    }
+}
