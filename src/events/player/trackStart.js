@@ -14,7 +14,7 @@ module.exports = {
         fs.writeFileSync("src/data.json", JSON.stringify(parsed));
 
         embed.setDescription(`Now playing **[${track.title}](${track.url})** by **${track.author}**.`);
-        embed.setColor(config.embedColour);
+        embed.setColor(global.config.embedColour);
         queue.metadata.channel.send({ embeds: [embed] });
     },
 };

@@ -22,7 +22,7 @@ module.exports = (client) => {
         for (const file of playerEventFiles) {
             const filePath = path.join(playerEventsPath, file);
             const event = require(filePath);
-            player.on(event.name, (...args) => event.execute(...args, client));
+            global.player.on(event.name, (...args) => event.execute(...args, client));
         }
     };
 };

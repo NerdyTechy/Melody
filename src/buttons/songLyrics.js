@@ -1,14 +1,14 @@
 const { EmbedBuilder } = require("discord.js");
 const { Lyrics } = require("@discord-player/extractor");
-const lyricsClient = Lyrics.init(config.geniusKey);
+const lyricsClient = Lyrics.init(global.config.geniusKey);
 
 module.exports = {
     name: "melody_song_lyrics",
-    async execute(interaction, client) {
-        const queue = player.getQueue(interaction.guild.id);
+    async execute(interaction) {
+        const queue = global.player.getQueue(interaction.guild.id);
 
         const embed = new EmbedBuilder();
-        embed.setColor(config.embedColour);
+        embed.setColor(global.config.embedColour);
 
         if (!queue || !queue.playing) {
             embed.setDescription("There isn't currently any music playing.");
@@ -30,8 +30,8 @@ module.exports = {
                 embed.setDescription(x.lyrics);
                 embed.setFooter({ text: "Courtesy of Genius" });
             })
-            .catch((err) => {
-                embed.setDescription(`I couldn't find any lyrics for this track.`);
+            .catch(() => {
+                embed.setDescription("I couldn't find any lyrics for this track.");
             });
 
         return await interaction.editReply({ embeds: [embed] });

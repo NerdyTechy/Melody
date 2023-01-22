@@ -2,8 +2,8 @@ const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord.js");
 const fs = require("node:fs");
 
-const token = config.token;
-const clientId = config.clientId;
+const token = global.config.token;
+const clientId = global.config.clientId;
 
 module.exports = (client) => {
     client.handleCommands = async () => {
@@ -11,7 +11,7 @@ module.exports = (client) => {
 
         const commandFolders = fs.readdirSync("src/commands");
 
-        for (folder of commandFolders) {
+        for (var folder of commandFolders) {
             const commandFiles = fs.readdirSync(`src/commands/${folder}`);
             for (const file of commandFiles) {
                 const command = require(`../commands/${folder}/${file}`);

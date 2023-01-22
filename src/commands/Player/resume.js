@@ -3,11 +3,11 @@ const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder().setName("resume").setDescription("Resumes the current track."),
-    async execute(interaction, client) {
-        const queue = player.getQueue(interaction.guild.id);
+    async execute(interaction) {
+        const queue = global.player.getQueue(interaction.guild.id);
 
         const embed = new EmbedBuilder();
-        embed.setColor(config.embedColour);
+        embed.setColor(global.config.embedColour);
 
         if (!queue) {
             embed.setDescription("There isn't currently any music playing.");

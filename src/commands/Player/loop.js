@@ -6,15 +6,15 @@ module.exports = {
         .setName("loop")
         .setDescription("Allows you to change the current loop mode, or enable autoplay.")
         .addStringOption((option) => option.setName("mode").setDescription("Loop mode").setRequired(true).addChoices({ name: "off", value: "off" }, { name: "queue", value: "queue" }, { name: "track", value: "track" }, { name: "autoplay", value: "autoplay" })),
-    async execute(interaction, client) {
-        const queue = player.getQueue(interaction.guild.id);
+    async execute(interaction) {
+        const queue = global.player.getQueue(interaction.guild.id);
         const mode = interaction.options.getString("mode");
 
         const embed = new EmbedBuilder();
-        embed.setColor(config.embedColour);
+        embed.setColor(global.config.embedColour);
 
         if (!queue || !queue.playing) {
-            embed.setDescription(`There isn't currently any music to loop.`);
+            embed.setDescription("There isn't currently any music to loop.");
         } else {
             if (mode == "off") {
                 const success = queue.setRepeatMode(0);

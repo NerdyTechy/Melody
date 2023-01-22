@@ -10,7 +10,7 @@ module.exports = {
 
         const embed = new EmbedBuilder();
         embed.setDescription(`Melody is currently in **${client.guilds.cache.size} servers**, has played **${data["songs-played"]} tracks**, skipped **${data["songs-skipped"]} tracks**, and shuffled **${data["queues-shuffled"]} queues**.`);
-        embed.setColor(config.embedColour);
+        embed.setColor(global.config.embedColour);
 
         return await interaction.reply({ embeds: [embed] });
     },

@@ -27,9 +27,9 @@ global.config = {
     backEmoji: configFile.emojis.back ?? "⏮",
 };
 
-if (!config.token || config.token === "") return console.error("[Aborted] Please supply a bot token in your configuration file.");
-if (!config.clientId || config.clientId === "") return console.error("[Aborted] Please supply a client ID in your configuration file.");
-if (config.geniusKey === "") config.geniusKey = null;
+if (!global.config.token || global.config.token === "") return console.error("[Aborted] Please supply a bot token in your configuration file.");
+if (!global.config.clientId || global.config.clientId === "") return console.error("[Aborted] Please supply a client ID in your configuration file.");
+if (global.config.geniusKey === "") global.config.geniusKey = null;
 
 const client = new Client({ intents: [32767] });
 global.player = new Player(client);
@@ -39,11 +39,11 @@ client.buttons = new Collection();
 const functions = fs.readdirSync("./src/functions").filter((file) => file.endsWith(".js"));
 
 (async () => {
-    for (file of functions) {
+    for (var file of functions) {
         require(`./functions/${file}`)(client);
     }
     client.handleCommands();
     client.handleEvents();
     client.handleButtons();
-    client.login(config.token);
+    client.login(global.config.token);
 })();

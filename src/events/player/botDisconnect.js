@@ -5,7 +5,7 @@ module.exports = {
     async execute(queue) {
         const embed = new EmbedBuilder();
         embed.setDescription("The music was stopped because I was disconnected from the channel.");
-        embed.setColor(config.embedColour);
+        embed.setColor(global.config.embedColour);
 
         queue.metadata.channel.send({ embeds: [embed] });
     },

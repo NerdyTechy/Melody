@@ -7,11 +7,11 @@ module.exports = {
         .setDescription("Seeks the current track to the specified position.")
         .addIntegerOption((option) => option.setName("minutes").setDescription("The amount of minutes to seek to.").setRequired(true))
         .addIntegerOption((option) => option.setName("seconds").setDescription("The amount of seconds to seek to.").setRequired(true)),
-    async execute(interaction, client) {
-        const queue = player.getQueue(interaction.guild.id);
+    async execute(interaction) {
+        const queue = global.player.getQueue(interaction.guild.id);
 
         const embed = new EmbedBuilder();
-        embed.setColor(config.embedColour);
+        embed.setColor(global.config.embedColour);
 
         if (!queue) {
             embed.setDescription("There isn't currently any music playing.");
