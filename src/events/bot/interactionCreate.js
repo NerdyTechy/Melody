@@ -35,7 +35,7 @@ module.exports = {
             const buttonOwner = interaction.customId.substring(interaction.customId.length - 18, interaction.customId.length);
 
             const embed = new EmbedBuilder();
-            embed.setColor(config.embedColour);
+            embed.setColor(global.config.embedColour);
 
             if (interaction.user.id != buttonOwner) {
                 embed.setDescription(`Only <@${buttonOwner}> can use this menu.`);

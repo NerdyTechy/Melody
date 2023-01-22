@@ -4,11 +4,11 @@ const fs = require("fs");
 
 module.exports = {
     data: new SlashCommandBuilder().setName("shuffle").setDescription("Shuffles all tracks currently in the queue."),
-    async execute(interaction, client) {
-        const queue = player.getQueue(interaction.guild.id);
+    async execute(interaction) {
+        const queue = global.player.getQueue(interaction.guild.id);
 
         const embed = new EmbedBuilder();
-        embed.setColor(config.embedColour);
+        embed.setColor(global.config.embedColour);
 
         if (!queue || !queue.playing) {
             embed.setDescription("There isn't currently any music playing.");
@@ -16,7 +16,7 @@ module.exports = {
         }
 
         if (!queue.tracks[0]) {
-            embed.setDescription(`There aren't any other tracks in the queue. Use **/play** to add some more.`);
+            embed.setDescription("There aren't any other tracks in the queue. Use **/play** to add some more.");
             return await interaction.reply({ embeds: [embed] });
         }
 

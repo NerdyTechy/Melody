@@ -6,14 +6,14 @@ module.exports = {
         .setName("volume")
         .setDescription("Adjusts the volume of the current music.")
         .addIntegerOption((option) => option.setName("volume").setDescription("The volume to set the music to.").setRequired(true)),
-    async execute(interaction, client) {
-        const queue = player.getQueue(interaction.guild.id);
+    async execute(interaction) {
+        const queue = global.player.getQueue(interaction.guild.id);
 
         const embed = new EmbedBuilder();
-        embed.setColor(config.embedColour);
+        embed.setColor(global.config.embedColour);
 
         if (!queue || !queue.playing) {
-            embed.setDescription(`There isn't currently any music playing.`);
+            embed.setDescription("There isn't currently any music playing.");
         } else {
             const vol = interaction.options.getInteger("volume");
 
@@ -30,7 +30,7 @@ module.exports = {
             }
 
             const success = queue.setVolume(vol);
-            success ? embed.setDescription(`The current music's volume was set to **${vol}%**.`) : embed.setDescription(`An error occurred whilst attempting to set the volume.`);
+            success ? embed.setDescription(`The current music's volume was set to **${vol}%**.`) : embed.setDescription("An error occurred whilst attempting to set the volume.");
         }
 
         return await interaction.reply({ embeds: [embed] });

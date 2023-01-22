@@ -2,18 +2,18 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
 const { Lyrics } = require("@discord-player/extractor");
 
-const lyricsClient = Lyrics.init(config.geniusKey);
+const lyricsClient = Lyrics.init(global.config.geniusKey);
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("lyrics")
         .setDescription("View lyrics for the specified track.")
         .addStringOption((option) => option.setName("query").setDescription("Enter a track name, artist name, or URL.").setRequired(true)),
-    async execute(interaction, client) {
+    async execute(interaction) {
         await interaction.deferReply();
 
         const embed = new EmbedBuilder();
-        embed.setColor(config.embedColour);
+        embed.setColor(global.config.embedColour);
 
         await lyricsClient
             .search(interaction.options.getString("query"))
@@ -25,7 +25,7 @@ module.exports = {
                 embed.setDescription(x.lyrics);
                 embed.setFooter({ text: "Courtesy of Genius" });
             })
-            .catch((err) => {
+            .catch(() => {
                 embed.setDescription(`I couldn't find a track with the name **${interaction.options.getString("query")}**.`);
             });
 

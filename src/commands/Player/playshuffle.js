@@ -8,11 +8,11 @@ module.exports = {
         .setName("playshuffle")
         .setDescription("Plays the specified playlist with a random track order.")
         .addStringOption((option) => option.setName("playlist").setDescription("Enter a playlist URL here to playshuffle.").setRequired(true)),
-    async execute(interaction, client) {
+    async execute(interaction) {
         await interaction.deferReply();
 
         const embed = new EmbedBuilder();
-        embed.setColor(config.embedColour);
+        embed.setColor(global.config.embedColour);
 
         if (!interaction.member.voice.channelId) {
             embed.setDescription("You aren't currently in a voice channel.");
@@ -25,7 +25,7 @@ module.exports = {
         }
 
         const query = interaction.options.getString("playlist");
-        const queue = player.createQueue(interaction.guild, {
+        const queue = global.player.createQueue(interaction.guild, {
             leaveOnEnd: true,
             leaveOnStop: true,
             leaveOnEmpty: true,
@@ -51,7 +51,7 @@ module.exports = {
             return await interaction.editReply({ embeds: [embed] });
         }
 
-        const res = await player.search(query, {
+        const res = await global.player.search(query, {
             requestedBy: interaction.user,
         });
 
@@ -62,7 +62,7 @@ module.exports = {
         }
 
         if (!res.playlist) {
-            embed.setDescription(`The query specified doesn't appear to be a playlist.`);
+            embed.setDescription("The query specified doesn't appear to be a playlist.");
             await queue.destroy();
             return await interaction.editReply({ embeds: [embed] });
         }

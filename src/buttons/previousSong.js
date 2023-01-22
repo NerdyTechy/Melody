@@ -2,11 +2,11 @@ const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: "melody_back_song",
-    async execute(interaction, client) {
-        const queue = player.getQueue(interaction.guild.id);
+    async execute(interaction) {
+        const queue = global.player.getQueue(interaction.guild.id);
 
         const embed = new EmbedBuilder();
-        embed.setColor(config.embedColour);
+        embed.setColor(global.config.embedColour);
 
         if (!queue || !queue.playing) {
             embed.setDescription("There isn't currently any music playing.");
@@ -17,13 +17,13 @@ module.exports = {
         }
 
         if (!queue || !queue.playing) {
-            embed.setDescription(`There isn't currently any music playing.`);
+            embed.setDescription("There isn't currently any music playing.");
             return await interaction.reply({
                 embeds: [embed],
                 ephemeral: true,
             });
         } else if (!queue.previousTracks[1]) {
-            embed.setDescription(`There was no music played before this track.`);
+            embed.setDescription("There was no music played before this track.");
             return await interaction.reply({
                 embeds: [embed],
                 ephemeral: true,

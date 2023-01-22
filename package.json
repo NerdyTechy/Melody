@@ -5,22 +5,25 @@
     "main": "src/bot.js",
     "scripts": {
         "test": "node src/bot.js",
-        "format": "npx prettier --write ."
+        "format": "npx prettier --write .",
+        "lint": "eslint . --ext .js",
+        "lint:fix": "eslint . --ext .js --fix"
     },
     "author": "NerdyTechy",
     "license": "ISC",
     "dependencies": {
-        "@discord-player/extractor": "^4.0.0",
+        "@discord-player/extractor": "^3.0.2",
         "@discordjs/builders": "^1.4.0",
         "@discordjs/opus": "^0.9.0",
         "@discordjs/rest": "^1.5.0",
         "@discordjs/voice": "^0.14.0",
-        "discord-player": "^5.4.0",
+        "discord-player": "^5.3.2",
         "discord.js": "^14.7.1",
         "ffmpeg-static": "^5.1.0",
         "js-yaml": "^4.1.0"
     },
     "devDependencies": {
-        "prettier": "2.8.3"
+        "eslint": "^8.32.0",
+        "prettier": "2.8.1"
     }
 }

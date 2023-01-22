@@ -7,11 +7,11 @@ module.exports = {
         .setName("play")
         .setDescription("Adds a track to the end of the server queue.")
         .addStringOption((option) => option.setName("query").setDescription("Enter a track name, artist name, or URL.").setRequired(true)),
-    async execute(interaction, client) {
+    async execute(interaction) {
         await interaction.deferReply();
 
         const embed = new EmbedBuilder();
-        embed.setColor(config.embedColour);
+        embed.setColor(global.config.embedColour);
 
         if (!interaction.member.voice.channelId) {
             embed.setDescription("You aren't currently in a voice channel.");
@@ -24,7 +24,7 @@ module.exports = {
         }
 
         const query = interaction.options.getString("query");
-        const queue = player.createQueue(interaction.guild, {
+        const queue = global.player.createQueue(interaction.guild, {
             leaveOnEnd: true,
             leaveOnStop: true,
             leaveOnEmpty: true,
@@ -50,7 +50,7 @@ module.exports = {
             return await interaction.editReply({ embeds: [embed] });
         }
 
-        const res = await player.search(query, {
+        const res = await global.player.search(query, {
             requestedBy: interaction.user,
         });
 
