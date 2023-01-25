@@ -47,43 +47,15 @@ Melody is a feature-rich Discord music bot. It offers a clean look, easy to use 
 </ul>
 
 <h2>Installation</h2>
-Installing Melody is very simple and easy to do. If you have any issues, please feel free to create an issue, or contact me elsewhere for help.
-<br>
-<br>
-<ol>
-  <li>Download the source code from this repository.</li>
-  <li>Upload to your hosting and extract the files. (Or just extract locally)</li>
-  <li>Rename <strong>config.yml.example</strong> to <strong>config.yml</strong>.</li>
-  <li>Enter Discord bot token, Discord bot client ID, and <a href="#Genius">Genius API key</a> into <strong>config.yml</strong>.</li>
-  <li><strong>Optional:</strong> Upload the <a href="#Emojis">custom emojis</a> found in the <strong>/emojis/</strong> directory to your server, and set the IDs of the emojis in the configuration file. (Replace the default emoji with the ID of the custom emoji)</li>
-  <li>Install dependencies listed in package.json.</li>
-  <li>Launch bot with <strong>node src/bot.js</strong> or <strong>npm run test</strong>. (If your hosting is managed and you can't change the startup command, you should be able to set the file that is run at launch. This must be set to <strong>src/bot.js</strong>).</li>
-</ol>
+For a detailed installation guide, check out our <a href="https://github.com/NerdyTechy/Melody/wiki/Installation">Installation wiki page</a>.
 
 ## Analytics
 
-By default, Melody sends a HTTP request to a custom analytics service when it boots up with a non-identifiable token (A SHA-256 hash of your client ID). This is purely done so that I can see the usage of my projects. The service does not track anything other than the amount of times that you start the bot, and the time that you last started the bot. I use these statistics to know the popularity of my projects over time, and how the general usage trend looks.
-
-The API that runs this service is developed by me, so the information is not shared with any third parties. The analytics project is also open-source, and can be found <a href="https://github.com/NerdyTechy/Analytics">here</a>.
-
-If you do not want to contribute to these analytics, you can disable the <strong>enableAnalytics</strong> option in the bot's configuration file, and no requests will be made to this service.
-
-While leaving these analytics enabled helps me to understand the demand of my projects, which can help me to decide which projects deserve more attention in terms of updates, I respect that you may not agree to providing these analytics, and so I have tried to make it as easy to opt out of as possible.
-
-## Emojis
-
-Melody utilises many custom emojis for menus, and so if you would like to use them, they are available in the <strong>/emojis/</strong> directory. Simply upload them to your server, and edit the config.yml file to have the correct names and IDs. If you would like to make your own emojis, or use default Discord emojis, simply change the config file accordingly.
+By default, Melody tracks basic anonymous analytics when you start up the bot. To disable this, set the `enableAnalytics` option in the configuration file to **false**. To learn more about the analytics Melody sends, <a href="https://github.com/NerdyTechy/Melody/wiki/Analytics">click here</a>.
 
 ## Genius
 
 Melody utilises Genius' API to find lyrics for songs. A Genius API key is therefore required to use the bot. Obtaining one is free, and can be done so <a href="https://genius.com/api-clients">here</a>.
-
-## Common Issues
-
-If you are experiencing an issue, check below to see if it is listed. If it's not listed, open an issue and we'll be happy to help.
-
-1. `Error: FFmpeg/avconv not found!`: If you are experiencing this issue, please try removing `ffmpeg-static` with `npm remove ffmpeg-static`, then install `ffmpeg` with `npm install ffmpeg`. If this does not fix the issue, please open an issue on GitHub.
-2. `[Aborted] Unable to find config.yml file.`: Rename the `config.yml.example` file to `config.yml`, then change all of your settings in the file accordingly and restart the bot.
 
 ## Hosting
 
