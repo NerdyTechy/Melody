@@ -1,8 +1,8 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
-const { Lyrics } = require("@discord-player/extractor");
+const { lyricsExtractor } = require("@discord-player/extractor");
 
-const lyricsClient = Lyrics.init(global.config.geniusKey);
+const lyricsClient = lyricsExtractor(global.config.geniusKey);
 
 module.exports = {
     data: new SlashCommandBuilder()
