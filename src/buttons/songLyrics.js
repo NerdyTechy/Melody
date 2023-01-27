@@ -1,6 +1,6 @@
 const { EmbedBuilder } = require("discord.js");
-const { Lyrics } = require("@discord-player/extractor");
-const lyricsClient = Lyrics.init(global.config.geniusKey);
+const { lyricsExtractor } = require("@discord-player/extractor");
+const lyricsClient = lyricsExtractor(global.config.geniusKey);
 
 module.exports = {
     name: "melody_song_lyrics",
