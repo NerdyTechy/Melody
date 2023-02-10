@@ -2,3 +2,4 @@ config.yml
 /src/data.json
 node_modules
 .DS_Store
+/logs

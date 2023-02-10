@@ -1,9 +1,11 @@
 const { EmbedBuilder } = require("discord.js");
+const logger = require("../../utils/logger");
 
 module.exports = {
     name: "error",
     async execute(queue, error) {
-        console.error(error);
+        logger.error("An unhandled player error occurred during runtime:");
+        logger.error(error);
 
         const errEmbed = new EmbedBuilder();
         errEmbed.setDescription("An error occurred whilst attempting to perform this action. This media may not be supported.");

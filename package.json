@@ -4,7 +4,8 @@
     "description": "Discord music bot",
     "main": "src/bot.js",
     "scripts": {
-        "test": "node src/bot.js",
+        "test": "echo The test script is deprecated and will not start the bot in a future release. Please use 'npm run start'. && node src/bot.js",
+        "start": "node src/bot.js",
         "format": "npx prettier --write .",
         "lint": "eslint . --ext .js",
         "lint:fix": "eslint . --ext .js --fix"
@@ -17,6 +18,7 @@
         "@discordjs/opus": "^0.9.0",
         "@discordjs/rest": "^1.5.0",
         "@discordjs/voice": "^0.14.0",
+        "chalk": "^4.1.2",
         "discord-player": "^5.4.1-dev.0",
         "discord.js": "^14.7.1",
         "ffmpeg-static": "^5.1.0",

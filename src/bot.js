@@ -2,9 +2,10 @@ const { Player } = require("discord-player");
 const { Client, Collection } = require("discord.js");
 const fs = require("node:fs");
 const yaml = require("js-yaml");
+const logger = require("./utils/logger");
 
 if (!fs.existsSync("config.yml")) {
-    return console.error("[Aborted] Unable to find config.yml file. Please copy the default configuration into a file named config.yml in the root directory. (The same directory as package.json)");
+    return logger.error("Unable to find config.yml file. Please copy the default configuration into a file named config.yml in the root directory. (The same directory as package.json)");
 }
 
 if (!fs.existsSync("src/data.json")) {
@@ -27,8 +28,8 @@ global.config = {
     backEmoji: configFile.emojis.back ?? "⏮",
 };
 
-if (!global.config.token || global.config.token === "") return console.error("[Aborted] Please supply a bot token in your configuration file.");
-if (!global.config.clientId || global.config.clientId === "") return console.error("[Aborted] Please supply a client ID in your configuration file.");
+if (!global.config.token || global.config.token === "") return logger.error("Please supply a bot token in your configuration file.");
+if (!global.config.clientId || global.config.clientId === "") return logger.error("Please supply a client ID in your configuration file.");
 if (global.config.geniusKey === "") global.config.geniusKey = null;
 
 const client = new Client({ intents: [32767] });
@@ -39,11 +40,14 @@ client.buttons = new Collection();
 const functions = fs.readdirSync("./src/functions").filter((file) => file.endsWith(".js"));
 
 (async () => {
+    logger.info("Initialising Melody...");
     for (var file of functions) {
         require(`./functions/${file}`)(client);
     }
     client.handleCommands();
     client.handleEvents();
     client.handleButtons();
-    client.login(global.config.token);
+    logger.info("Logging into Discord client...");
+    await client.login(global.config.token);
+    logger.success(`Logged in as ${client.user.username}#${client.user.discriminator} (${client.user.id})`);
 })();

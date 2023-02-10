@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
 const { PlayerError } = require("discord-player");
+const logger = require("../../utils/logger");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -75,7 +76,8 @@ module.exports = {
                     }
                 }
 
-                console.error(err);
+                logger.error("An error occurred whilst attempting to play this media:");
+                logger.error(err);
 
                 await queue.destroy();
                 embed.setDescription("This media doesn't seem to be working right now, please try again later.");

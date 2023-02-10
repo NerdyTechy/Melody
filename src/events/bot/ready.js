@@ -1,7 +1,9 @@
+const logger = require("../../utils/logger");
+
 module.exports = {
     name: "ready",
     once: true,
-    async execute() {
+    async execute(client) {
         if (global.config.analytics) {
             const fetch = require("node-fetch");
             const crypto = require("node:crypto");
@@ -15,6 +17,12 @@ module.exports = {
             fetch("https://analytics.techy.lol/melody", options).catch(() => {});
         }
 
-        console.log("The bot is now ready.");
+        logger.success("Melody is now ready.");
+
+        if (client.guilds.cache.size === 0) {
+            logger.warn(`Melody is not in any servers. Invite Melody to your server using the following link: https://discord.com/api/oauth2/authorize?client_id=${global.config.clientId}&permissions=274914887744&scope=bot%20applications.commands`);
+        } else {
+            logger.info(`Melody is in ${client.guilds.cache.size} ${client.guilds.cache.size === 1 ? "server" : "servers"}.`);
+        }
     },
 };

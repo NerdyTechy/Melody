@@ -1,4 +1,5 @@
 const { EmbedBuilder } = require("discord.js");
+const logger = require("../../utils/logger");
 
 module.exports = {
     name: "interactionCreate",
@@ -10,7 +11,8 @@ module.exports = {
             try {
                 await command.execute(interaction, client);
             } catch (error) {
-                console.error(error);
+                logger.error("An error occurred whilst attempting to execute a chat input command:");
+                logger.error(error);
             }
         } else if (interaction.isButton()) {
             if (interaction.customId.includes("-")) {
@@ -20,7 +22,8 @@ module.exports = {
                 try {
                     await button.execute(interaction, client);
                 } catch (error) {
-                    console.error(error);
+                    logger.error("An error occurred whilst attempting to execute a button command:");
+                    logger.error(error);
                 }
             } else {
                 const button = client.buttons.get(interaction.customId);
@@ -28,7 +31,8 @@ module.exports = {
                 try {
                     await button.execute(interaction, client);
                 } catch (error) {
-                    console.error(error);
+                    logger.error("An error occurred whilst attempting to execute a button command:");
+                    logger.error(error);
                 }
             }
         } else if (interaction.isStringSelectMenu()) {
