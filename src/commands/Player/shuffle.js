@@ -3,7 +3,7 @@ const { EmbedBuilder } = require("discord.js");
 const fs = require("fs");
 
 module.exports = {
-    data: new SlashCommandBuilder().setName("shuffle").setDescription("Shuffles all tracks currently in the queue."),
+    data: new SlashCommandBuilder().setName("shuffle").setDescription("Shuffles all tracks currently in the queue.").setDMPermission(false),
     async execute(interaction) {
         const queue = global.player.getQueue(interaction.guild.id);
 

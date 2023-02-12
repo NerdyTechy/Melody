@@ -3,7 +3,7 @@ const { EmbedBuilder } = require("discord.js");
 const fs = require("fs");
 
 module.exports = {
-    data: new SlashCommandBuilder().setName("skip").setDescription("Skips the current track."),
+    data: new SlashCommandBuilder().setName("skip").setDescription("Skips the current track.").setDMPermission(false),
     async execute(interaction) {
         const queue = global.player.getQueue(interaction.guild.id);
 

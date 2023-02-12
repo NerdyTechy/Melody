@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
-    data: new SlashCommandBuilder().setName("back").setDescription("Returns to the previous track."),
+    data: new SlashCommandBuilder().setName("back").setDescription("Returns to the previous track.").setDMPermission(false),
     async execute(interaction) {
         const queue = global.player.getQueue(interaction.guild.id);
 

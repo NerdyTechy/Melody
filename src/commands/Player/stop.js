@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
-    data: new SlashCommandBuilder().setName("stop").setDescription("Stops the current track and clears the queue."),
+    data: new SlashCommandBuilder().setName("stop").setDescription("Stops the current track and clears the queue.").setDMPermission(false),
     async execute(interaction) {
         const queue = global.player.getQueue(interaction.guild.id);
 

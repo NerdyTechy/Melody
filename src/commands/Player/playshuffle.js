@@ -8,6 +8,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("playshuffle")
         .setDescription("Plays the specified playlist with a random track order.")
+        .setDMPermission(false)
         .addStringOption((option) => option.setName("playlist").setDescription("Enter a playlist URL here to playshuffle.").setRequired(true)),
     async execute(interaction) {
         await interaction.deferReply();

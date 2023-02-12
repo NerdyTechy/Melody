@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
-    data: new SlashCommandBuilder().setName("save").setDescription("Sends you a direct message with details about the current track."),
+    data: new SlashCommandBuilder().setName("save").setDescription("Sends you a direct message with details about the current track.").setDMPermission(false),
     async execute(interaction) {
         const queue = global.player.getQueue(interaction.guild.id);
 

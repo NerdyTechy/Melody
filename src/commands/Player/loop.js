@@ -5,6 +5,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("loop")
         .setDescription("Allows you to change the current loop mode, or enable autoplay.")
+        .setDMPermission(false)
         .addStringOption((option) => option.setName("mode").setDescription("Loop mode").setRequired(true).addChoices({ name: "off", value: "off" }, { name: "queue", value: "queue" }, { name: "track", value: "track" }, { name: "autoplay", value: "autoplay" })),
     async execute(interaction) {
         const queue = global.player.getQueue(interaction.guild.id);

@@ -7,6 +7,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("playnext")
         .setDescription("Adds a track to the next position in the server queue.")
+        .setDMPermission(false)
         .addStringOption((option) => option.setName("query").setDescription("Enter a track name, artist name, or URL.").setRequired(true)),
     async execute(interaction) {
         await interaction.deferReply();
