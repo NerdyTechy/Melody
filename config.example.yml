@@ -14,6 +14,17 @@ embedColour: "#2F3136"
 # See https://github.com/NerdyTechy/Melody/wiki/Analytics
 enableAnalytics: true
 
+# Settings to control the bot's player and controller
+player:
+    # Leave VC when a song ends
+    leaveUponSongEnd: true
+    # Leave VC when a song is stopped
+    leaveUponSongStop: true
+    # Leave VC after X ms of inactivity
+    leaveOnEmptyDelay: 300000 # 5 minutes
+    # Deafen bot while playing
+    deafenBot: false
+
 # The emojis to be used in buttons for certain embeds
 # See https://github.com/NerdyTechy/Melody/wiki/Using-Custom-Emojis
 emojis:

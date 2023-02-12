@@ -26,11 +26,11 @@ module.exports = {
 
         const query = interaction.options.getString("query");
         const queue = global.player.createQueue(interaction.guild, {
-            leaveOnEnd: true,
-            leaveOnStop: true,
+            leaveOnEnd: global.config.leaveUponSongEnd,
+            leaveOnStop: global.config.leaveUponSongStop,
             leaveOnEmpty: true,
-            leaveOnEmptyCooldown: 300000,
-            autoSelfDeaf: false,
+            leaveOnEmptyCooldown: global.config.leaveOnEmptyDelay,
+            autoSelfDeaf: global.config.deafenBot,
             spotifyBridge: true,
             ytdlOptions: {
                 filter: "audioonly",

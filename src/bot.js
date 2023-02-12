@@ -26,6 +26,10 @@ global.config = {
     pauseEmoji: configFile.emojis.pause ?? "⏯",
     lyricsEmoji: configFile.emojis.lyrics ?? "📜",
     backEmoji: configFile.emojis.back ?? "⏮",
+    leaveUponSongEnd: configFile.player.leaveUponSongEnd ?? true,
+    leaveUponSongStop: configFile.player.leaveUponSongStop ?? true,
+    leaveOnEmptyDelay: configFile.player.leaveOnEmptyDelay ?? 300000,
+    deafenBot: configFile.player.deafenBot ?? false,
 };
 
 if (!global.config.token || global.config.token === "") return logger.error("Please supply a bot token in your configuration file.");
