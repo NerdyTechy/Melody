@@ -2,7 +2,7 @@ const { SlashCommandBuilder, ButtonBuilder } = require("@discordjs/builders");
 const { EmbedBuilder, ActionRowBuilder, ButtonStyle } = require("discord.js");
 
 module.exports = {
-    data: new SlashCommandBuilder().setName("nowplaying").setDescription("View information about the current track."),
+    data: new SlashCommandBuilder().setName("nowplaying").setDescription("View information about the current track.").setDMPermission(false),
     async execute(interaction) {
         const queue = global.player.getQueue(interaction.guild.id);
 

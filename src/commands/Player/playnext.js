@@ -1,11 +1,13 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
 const { PlayerError } = require("discord-player");
+const logger = require("../../utils/logger");
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("playnext")
         .setDescription("Adds a track to the next position in the server queue.")
+        .setDMPermission(false)
         .addStringOption((option) => option.setName("query").setDescription("Enter a track name, artist name, or URL.").setRequired(true)),
     async execute(interaction) {
         await interaction.deferReply();
@@ -25,11 +27,11 @@ module.exports = {
 
         const query = interaction.options.getString("query");
         const queue = global.player.createQueue(interaction.guild, {
-            leaveOnEnd: true,
-            leaveOnStop: true,
+            leaveOnEnd: global.config.leaveUponSongEnd,
+            leaveOnStop: global.config.leaveUponSongStop,
             leaveOnEmpty: true,
-            leaveOnEmptyCooldown: 300000,
-            autoSelfDeaf: false,
+            leaveOnEmptyCooldown: global.config.leaveOnEmptyDelay,
+            autoSelfDeaf: global.config.deafenBot,
             spotifyBridge: true,
             ytdlOptions: {
                 filter: "audioonly",
@@ -75,7 +77,8 @@ module.exports = {
                     }
                 }
 
-                console.error(err);
+                logger.error("An error occurred whilst attempting to play this media:");
+                logger.error(err);
 
                 await queue.destroy();
                 embed.setDescription("This media doesn't seem to be working right now, please try again later.");

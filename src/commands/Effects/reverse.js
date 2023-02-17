@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
-    data: new SlashCommandBuilder().setName("reverse").setDescription("Applies the reverse effect to the current music."),
+    data: new SlashCommandBuilder().setName("reverse").setDescription("Applies the reverse effect to the current music.").setDMPermission(false),
     async execute(interaction) {
         const queue = global.player.getQueue(interaction.guild.id);
 

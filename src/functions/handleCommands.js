@@ -1,6 +1,7 @@
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord.js");
 const fs = require("node:fs");
+const logger = require("../utils/logger");
 
 const token = global.config.token;
 const clientId = global.config.clientId;
@@ -24,13 +25,14 @@ module.exports = (client) => {
 
         (async () => {
             try {
-                console.log("Started refreshing application (/) commands.");
+                logger.info("Reloading application commands...");
                 await rest.put(Routes.applicationCommands(clientId), {
                     body: client.commandArray,
                 });
-                console.log("Successfully reloaded application (/) commands.");
+                logger.success("Successfully reloaded application commands.");
             } catch (error) {
-                console.error(error);
+                logger.error("An error occurred whilst attempting to reload application commands:");
+                logger.error(error);
             }
         })();
     };
