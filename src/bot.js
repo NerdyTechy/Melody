@@ -4,7 +4,7 @@ const fs = require("node:fs");
 const yaml = require("js-yaml");
 const logger = require("./utils/logger");
 
-process.on('unhandledRejection', (reason) => {
+process.on("unhandledRejection", (reason) => {
     logger.error("An unhandled rejection occurred in the main process:");
     logger.error(reason.stack ? `${reason.stack}` : `${reason}`);
 });
@@ -14,16 +14,16 @@ process.on("uncaughtException", (err) => {
     logger.error(err.stack ? `${err.stack}` : `${err}`);
 });
 
-process.on('uncaughtExceptionMonitor', (err) => {
+process.on("uncaughtExceptionMonitor", (err) => {
     logger.error("An uncaught exception monitor occurred in the main process:");
     logger.error(err.stack ? `${err.stack}` : `${err}`);
 });
 
-process.on('beforeExit', (code) => {
+process.on("beforeExit", (code) => {
     logger.error("The process is about to exit with code: " + code);
 });
 
-process.on('exit', (code) => {
+process.on("exit", (code) => {
     logger.error("The process is about to exit with code: " + code);
 });
 
@@ -60,7 +60,7 @@ if (!global.config.token || global.config.token === "") return logger.error("Ple
 if (!global.config.clientId || global.config.clientId === "") return logger.error("Please supply a client ID in your configuration file.");
 if (global.config.geniusKey === "") global.config.geniusKey = undefined;
 
-if (typeof global.config.geniusKey === "undefined"){
+if (typeof global.config.geniusKey === "undefined") {
     logger.warn("No Genius API key was provided. The lyrics functions will not be as reliable.");
 }
 
