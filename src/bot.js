@@ -24,7 +24,7 @@ process.on("beforeExit", (code) => {
 });
 
 process.on("exit", (code) => {
-    logger.error("The process is about to exit with code: " + code);
+    logger.error("The process exited with code: " + code);
 });
 
 if (!fs.existsSync("config.yml")) {
@@ -36,28 +36,41 @@ if (!fs.existsSync("src/data.json")) {
     fs.writeFileSync("src/data.json", JSON.stringify({ "songs-played": 0, "queues-shuffled": 0, "songs-skipped": 0 }));
 }
 
-const configFile = yaml.load(fs.readFileSync("./config.yml"));
+try {
+    const configFile = yaml.load(fs.readFileSync("./config.yml"));
 
-global.config = {
-    token: configFile.botToken ?? "",
-    clientId: configFile.clientId ?? "",
-    geniusKey: configFile.geniusApiKey ?? undefined,
-    embedColour: configFile.embedColour ?? "#2F3136",
-    analytics: configFile.enableAnalytics ?? true,
-    stopEmoji: configFile.emojis.stop ?? "⏹",
-    skipEmoji: configFile.emojis.skip ?? "⏭",
-    queueEmoji: configFile.emojis.queue ?? "📜",
-    pauseEmoji: configFile.emojis.pause ?? "⏯",
-    lyricsEmoji: configFile.emojis.lyrics ?? "📜",
-    backEmoji: configFile.emojis.back ?? "⏮",
-    leaveUponSongEnd: configFile.player.leaveUponSongEnd ?? true,
-    leaveUponSongStop: configFile.player.leaveUponSongStop ?? true,
-    leaveOnEmptyDelay: configFile.player.leaveOnEmptyDelay ?? 300000,
-    deafenBot: configFile.player.deafenBot ?? false,
-};
+    global.config = {
+        token: configFile.botToken ?? "",
+        clientId: configFile.clientId ?? "",
+        geniusKey: configFile.geniusApiKey ?? undefined,
+        embedColour: configFile.embedColour ?? "#2F3136",
+        analytics: configFile.enableAnalytics ?? true,
+        stopEmoji: configFile.emojis.stop ?? "⏹",
+        skipEmoji: configFile.emojis.skip ?? "⏭",
+        queueEmoji: configFile.emojis.queue ?? "📜",
+        pauseEmoji: configFile.emojis.pause ?? "⏯",
+        lyricsEmoji: configFile.emojis.lyrics ?? "📜",
+        backEmoji: configFile.emojis.back ?? "⏮",
+        leaveUponSongEnd: configFile.player.leaveUponSongEnd ?? true,
+        leaveUponSongStop: configFile.player.leaveUponSongStop ?? true,
+        leaveOnEmptyDelay: configFile.player.leaveOnEmptyDelay ?? 300000,
+        deafenBot: configFile.player.deafenBot ?? false,
+    };
+} catch (e) {
+    logger.error("Unable to parse config.yml. Please make sure it is valid YAML.");
+    process.exit(1);
+}
 
-if (!global.config.token || global.config.token === "") return logger.error("Please supply a bot token in your configuration file.");
-if (!global.config.clientId || global.config.clientId === "") return logger.error("Please supply a client ID in your configuration file.");
+if (!global.config.token || global.config.token === "") {
+    logger.error("Please supply a bot token in your configuration file.");
+    process.exit(1);
+}
+
+if (!global.config.clientId || global.config.clientId === "") {
+    logger.error("Please supply a client ID in your configuration file.");
+    process.exit(1);
+}
+
 if (global.config.geniusKey === "") global.config.geniusKey = undefined;
 
 if (typeof global.config.geniusKey === "undefined") {
