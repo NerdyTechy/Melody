@@ -19,7 +19,7 @@
         "@discordjs/rest": "^1.5.0",
         "@discordjs/voice": "^0.14.0",
         "chalk": "^4.1.2",
-        "discord-player": "^5.4.1-dev.0",
+        "discord-player": "^6.0.0-dev.4",
         "discord.js": "^14.7.1",
         "ffmpeg-static": "^5.1.0",
         "js-yaml": "^4.1.0"
