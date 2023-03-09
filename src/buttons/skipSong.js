@@ -1,6 +1,8 @@
 const { EmbedBuilder } = require("discord.js");
 const fs = require("node:fs");
 
+// TODO update this button action to work with discord-player v6
+
 module.exports = {
     name: "melody_skip_song",
     async execute(interaction) {

@@ -4,6 +4,8 @@ const { PlayerError } = require("discord-player");
 const fs = require("node:fs");
 const logger = require("../../utils/logger");
 
+// TODO update this command to work with discord-player v6
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("playshuffle")

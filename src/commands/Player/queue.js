@@ -1,6 +1,8 @@
 const { SlashCommandBuilder, ButtonBuilder } = require("@discordjs/builders");
 const { EmbedBuilder, ActionRowBuilder, ButtonStyle } = require("discord.js");
 
+// TODO update this command to work with discord-player v6
+
 module.exports = {
     data: new SlashCommandBuilder().setName("queue").setDescription("Shows all tracks currently in the server queue.").setDMPermission(false),
     async execute(interaction) {

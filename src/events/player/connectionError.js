@@ -1,6 +1,8 @@
 const { EmbedBuilder } = require("discord.js");
 const logger = require("../../utils/logger");
 
+// TODO check event exists in discord-player v6
+
 module.exports = {
     name: "connectionError",
     async execute(queue, error) {

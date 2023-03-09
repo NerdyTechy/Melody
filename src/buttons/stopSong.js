@@ -1,5 +1,7 @@
 const { EmbedBuilder } = require("discord.js");
 
+// TODO update this button action to work with discord-player v6
+
 module.exports = {
     name: "melody_stop",
     async execute(interaction) {

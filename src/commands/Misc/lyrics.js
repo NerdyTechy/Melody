@@ -4,6 +4,8 @@ const { lyricsExtractor } = require("@discord-player/extractor");
 
 const lyricsClient = lyricsExtractor(global.config.geniusKey);
 
+// TODO ensure this command works with @discord-player/extractor v4.1.0
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("lyrics")

@@ -1,6 +1,8 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder } = require("discord.js");
 
+// TODO ensure this command is still up to date
+
 module.exports = {
     data: new SlashCommandBuilder().setName("help").setDescription("Shows all Melody commands available."),
     async execute(interaction) {

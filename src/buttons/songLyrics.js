@@ -2,6 +2,8 @@ const { EmbedBuilder } = require("discord.js");
 const { lyricsExtractor } = require("@discord-player/extractor");
 const lyricsClient = lyricsExtractor(global.config.geniusKey);
 
+// TODO update this button action to work with discord-player v6
+
 module.exports = {
     name: "melody_song_lyrics",
     async execute(interaction) {

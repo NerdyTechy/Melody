@@ -1,6 +1,8 @@
 const { SlashCommandBuilder, ButtonBuilder } = require("@discordjs/builders");
 const { EmbedBuilder, ActionRowBuilder, ButtonStyle } = require("discord.js");
 
+// TODO update this command to work with discord-player v6
+
 module.exports = {
     data: new SlashCommandBuilder().setName("nowplaying").setDescription("View information about the current track.").setDMPermission(false),
     async execute(interaction) {

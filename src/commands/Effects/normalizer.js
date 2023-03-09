@@ -1,6 +1,8 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
 
+// TODO update this command to work with discord-player v6
+
 module.exports = {
     data: new SlashCommandBuilder().setName("normalizer").setDescription("Applies the normalizer effect to the current music.").setDMPermission(false),
     async execute(interaction) {

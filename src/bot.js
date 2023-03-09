@@ -37,6 +37,7 @@ if (!fs.existsSync("src/data.json")) {
 }
 
 try {
+    // TODO move config to a separate file
     const configFile = yaml.load(fs.readFileSync("./config.yml"));
 
     global.config = {
@@ -77,6 +78,7 @@ if (typeof global.config.geniusKey === "undefined") {
     logger.warn("No Genius API key was provided. The lyrics functions will not be as reliable.");
 }
 
+// TODO don't use 32767
 const client = new Client({ intents: [32767] });
 global.player = new Player(client);
 client.commands = new Collection();

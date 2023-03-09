@@ -1,6 +1,8 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
 
+// TODO update this command to work with discord-player v6
+
 module.exports = {
     data: new SlashCommandBuilder().setName("vaporwave").setDescription("Applies the vaporwave effect to the current music.").setDMPermission(false),
     async execute(interaction) {

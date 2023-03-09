@@ -49,6 +49,8 @@ module.exports = {
                 });
             }
 
+            // TODO ensure help menu is up to date
+
             if (interaction.values[0] == "melody_help_category_general") {
                 embed.setAuthor({ name: "Melody Help" });
                 embed.setTitle("General Commands");

@@ -1,5 +1,7 @@
 const { EmbedBuilder } = require("discord.js");
 
+// TODO check event exists in discord-player v6
+
 module.exports = {
     name: "botDisconnect",
     async execute(queue) {

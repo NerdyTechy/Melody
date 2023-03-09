@@ -15,7 +15,11 @@ module.exports = {
         const embed = new EmbedBuilder();
         embed.setColor(global.config.embedColour);
 
-        if (!interaction.member.voice.channelId) {
+        const channel = interaction.member.voice.channel;
+
+        console.log(interaction.member.voice);
+
+        if (!channel) {
             embed.setDescription("You aren't currently in a voice channel.");
             return await interaction.editReply({ embeds: [embed] });
         }
@@ -26,68 +30,84 @@ module.exports = {
         }
 
         const query = interaction.options.getString("query");
-        const queue = global.player.createQueue(interaction.guild, {
-            leaveOnEnd: global.config.leaveUponSongEnd,
-            leaveOnStop: global.config.leaveUponSongStop,
-            leaveOnEmpty: true,
-            leaveOnEmptyCooldown: global.config.leaveOnEmptyDelay,
-            autoSelfDeaf: global.config.deafenBot,
-            spotifyBridge: true,
-            ytdlOptions: {
-                filter: "audioonly",
-                opusEncoded: true,
-                quality: "highestaudio",
-                highWaterMark: 1 << 30,
-            },
-            metadata: {
-                channel: interaction.channel,
-            },
-        });
+        // const queue = global.player.createQueue(interaction.guild, {
+        //     leaveOnEnd: global.config.leaveUponSongEnd,
+        //     leaveOnStop: global.config.leaveUponSongStop,
+        //     leaveOnEmpty: true,
+        //     leaveOnEmptyCooldown: global.config.leaveOnEmptyDelay,
+        //     autoSelfDeaf: global.config.deafenBot,
+        //     spotifyBridge: true,
+        //     ytdlOptions: {
+        //         filter: "audioonly",
+        //         opusEncoded: true,
+        //         quality: "highestaudio",
+        //         highWaterMark: 1 << 30,
+        //     },
+        //     metadata: {
+        //         channel: interaction.channel,
+        //     },
+        // });
+
+        // try {
+        //     if (!queue.connection) await queue.connect(interaction.member.voice.channel);
+        // } catch (err) {
+        //     queue.destroy();
+        //     embed.setDescription("I can't join that voice channel.");
+        //     return await interaction.editReply({ embeds: [embed] });
+        // }
+
+        // const res = await global.player.search(query, {
+        //     requestedBy: interaction.user,
+        // });
+
+        // if (!res) {
+        //     await queue.destroy();
+        //     embed.setDescription(`I couldn't find anything with the name **${query}**.`);
+        //     return await interaction.editReply({ embeds: [embed] });
+        // }
+
+        // try {
+        //     res.playlist ? queue.addTracks(res.tracks) : queue.addTrack(res.tracks[0]);
+        //     if (!queue.playing) await queue.play();
+        // } catch (err) {
+        //     if (err instanceof PlayerError) {
+        //         if (err.statusCode == "InvalidTrack") {
+        //             embed.setDescription(`I couldn't find anything with the name **${query}**.`);
+        //             await queue.destroy();
+        //             return await interaction.editReply({ embeds: [embed] });
+        //         }
+        //     }
+
+        //     logger.error("An error occurred whilst attempting to play this media:");
+        //     logger.error(err);
+
+        //     await queue.destroy();
+        //     embed.setDescription("This media doesn't seem to be working right now, please try again later.");
+        //     return await interaction.followUp({ embeds: [embed] });
+        // }
+
+        // if (!res.playlist) {
+        //     embed.setDescription(`Loaded **[${res.tracks[0].title}](${res.tracks[0].url})** by **${res.tracks[0].author}** into the server queue.`);
+        // } else {
+        //     embed.setDescription(`**${res.tracks.length} tracks** from the ${res.playlist.type} **[${res.playlist.title}](${res.playlist.url})** have been loaded into the server queue.`);
+        // }
 
         try {
-            if (!queue.connection) await queue.connect(interaction.member.voice.channel);
-        } catch (err) {
-            queue.destroy();
-            embed.setDescription("I can't join that voice channel.");
-            return await interaction.editReply({ embeds: [embed] });
-        }
-
-        const res = await global.player.search(query, {
-            requestedBy: interaction.user,
-        });
-
-        if (!res) {
-            await queue.destroy();
-            embed.setDescription(`I couldn't find anything with the name **${query}**.`);
-            return await interaction.editReply({ embeds: [embed] });
-        }
-
-        try {
-            res.playlist ? queue.addTracks(res.tracks) : queue.addTrack(res.tracks[0]);
-            if (!queue.playing) await queue.play();
-        } catch (err) {
-            if (err instanceof PlayerError) {
-                if (err.statusCode == "InvalidTrack") {
-                    embed.setDescription(`I couldn't find anything with the name **${query}**.`);
-                    await queue.destroy();
-                    return await interaction.editReply({ embeds: [embed] });
+            await player.play(channel, query, {
+                nodeOptions: {
+                    metadata: {
+                        channel: interaction.channel,
+                        client: interaction.guild.members.me,
+                        requestedBy: interaction.user
+                    },
                 }
-            }
-
-            logger.error("An error occurred whilst attempting to play this media:");
-            logger.error(err);
-
-            await queue.destroy();
-            embed.setDescription("This media doesn't seem to be working right now, please try again later.");
-            return await interaction.followUp({ embeds: [embed] });
+            });
+            return await interaction.editReply({ content: `Now playing` });
+        } catch(err){
+            console.log(err);
+            return interaction.editReply({ content: `An error occurred whilst attempting to play this media.` });
         }
 
-        if (!res.playlist) {
-            embed.setDescription(`Loaded **[${res.tracks[0].title}](${res.tracks[0].url})** by **${res.tracks[0].author}** into the server queue.`);
-        } else {
-            embed.setDescription(`**${res.tracks.length} tracks** from the ${res.playlist.type} **[${res.playlist.title}](${res.playlist.url})** have been loaded into the server queue.`);
-        }
-
-        return await interaction.editReply({ embeds: [embed] });
+        // return await interaction.editReply({ embeds: [embed] });
     },
 };

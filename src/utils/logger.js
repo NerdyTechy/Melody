@@ -1,6 +1,8 @@
 const chalk = require("chalk");
 const fs = require("node:fs");
 
+// TODO use date-fns for simpler date formatting
+
 function info(str) {
     const date = new Date();
     if (!fs.existsSync("logs")) {

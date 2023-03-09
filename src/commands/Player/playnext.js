@@ -3,6 +3,8 @@ const { EmbedBuilder } = require("discord.js");
 const { PlayerError } = require("discord-player");
 const logger = require("../../utils/logger");
 
+// TODO update this command to work with discord-player v6
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("playnext")

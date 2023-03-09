@@ -1,3 +1,5 @@
+// TODO check event exists in discord-player v6
+
 module.exports = {
     name: "connectionCreate",
     async execute(queue) {

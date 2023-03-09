@@ -2,7 +2,7 @@ const { EmbedBuilder } = require("discord.js");
 const fs = require("node:fs");
 
 module.exports = {
-    name: "trackStart",
+    name: "playerStart",
     async execute(queue, track) {
         const embed = new EmbedBuilder();
 
