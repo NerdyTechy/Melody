@@ -1,5 +1,6 @@
 const fs = require("node:fs");
 const path = require("node:path");
+const { Player } = require('discord-player');
 
 module.exports = (client) => {
     client.handleEvents = async () => {
@@ -18,6 +19,8 @@ module.exports = (client) => {
 
         const playerEventsPath = path.join(__dirname, "../events/player");
         const playerEventFiles = fs.readdirSync(playerEventsPath).filter((file) => file.endsWith(".js"));
+
+        const player = Player.singleton();
 
         for (const file of playerEventFiles) {
             const filePath = path.join(playerEventsPath, file);

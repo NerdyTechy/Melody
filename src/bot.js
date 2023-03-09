@@ -80,7 +80,7 @@ if (typeof global.config.geniusKey === "undefined") {
 
 // TODO don't use 32767
 const client = new Client({ intents: [32767] });
-global.player = new Player(client);
+const player = new Player(client);
 client.commands = new Collection();
 client.buttons = new Collection();
 
