@@ -1,16 +1,14 @@
 const { EmbedBuilder } = require("discord.js");
 const logger = require("../../utils/logger");
 
-// TODO check event exists in discord-player v6
-
 module.exports = {
-    name: "connectionError",
+    name: "playerError",
     async execute(queue, error) {
-        logger.error("A connection error occurred whilst attempting to perform this action:");
+        logger.error("A player error occurred whilst attempting to perform this action:");
         logger.error(error);
 
         const errEmbed = new EmbedBuilder();
-        errEmbed.setDescription("A connection error occurred whilst attempting to perform this action.");
+        errEmbed.setDescription("A player error occurred whilst attempting to perform this action.");
         errEmbed.setColor(global.config.embedColour);
 
         queue.metadata.channel.send({ embeds: [errEmbed] });

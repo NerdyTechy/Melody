@@ -1,9 +1,9 @@
 const { EmbedBuilder } = require("discord.js");
 
-// TODO check event exists in discord-player v6
+// TODO make the embed description update with the config value
 
 module.exports = {
-    name: "channelEmpty",
+    name: "emptyChannel",
     async execute(queue) {
         const embed = new EmbedBuilder();
         embed.setDescription("The music was stopped due to 5 minutes of inactivity.");
