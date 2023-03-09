@@ -17,8 +17,6 @@ module.exports = {
 
         const channel = interaction.member.voice.channel;
 
-        console.log(interaction.member.voice);
-
         if (!channel) {
             embed.setDescription("You aren't currently in a voice channel.");
             return await interaction.editReply({ embeds: [embed] });
@@ -104,7 +102,7 @@ module.exports = {
             });
             return await interaction.editReply({ content: `Now playing` });
         } catch(err){
-            console.log(err);
+            logger.error(err);
             return interaction.editReply({ content: `An error occurred whilst attempting to play this media.` });
         }
 
