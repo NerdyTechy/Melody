@@ -4,8 +4,6 @@ const { lyricsExtractor } = require("@discord-player/extractor");
 
 const lyricsClient = lyricsExtractor(global.config.geniusKey);
 
-// TODO ensure this command works with @discord-player/extractor v4.1.0
-
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("lyrics")
@@ -19,12 +17,12 @@ module.exports = {
 
         await lyricsClient
             .search(interaction.options.getString("query"))
-            .then((x) => {
+            .then((res) => {
                 embed.setAuthor({
-                    name: `${x.title} - ${x.artist.name}`,
-                    url: x.url,
+                    name: `${res.title} - ${res.artist.name}`,
+                    url: res.url,
                 });
-                embed.setDescription(x.lyrics);
+                embed.setDescription(res.lyrics.length > 4096  ? `[Click here to view lyrics](${res.url})` : res.lyrics);
                 embed.setFooter({ text: "Courtesy of Genius" });
             })
             .catch(() => {
