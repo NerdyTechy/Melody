@@ -45,7 +45,7 @@ module.exports = {
                     channel: interaction.channel,
                     client: interaction.guild.members.me,
                     requestedBy: interaction.user
-                },
+                }
             });
         }
 

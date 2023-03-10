@@ -1,7 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
-
-// TODO update this command to work with discord-player v6
+const { Player } = require('discord-player');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -10,17 +9,18 @@ module.exports = {
         .setDMPermission(false)
         .addIntegerOption((option) => option.setName("volume").setDescription("The volume to set the music to.").setRequired(true)),
     async execute(interaction) {
-        const queue = global.player.getQueue(interaction.guild.id);
+        const player = Player.singleton();
+        const queue = player.nodes.get(interaction.guild.id);
 
         const embed = new EmbedBuilder();
         embed.setColor(global.config.embedColour);
 
-        if (!queue || !queue.playing) {
+        if (!queue || !queue.isPlaying()) {
             embed.setDescription("There isn't currently any music playing.");
         } else {
             const vol = interaction.options.getInteger("volume");
 
-            if (queue.volume === vol) {
+            if (queue.node.volume === vol) {
                 embed.setDescription(`The current queue volume is already set to ${vol}%.`);
                 return await interaction.reply({ embeds: [embed] });
             }
@@ -32,7 +32,7 @@ module.exports = {
                 return await interaction.reply({ embeds: [embed] });
             }
 
-            const success = queue.setVolume(vol);
+            const success = queue.node.setVolume(vol);
             success ? embed.setDescription(`The current music's volume was set to **${vol}%**.`) : embed.setDescription("An error occurred whilst attempting to set the volume.");
         }
 
