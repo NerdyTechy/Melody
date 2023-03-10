@@ -1,16 +1,16 @@
 const { EmbedBuilder } = require("discord.js");
-
-// TODO update this button action to work with discord-player v6
+const { Player } = require('discord-player');
 
 module.exports = {
     name: "melody_pause_song",
     async execute(interaction) {
-        const queue = global.player.getQueue(interaction.guild.id);
+        const player = Player.singleton();
+        const queue = player.nodes.get(interaction.guild.id);
 
         const embed = new EmbedBuilder();
         embed.setColor(global.config.embedColour);
 
-        if (!queue || !queue.playing) {
+        if (!queue || !queue.isPlaying()) {
             embed.setDescription("There isn't currently any music playing.");
             return await interaction.reply({
                 embeds: [embed],
@@ -18,17 +18,9 @@ module.exports = {
             });
         }
 
-        if (!queue) {
-            embed.setDescription("There isn't currently any music playing.");
-            return await interaction.reply({
-                embeds: [embed],
-                ephemeral: true,
-            });
-        }
+        queue.node.setPaused(!queue.node.isPaused());
 
-        queue.setPaused(!queue.connection.paused);
-
-        embed.setDescription(`<@${interaction.user.id}>: Successfully ${queue.connection.paused ? "paused" : "unpaused"} **[${queue.current.title}](${queue.current.url})**.`);
+        embed.setDescription(`<@${interaction.user.id}>: Successfully ${queue.connection.paused ? "paused" : "unpaused"} **[${queue.currentTrack.title}](${queue.currentTrack.url})**.`);
 
         return await interaction.reply({ embeds: [embed] });
     },

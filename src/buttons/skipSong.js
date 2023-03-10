@@ -1,17 +1,17 @@
 const { EmbedBuilder } = require("discord.js");
 const fs = require("node:fs");
-
-// TODO update this button action to work with discord-player v6
+const { Player } = require('discord-player');
 
 module.exports = {
     name: "melody_skip_song",
     async execute(interaction) {
-        const queue = global.player.getQueue(interaction.guild.id);
+        const player = Player.singleton();
+        const queue = player.nodes.get(interaction.guild.id);
 
         const embed = new EmbedBuilder();
         embed.setColor(global.config.embedColour);
 
-        if (!queue || !queue.playing) {
+        if (!queue || !queue.isPlaying()) {
             embed.setDescription("There isn't currently any music playing.");
             return await interaction.reply({
                 embeds: [embed],
@@ -19,14 +19,14 @@ module.exports = {
             });
         }
 
-        queue.skip();
+        queue.node.skip();
 
         let rawdata = fs.readFileSync("src/data.json");
         var data = JSON.parse(rawdata);
 
         data["songs-skipped"] += 1;
 
-        embed.setDescription(`<@${interaction.user.id}>: The track **[${queue.current.title}](${queue.current.url})** was skipped.`);
+        embed.setDescription(`<@${interaction.user.id}>: The track **[${queue.currentTrack.title}](${queue.currentTrack.url})** was skipped.`);
 
         let newdata = JSON.stringify(data);
         fs.writeFileSync("src/data.json", newdata);

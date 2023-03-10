@@ -1,16 +1,16 @@
 const { EmbedBuilder } = require("discord.js");
-
-// TODO update this button action to work with discord-player v6
+const { Player } = require('discord-player');
 
 module.exports = {
     name: "melody_stop",
     async execute(interaction) {
-        const queue = global.player.getQueue(interaction.guild.id);
+        const player = Player.singleton();
+        const queue = player.nodes.get(interaction.guild.id);
 
         const embed = new EmbedBuilder();
         embed.setColor(global.config.embedColour);
 
-        if (!queue || !queue.playing) {
+        if (!queue || !queue.isPlaying()) {
             embed.setDescription("There isn't currently any music playing.");
             return await interaction.reply({
                 embeds: [embed],
@@ -18,7 +18,7 @@ module.exports = {
             });
         }
 
-        queue.destroy();
+        queue.delete();
         embed.setDescription(`<@${interaction.user.id}>: The music has been stopped.`);
 
         return await interaction.reply({ embeds: [embed] });
