@@ -1,5 +1,5 @@
 const { Player } = require("discord-player");
-const { Client, Collection } = require("discord.js");
+const { Client, Collection, GatewayIntentBits } = require("discord.js");
 const fs = require("node:fs");
 const yaml = require("js-yaml");
 const logger = require("./utils/logger");
@@ -78,8 +78,7 @@ if (typeof global.config.geniusKey === "undefined") {
     logger.warn("No Genius API key was provided. The lyrics functions will not be as reliable.");
 }
 
-// TODO don't use 32767
-const client = new Client({ intents: [32767] });
+const client = new Client({ intents: [GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.Guilds] });
 const player = new Player(client);
 client.commands = new Collection();
 client.buttons = new Collection();
