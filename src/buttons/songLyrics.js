@@ -12,7 +12,7 @@ module.exports = {
         const embed = new EmbedBuilder();
         embed.setColor(global.config.embedColour);
 
-        if (!queue || !queue.playing) {
+        if (!queue || !queue.isPlaying()) {
             embed.setDescription("There isn't currently any music playing.");
             return await interaction.reply({
                 embeds: [embed],
@@ -23,7 +23,7 @@ module.exports = {
         await interaction.deferReply({ ephemeral: true });
 
         await lyricsClient
-            .search(`${queue.current.title} ${queue.current.author}`)
+            .search(`${queue.currentTrack.title} ${queue.currentTrack.author}`)
             .then((res) => {
                 embed.setAuthor({
                     name: `${res.title} - ${res.artist.name}`,
