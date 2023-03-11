@@ -1,22 +1,22 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
-
-// TODO update this command to work with discord-player v6
+const { Player } = require('discord-player');
 
 module.exports = {
     data: new SlashCommandBuilder().setName("back").setDescription("Returns to the previous track.").setDMPermission(false),
     async execute(interaction) {
-        const queue = global.player.getQueue(interaction.guild.id);
+        const player = Player.singleton();
+        const queue = player.nodes.get(interaction.guild.id);
 
         const embed = new EmbedBuilder();
         embed.setColor(global.config.embedColour);
 
-        if (!queue || !queue.playing) {
+        if (!queue || !queue.isPlaying()) {
             embed.setDescription("There isn't currently any music playing.");
-        } else if (!queue.previousTracks[1]) {
+        } else if (!queue.history.tracks.toArray()[0]) {
             embed.setDescription("There was no music played before this track.");
         } else {
-            await queue.back();
+            await queue.history.back();
             embed.setDescription("Returning to the previous track in queue.");
         }
 
