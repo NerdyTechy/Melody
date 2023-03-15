@@ -1,17 +1,17 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
-
-// TODO update this command to work with discord-player v6
+const { Player } = require('discord-player');
 
 module.exports = {
     data: new SlashCommandBuilder().setName("save").setDescription("Sends you a direct message with details about the current track.").setDMPermission(false),
     async execute(interaction) {
-        const queue = global.player.getQueue(interaction.guild.id);
+        const player = Player.singleton();
+        const queue = player.nodes.get(interaction.guild.id);
 
         const embed = new EmbedBuilder();
         embed.setColor(global.config.embedColour);
 
-        if (!queue) {
+        if (!queue || !queue.isPlaying()) {
             embed.setDescription("There isn't currently any music playing.");
             return await interaction.reply({ embeds: [embed] });
         }
@@ -22,18 +22,18 @@ module.exports = {
         info.setTitle("Track Saved");
 
         var message = `
-            **Track Name:** [${queue.current.title}](${queue.current.url})
-            **Author:** ${queue.current.author}
-            **Duration:** ${queue.current.duration}\n`;
+            **Track Name:** [${queue.currentTrack.title}](${queue.currentTrack.url})
+            **Author:** ${queue.currentTrack.author}
+            **Duration:** ${queue.currentTrack.duration}\n`;
 
-        if (queue.current.playlist) {
-            message += `**Playlist:** [${queue.current.playlist.title}](${queue.current.playlist.url})\n`;
+        if (queue.currentTrack.playlist) {
+            message += `**Playlist:** [${queue.currentTrack.playlist.title}](${queue.currentTrack.playlist.url})\n`;
         }
 
         message += `**Saved:** <t:${Math.round(Date.now() / 1000)}:R>`;
 
         info.setDescription(message);
-        info.setThumbnail(queue.current.thumbnail);
+        info.setThumbnail(queue.currentTrack.thumbnail);
         info.setFooter({ text: `Track saved from ${interaction.guild.name}` });
         info.setTimestamp();
 
