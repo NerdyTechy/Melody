@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
-const { Player } = require("discord-player");
+const { Player, useMasterPlayer, QueryType } = require("discord-player");
 const logger = require("../../utils/logger");
 
 module.exports = {
@@ -8,7 +8,7 @@ module.exports = {
         .setName("play")
         .setDescription("Adds a track to the end of the server queue.")
         .setDMPermission(false)
-        .addStringOption((option) => option.setName("query").setDescription("Enter a track name, artist name, or URL.").setRequired(true)),
+        .addStringOption((option) => option.setName("query").setDescription("Enter a track name, artist name, or URL.").setRequired(true).setAutocomplete(true)),
     async execute(interaction, client) {
         await interaction.deferReply();
 
@@ -45,7 +45,7 @@ module.exports = {
                     channel: interaction.channel,
                     client: interaction.guild.members.me,
                     requestedBy: interaction.user
-                }
+                },
             });
         }
 
@@ -53,7 +53,7 @@ module.exports = {
 
         try {
             const res = await player.search(query, {
-                requestedBy: interaction.user,
+                requestedBy: interaction.user
             });
 
             if (!res || !res.tracks || res.tracks.length === 0) {
@@ -96,4 +96,15 @@ module.exports = {
 
         return await interaction.editReply({ embeds: [embed] });
     },
+    async autocompleteRun(interaction) {
+        const player = useMasterPlayer();
+        const query = interaction.options.getString('query', true);
+        const results = await player.search(query, { searchEngine: QueryType.YOUTUBE_SEARCH });
+        return interaction.respond(
+            results.tracks.slice(0, 10).map((t) => ({
+                name: `${`${t.title} - ${t.author} (${t.duration})`.length > 85 ? `${`${t.title} - ${t.author}`.substring(0, 85)}... (${t.duration})` : `${t.title} - ${t.author} (${t.duration})`}`,
+                value: t.url
+            }))
+        );
+    }
 };

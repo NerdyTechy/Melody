@@ -66,6 +66,15 @@ module.exports = {
             }
 
             return await interaction.update({ embeds: [embed] });
+        } else if (interaction.isAutocomplete()) {
+            const command = client.commands.get(interaction.commandName);
+            if (!command) return;
+            try {
+                await command.autocompleteRun(interaction, client);
+            } catch (error) {
+                logger.error("An error occurred whilst attempting to run autocomplete:");
+                logger.error(error);
+            }
         }
     },
 };
