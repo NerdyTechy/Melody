@@ -1,29 +1,24 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { EmbedBuilder } = require("discord.js");
-
-// TODO update this command to work with discord-player v6
+const { EmbedBuilder } = require("discord.js")
+const { Player } = require('discord-player');
 
 module.exports = {
     data: new SlashCommandBuilder().setName("pause").setDescription("Pauses the current track.").setDMPermission(false),
     async execute(interaction) {
-        const queue = global.player.getQueue(interaction.guild.id);
+        const player = Player.singleton();
+        const queue = player.nodes.get(interaction.guild.id);
 
         const embed = new EmbedBuilder();
         embed.setColor(global.config.embedColour);
 
-        if (!queue) {
+        if (!queue || !queue.isPlaying()) {
             embed.setDescription("There isn't currently any music playing.");
             return await interaction.reply({ embeds: [embed] });
         }
 
-        if (queue.connection.paused) {
-            embed.setDescription("The queue is already paused.");
-            return await interaction.reply({ embeds: [embed] });
-        }
+        queue.node.setPaused(!queue.node.isPaused());
 
-        queue.setPaused(true);
-
-        embed.setDescription(`Successfully paused **[${queue.current.title}](${queue.current.url})**.`);
+        embed.setDescription(`Successfully ${queue.node.isPaused() === true ? "paused" : "unpaused"} **[${queue.currentTrack.title}](${queue.currentTrack.url})**.`);
 
         return await interaction.reply({ embeds: [embed] });
     },
