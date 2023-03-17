@@ -20,7 +20,7 @@ module.exports = {
 
         queue.node.setPaused(!queue.node.isPaused());
 
-        embed.setDescription(`<@${interaction.user.id}>: Successfully ${queue.connection.paused ? "paused" : "unpaused"} **[${queue.currentTrack.title}](${queue.currentTrack.url})**.`);
+        embed.setDescription(`<@${interaction.user.id}>: Successfully ${queue.node.isPaused() ? "paused" : "unpaused"} **[${queue.currentTrack.title}](${queue.currentTrack.url})**.`);
 
         return await interaction.reply({ embeds: [embed] });
     },
