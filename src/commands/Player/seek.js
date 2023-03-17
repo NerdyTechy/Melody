@@ -1,7 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
-
-// TODO update this command to work with discord-player v6
+const { Player } = require('discord-player');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -11,12 +10,13 @@ module.exports = {
         .addIntegerOption((option) => option.setName("minutes").setDescription("The amount of minutes to seek to.").setRequired(true))
         .addIntegerOption((option) => option.setName("seconds").setDescription("The amount of seconds to seek to.").setRequired(true)),
     async execute(interaction) {
-        const queue = global.player.getQueue(interaction.guild.id);
+        const player = Player.singleton();
+        const queue = player.nodes.get(interaction.guild.id);
 
         const embed = new EmbedBuilder();
         embed.setColor(global.config.embedColour);
 
-        if (!queue) {
+        if (!queue || !queue.isPlaying()) {
             embed.setDescription("There isn't currently any music playing.");
             return await interaction.reply({ embeds: [embed] });
         }
@@ -26,7 +26,7 @@ module.exports = {
 
         const newPosition = minutes * 60 * 1000 + seconds * 1000;
 
-        await queue.seek(newPosition);
+        queue.node.seek(newPosition);
 
         embed.setDescription(`The current track has been seeked to **${minutes !== 0 ? `${minutes} ${minutes == 1 ? "minute" : "minutes"} and ` : ""} ${seconds} ${seconds == 1 ? "second" : "seconds"}**.`);
 
