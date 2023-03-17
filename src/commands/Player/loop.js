@@ -1,7 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
-
-// TODO update this command to work with discord-player v6
+const { Player, QueueRepeatMode } = require('discord-player');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -10,27 +9,28 @@ module.exports = {
         .setDMPermission(false)
         .addStringOption((option) => option.setName("mode").setDescription("Loop mode").setRequired(true).addChoices({ name: "off", value: "off" }, { name: "queue", value: "queue" }, { name: "track", value: "track" }, { name: "autoplay", value: "autoplay" })),
     async execute(interaction) {
-        const queue = global.player.getQueue(interaction.guild.id);
+        const player = Player.singleton();
+        const queue = player.nodes.get(interaction.guild.id);
         const mode = interaction.options.getString("mode");
 
         const embed = new EmbedBuilder();
         embed.setColor(global.config.embedColour);
 
-        if (!queue || !queue.playing) {
+        if (!queue || !queue.isPlaying()) {
             embed.setDescription("There isn't currently any music to loop.");
         } else {
             if (mode == "off") {
-                const success = queue.setRepeatMode(0);
-                success ? embed.setDescription("Looping is now **disabled**.") : embed.setDescription("Looping is already **disabled**.");
+                queue.setRepeatMode(QueueRepeatMode.OFF);
+                embed.setDescription("Looping is now **disabled**.");
             } else if (mode == "queue") {
-                const success = queue.setRepeatMode(2);
-                success ? embed.setDescription("The **queue** will now repeat endlessly.") : embed.setDescription("Looping is already set to **queue** repeat.");
+                queue.setRepeatMode(QueueRepeatMode.QUEUE);
+                embed.setDescription("The **queue** will now repeat endlessly.");
             } else if (mode == "track") {
-                const success = queue.setRepeatMode(1);
-                success ? embed.setDescription("The **track** will now repeat endlessly.") : embed.setDescription("Looping is already set to **track** repeat.");
+                queue.setRepeatMode(QueueRepeatMode.TRACK);
+                embed.setDescription("The **track** will now repeat endlessly.");
             } else {
-                const success = queue.setRepeatMode(3);
-                success ? embed.setDescription("The queue will now **autoplay**.") : embed.setDescription("The queue is already set to **autoplay**.");
+                const success = queue.setRepeatMode(QueueRepeatMode.AUTOPLAY);
+                embed.setDescription("The queue will now **autoplay**.");
             }
         }
 
