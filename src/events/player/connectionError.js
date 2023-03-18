@@ -7,7 +7,7 @@ module.exports = {
         logger.error("A player error occurred whilst attempting to perform this action:");
         logger.error(error);
 
-        if (queue) queue.delete();
+        try { queue.delete(); } catch(err) {}
 
         const errEmbed = new EmbedBuilder();
         errEmbed.setDescription("A player error occurred whilst attempting to perform this action.");
