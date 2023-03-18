@@ -50,12 +50,10 @@ module.exports = {
                 });
             }
 
-            // TODO ensure help menu is up to date
-
             if (interaction.values[0] == "melody_help_category_general") {
                 embed.setAuthor({ name: "Melody Help" });
                 embed.setTitle("General Commands");
-                embed.setDescription("**/help** - Shows all Melody commands available.\n**/stats** - View some Melody bot statistics.");
+                embed.setDescription("**/help** - Shows all Melody commands available.\n**/stats** - View some Melody bot statistics.\n**/botinfo** - View information about Melody.");
             } else if (interaction.values[0] == "melody_help_category_music") {
                 embed.setAuthor({ name: "Melody Help" });
                 embed.setTitle("Music Commands");
