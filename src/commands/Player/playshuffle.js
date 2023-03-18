@@ -1,11 +1,9 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
-const { PlayerError } = require("discord-player");
+const { Player } = require("discord-player");
 const fs = require("node:fs");
 const logger = require("../../utils/logger");
 const config = require('../../config');
-
-// TODO update this command to work with discord-player v6
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -13,13 +11,15 @@ module.exports = {
         .setDescription("Plays the specified playlist with a random track order.")
         .setDMPermission(false)
         .addStringOption((option) => option.setName("playlist").setDescription("Enter a playlist URL here to playshuffle.").setRequired(true)),
-    async execute(interaction) {
+    async execute(interaction, client) {
         await interaction.deferReply();
 
         const embed = new EmbedBuilder();
         embed.setColor(config.embedColour);
 
-        if (!interaction.member.voice.channelId) {
+        const channel = interaction.member.voice.channel;
+
+        if (!channel) {
             embed.setDescription("You aren't currently in a voice channel.");
             return await interaction.editReply({ embeds: [embed] });
         }
@@ -30,65 +30,63 @@ module.exports = {
         }
 
         const query = interaction.options.getString("playlist");
-        const queue = global.player.createQueue(interaction.guild, {
-            leaveOnEnd: config.leaveUponSongEnd,
-            leaveOnStop: config.leaveUponSongStop,
-            leaveOnEmpty: true,
-            leaveOnEmptyCooldown: config.leaveOnEmptyDelay,
-            autoSelfDeaf: config.deafenBot,
-            spotifyBridge: true,
-            ytdlOptions: {
-                filter: "audioonly",
-                opusEncoded: true,
-                quality: "highestaudio",
-                highWaterMark: 1 << 30,
-            },
-            metadata: {
-                channel: interaction.channel,
-            },
-        });
 
-        try {
-            if (!queue.connection) await queue.connect(interaction.member.voice.channel);
-        } catch (err) {
-            await queue.destroy();
-            embed.setDescription("I can't join that voice channel.");
-            return await interaction.editReply({ embeds: [embed] });
+        const player = Player.singleton(client);
+        let queue = player.nodes.get(interaction.guild.id);
+
+        if (!queue) {
+            player.nodes.create(interaction.guild.id, {
+                leaveOnEnd: true,
+                leaveOnStop: true,
+                leaveOnEmpty: true,
+                leaveOnEmptyCooldown: 30000,
+                leaveOnEndCooldown: 30000,
+                leaveOnStopCooldown: 30000,
+                selfDeaf: false,
+                metadata: {
+                    channel: interaction.channel,
+                    client: interaction.guild.members.me,
+                    requestedBy: interaction.user
+                },
+            });
         }
 
-        const res = await global.player.search(query, {
+        queue = player.nodes.get(interaction.guild.id);
+
+        const res = await player.search(query, {
             requestedBy: interaction.user,
         });
 
         if (!res) {
             embed.setDescription(`I couldn't find a playlist with the name **${query}**`);
-            await queue.destroy();
+            await queue.delete();
             return await interaction.editReply({ embeds: [embed] });
         }
 
         if (!res.playlist) {
             embed.setDescription("The query specified doesn't appear to be a playlist.");
-            await queue.destroy();
+            await queue.delete();
             return await interaction.editReply({ embeds: [embed] });
         }
 
         try {
-            queue.addTracks(res.tracks);
-            await queue.shuffle();
-            if (!queue.playing) await queue.play();
+            if (!queue.connection) await queue.connect(interaction.member.voice.channel);
         } catch (err) {
-            if (err instanceof PlayerError) {
-                if (err.statusCode == "InvalidTrack") {
-                    embed.setDescription(`I couldn't find a playlist with the name **${query}**.`);
-                    await queue.destroy();
-                    return await interaction.editReply({ embeds: [embed] });
-                }
-            }
+            if (queue) queue.delete();
+            embed.setDescription("I can't join that voice channel.");
+            return await interaction.editReply({ embeds: [embed] });
+        }
 
+        try {
+            queue.addTrack(res.tracks);
+            await queue.tracks.shuffle();
+            if (!queue.isPlaying()) await queue.node.play(queue.tracks[0]);
+        } catch (err) {
             logger.error("An error occurred whilst attempting to play this media:");
             logger.error(err);
 
-            await queue.destroy();
+            await queue.delete();
+
             embed.setDescription("This media doesn't seem to be working right now, please try again later.");
             return await interaction.followUp({ embeds: [embed] });
         }
