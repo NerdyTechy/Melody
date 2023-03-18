@@ -1,23 +1,21 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
-
-// TODO update this command to work with discord-player v6
+const { Player } = require('discord-player');
 
 module.exports = {
     data: new SlashCommandBuilder().setName("nightcore").setDescription("Applies the nightcore effect to the current music.").setDMPermission(false),
     async execute(interaction) {
-        const queue = global.player.getQueue(interaction.guild.id);
+        const player = Player.singleton();
+        const queue = player.nodes.get(interaction.guild.id);
 
         const embed = new EmbedBuilder();
         embed.setColor(global.config.embedColour);
 
-        if (!queue || !queue.playing) {
+        if (!queue || !queue.isPlaying()) {
             embed.setDescription("There isn't currently any music playing.");
         } else {
-            queue.setFilters({
-                nightcore: !queue.getFiltersEnabled().includes("nightcore"),
-            });
-            embed.setDescription(`The **nightcore** filter is now ${queue.getFiltersEnabled().includes("nightcore") ? "enabled." : "disabled."}`);
+            queue.filters.ffmpeg.toggle(['nightcore']);
+            embed.setDescription(`The **nightcore** filter is now ${queue.filters.ffmpeg.filters.includes('nightcore') ? "enabled." : "disabled."}`);
         }
 
         return await interaction.reply({ embeds: [embed] });

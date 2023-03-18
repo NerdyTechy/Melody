@@ -1,23 +1,21 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
-
-// TODO update this command to work with discord-player v6
+const { Player } = require('discord-player');
 
 module.exports = {
     data: new SlashCommandBuilder().setName("expander").setDescription("Applies the expander effect to the current music.").setDMPermission(false),
     async execute(interaction) {
-        const queue = global.player.getQueue(interaction.guild.id);
+        const player = Player.singleton();
+        const queue = player.nodes.get(interaction.guild.id);
 
         const embed = new EmbedBuilder();
         embed.setColor(global.config.embedColour);
 
-        if (!queue || !queue.playing) {
+        if (!queue || !queue.isPlaying()) {
             embed.setDescription("There isn't currently any music playing.");
         } else {
-            queue.setFilters({
-                expander: !queue.getFiltersEnabled().includes("expander"),
-            });
-            embed.setDescription(`The **expander** filter is now ${queue.getFiltersEnabled().includes("expander") ? "enabled." : "disabled."}`);
+            queue.filters.ffmpeg.toggle(['expander']);
+            embed.setDescription(`The **expander** filter is now ${queue.filters.ffmpeg.filters.includes('expander') ? "enabled." : "disabled."}`);
         }
 
         return await interaction.reply({ embeds: [embed] });
