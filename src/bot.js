@@ -29,7 +29,8 @@ process.on("exit", (code) => {
 });
 
 if (!fs.existsSync("config.yml")) {
-    return logger.error("Unable to find config.yml file. Please copy the default configuration into a file named config.yml in the root directory. (The same directory as package.json)");
+    logger.error("Unable to find config.yml file. Please copy the default configuration into a file named config.yml in the root directory. (The same directory as package.json)");
+    process.exit(1);
 }
 
 if (!fs.existsSync("src/data.json")) {
