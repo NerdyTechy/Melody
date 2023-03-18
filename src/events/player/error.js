@@ -7,6 +7,8 @@ module.exports = {
         logger.error("An unhandled player error occurred during runtime:");
         logger.error(error);
 
+        if (queue) queue.delete();
+
         const errEmbed = new EmbedBuilder();
         errEmbed.setDescription("An error occurred whilst attempting to perform this action. This media may not be supported.");
         errEmbed.setColor(global.config.embedColour);
