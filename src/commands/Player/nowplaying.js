@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, ButtonBuilder } = require("@discordjs/builders");
 const { EmbedBuilder, ActionRowBuilder, ButtonStyle } = require("discord.js");
 const { Player } = require('discord-player');
+const config = require('../../config');
 
 module.exports = {
     data: new SlashCommandBuilder().setName("nowplaying").setDescription("View information about the current track.").setDMPermission(false),
@@ -9,7 +10,7 @@ module.exports = {
         const queue = player.nodes.get(interaction.guild.id);
 
         const embed = new EmbedBuilder();
-        embed.setColor(global.config.embedColour);
+        embed.setColor(config.embedColour);
 
         if (!queue || !queue.isPlaying()) {
             embed.setDescription("There isn't currently any music playing.");
@@ -24,23 +25,23 @@ module.exports = {
         const row = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
                 .setCustomId(`melody_back_song-${interaction.user.id}`)
-                .setEmoji(global.config.backEmoji.length <= 3 ? { name: global.config.backEmoji.trim() } : { id: global.config.backEmoji.trim() })
+                .setEmoji(config.backEmoji.length <= 3 ? { name: config.backEmoji.trim() } : { id: config.backEmoji.trim() })
                 .setStyle(ButtonStyle.Secondary),
             new ButtonBuilder()
                 .setCustomId(`melody_pause_song-${interaction.user.id}`)
-                .setEmoji(global.config.pauseEmoji.length <= 3 ? { name: global.config.pauseEmoji.trim() } : { id: global.config.pauseEmoji.trim() })
+                .setEmoji(config.pauseEmoji.length <= 3 ? { name: config.pauseEmoji.trim() } : { id: config.pauseEmoji.trim() })
                 .setStyle(ButtonStyle.Secondary),
             new ButtonBuilder()
                 .setCustomId(`melody_skip_song-${interaction.user.id}`)
-                .setEmoji(global.config.pauseEmoji.length <= 3 ? { name: global.config.skipEmoji.trim() } : { id: global.config.skipEmoji.trim() })
+                .setEmoji(config.pauseEmoji.length <= 3 ? { name: config.skipEmoji.trim() } : { id: config.skipEmoji.trim() })
                 .setStyle(ButtonStyle.Secondary),
             new ButtonBuilder()
                 .setCustomId(`melody_stop-${interaction.user.id}`)
-                .setEmoji(global.config.stopEmoji.length <= 3 ? { name: global.config.stopEmoji.trim() } : { id: global.config.stopEmoji.trim() })
+                .setEmoji(config.stopEmoji.length <= 3 ? { name: config.stopEmoji.trim() } : { id: config.stopEmoji.trim() })
                 .setStyle(ButtonStyle.Secondary),
             new ButtonBuilder()
                 .setCustomId(`melody_song_lyrics-${interaction.user.id}`)
-                .setEmoji(global.config.lyricsEmoji.length <= 3 ? { name: global.config.lyricsEmoji.trim() } : { id: global.config.lyricsEmoji.trim() })
+                .setEmoji(config.lyricsEmoji.length <= 3 ? { name: config.lyricsEmoji.trim() } : { id: config.lyricsEmoji.trim() })
                 .setStyle(ButtonStyle.Secondary)
         );
 

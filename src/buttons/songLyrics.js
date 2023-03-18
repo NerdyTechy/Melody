@@ -1,7 +1,9 @@
 const { EmbedBuilder } = require("discord.js");
 const { Player } = require('discord-player');
 const { lyricsExtractor } = require("@discord-player/extractor");
-const lyricsClient = lyricsExtractor(global.config.geniusKey);
+const config = require('../config');
+
+const lyricsClient = lyricsExtractor(config.geniusKey);
 
 module.exports = {
     name: "melody_song_lyrics",
@@ -10,7 +12,7 @@ module.exports = {
         const queue = player.nodes.get(interaction.guild.id);
 
         const embed = new EmbedBuilder();
-        embed.setColor(global.config.embedColour);
+        embed.setColor(config.embedColour);
 
         if (!queue || !queue.isPlaying()) {
             embed.setDescription("There isn't currently any music playing.");

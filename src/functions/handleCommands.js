@@ -2,9 +2,10 @@ const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord.js");
 const fs = require("node:fs");
 const logger = require("../utils/logger");
+const config = require('../config');
 
-const token = global.config.token;
-const clientId = global.config.clientId;
+const token = config.token;
+const clientId = config.clientId;
 
 module.exports = (client) => {
     client.handleCommands = async () => {

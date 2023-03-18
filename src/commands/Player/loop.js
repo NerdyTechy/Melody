@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
 const { Player, QueueRepeatMode } = require('discord-player');
+const config = require('../../config');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -14,7 +15,7 @@ module.exports = {
         const mode = interaction.options.getString("mode");
 
         const embed = new EmbedBuilder();
-        embed.setColor(global.config.embedColour);
+        embed.setColor(config.embedColour);
 
         if (!queue || !queue.isPlaying()) {
             embed.setDescription("There isn't currently any music to loop.");

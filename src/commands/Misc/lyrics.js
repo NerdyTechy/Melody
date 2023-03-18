@@ -1,8 +1,9 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
 const { lyricsExtractor } = require("@discord-player/extractor");
+const config = require('../../config');
 
-const lyricsClient = lyricsExtractor(global.config.geniusKey);
+const lyricsClient = lyricsExtractor(config.geniusKey);
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -13,7 +14,7 @@ module.exports = {
         await interaction.deferReply();
 
         const embed = new EmbedBuilder();
-        embed.setColor(global.config.embedColour);
+        embed.setColor(config.embedColour);
 
         await lyricsClient
             .search(interaction.options.getString("query"))

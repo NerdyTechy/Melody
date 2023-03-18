@@ -1,5 +1,6 @@
 const { EmbedBuilder } = require("discord.js");
 const { Player } = require('discord-player');
+const config = require('../config');
 
 module.exports = {
     name: "melody_pause_song",
@@ -8,7 +9,7 @@ module.exports = {
         const queue = player.nodes.get(interaction.guild.id);
 
         const embed = new EmbedBuilder();
-        embed.setColor(global.config.embedColour);
+        embed.setColor(config.embedColour);
 
         if (!queue || !queue.isPlaying()) {
             embed.setDescription("There isn't currently any music playing.");

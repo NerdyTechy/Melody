@@ -1,5 +1,6 @@
 const { EmbedBuilder } = require("discord.js");
 const logger = require("../../utils/logger");
+const config = require('../../config');
 
 module.exports = {
     name: "interactionCreate",
@@ -39,7 +40,7 @@ module.exports = {
             const buttonOwner = interaction.customId.substring(interaction.customId.length - 18, interaction.customId.length);
 
             const embed = new EmbedBuilder();
-            embed.setColor(global.config.embedColour);
+            embed.setColor(config.embedColour);
 
             if (interaction.user.id != buttonOwner) {
                 embed.setDescription(`Only <@${buttonOwner}> can use this menu.`);

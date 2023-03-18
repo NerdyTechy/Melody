@@ -2,6 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
 const { Player, useMasterPlayer, QueryType } = require("discord-player");
 const logger = require("../../utils/logger");
+const config = require('../../config');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -13,7 +14,7 @@ module.exports = {
         await interaction.deferReply();
 
         const embed = new EmbedBuilder();
-        embed.setColor(global.config.embedColour);
+        embed.setColor(config.embedColour);
 
         const channel = interaction.member.voice.channel;
 

@@ -3,6 +3,7 @@ const { EmbedBuilder } = require("discord.js");
 const { PlayerError } = require("discord-player");
 const fs = require("node:fs");
 const logger = require("../../utils/logger");
+const config = require('../../config');
 
 // TODO update this command to work with discord-player v6
 
@@ -16,7 +17,7 @@ module.exports = {
         await interaction.deferReply();
 
         const embed = new EmbedBuilder();
-        embed.setColor(global.config.embedColour);
+        embed.setColor(config.embedColour);
 
         if (!interaction.member.voice.channelId) {
             embed.setDescription("You aren't currently in a voice channel.");
@@ -30,11 +31,11 @@ module.exports = {
 
         const query = interaction.options.getString("playlist");
         const queue = global.player.createQueue(interaction.guild, {
-            leaveOnEnd: global.config.leaveUponSongEnd,
-            leaveOnStop: global.config.leaveUponSongStop,
+            leaveOnEnd: config.leaveUponSongEnd,
+            leaveOnStop: config.leaveUponSongStop,
             leaveOnEmpty: true,
-            leaveOnEmptyCooldown: global.config.leaveOnEmptyDelay,
-            autoSelfDeaf: global.config.deafenBot,
+            leaveOnEmptyCooldown: config.leaveOnEmptyDelay,
+            autoSelfDeaf: config.deafenBot,
             spotifyBridge: true,
             ytdlOptions: {
                 filter: "audioonly",

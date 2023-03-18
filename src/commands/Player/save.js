@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
 const { Player } = require('discord-player');
+const config = require('../../config');
 
 module.exports = {
     data: new SlashCommandBuilder().setName("save").setDescription("Sends you a direct message with details about the current track.").setDMPermission(false),
@@ -9,7 +10,7 @@ module.exports = {
         const queue = player.nodes.get(interaction.guild.id);
 
         const embed = new EmbedBuilder();
-        embed.setColor(global.config.embedColour);
+        embed.setColor(config.embedColour);
 
         if (!queue || !queue.isPlaying()) {
             embed.setDescription("There isn't currently any music playing.");
@@ -17,7 +18,7 @@ module.exports = {
         }
 
         const info = new EmbedBuilder();
-        info.setColor(global.config.embedColour);
+        info.setColor(config.embedColour);
 
         info.setTitle("Track Saved");
 
