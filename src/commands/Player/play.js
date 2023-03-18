@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
-const { Player, useMasterPlayer } = require("discord-player");
+const { Player, useMasterPlayer, QueryType } = require("discord-player");
 const logger = require("../../utils/logger");
 
 module.exports = {
@@ -99,12 +99,24 @@ module.exports = {
     async autocompleteRun(interaction) {
         const player = useMasterPlayer();
         const query = interaction.options.getString('query', true);
-        const results = await player.search(query);
-        return interaction.respond(
-            results.tracks.slice(0, 10).map((t) => ({
-                name: `${`${t.title} - ${t.author} (${t.duration})`.length > 85 ? `${`${t.title} - ${t.author}`.substring(0, 85)}... (${t.duration})` : `${t.title} - ${t.author} (${t.duration})`}`,
-                value: t.url
-            }))
-        );
+        const resultsYouTube = await player.search(query, { searchEngine: QueryType.YOUTUBE });
+        const resultsSpotify = await player.search(query, { searchEngine: QueryType.SPOTIFY_SEARCH });
+
+        const tracksYouTube = resultsYouTube.tracks.slice(0, 5).map((t) => ({
+            name: `YouTube: ${`${t.title} - ${t.author} (${t.duration})`.length > 80 ? `${`${t.title} - ${t.author}`.substring(0, 80)}... (${t.duration})` : `${t.title} - ${t.author} (${t.duration})`}`,
+            value: t.url
+        }));
+
+        const tracksSpotify = resultsSpotify.tracks.slice(0, 5).map((t) => ({
+            name: `Spotify: ${`${t.title} - ${t.author} (${t.duration})`.length > 80 ? `${`${t.title} - ${t.author}`.substring(0, 80)}... (${t.duration})` : `${t.title} - ${t.author} (${t.duration})`}`,
+            value: t.url
+        }));
+
+        const tracks = [];
+
+        tracksYouTube.forEach((t) => tracks.push({ name: t.name, value: t.value }));
+        tracksSpotify.forEach((t) => tracks.push({ name: t.name, value: t.value }));
+
+        return interaction.respond(tracks);
     }
 };
