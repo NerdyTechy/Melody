@@ -26,7 +26,6 @@ try {
         deafenBot: configFile.player.deafenBot ?? false,
     };
 } catch (e) {
-    console.log(e);
     logger.error("Unable to parse config.yml. Please make sure it is valid YAML.");
     process.exit(1);
 }

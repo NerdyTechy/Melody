@@ -66,7 +66,6 @@ module.exports = {
             try {
                 if (!queue.connection) await queue.connect(interaction.member.voice.channel);
             } catch (err) {
-                console.log(err);
                 if (queue) queue.delete();
                 embed.setDescription("I can't join that voice channel.");
                 return await interaction.editReply({ embeds: [embed] });
