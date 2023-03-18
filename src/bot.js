@@ -3,6 +3,7 @@ const { Client, Collection, GatewayIntentBits } = require("discord.js");
 const fs = require("node:fs");
 const yaml = require("js-yaml");
 const logger = require("./utils/logger");
+const { YouTubeExtractor, SpotifyExtractor, SoundCloudExtractor, AppleMusicExtractor, VimeoExtractor, AttachmentExtractor, ReverbnationExtractor } = require("@discord-player/extractor");
 
 process.on("unhandledRejection", (reason) => {
     logger.error("An unhandled rejection occurred in the main process:");
@@ -79,7 +80,15 @@ if (typeof global.config.geniusKey === "undefined") {
 }
 
 const client = new Client({ intents: [GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.Guilds] });
-const player = new Player(client);
+const player = new Player(client, { autoRegisterExtractor: false });
+player.extractors.register(YouTubeExtractor);
+player.extractors.register(SpotifyExtractor);
+player.extractors.register(SoundCloudExtractor);
+player.extractors.register(AppleMusicExtractor);
+player.extractors.register(VimeoExtractor);
+player.extractors.register(ReverbnationExtractor);
+player.extractors.register(AttachmentExtractor);
+
 client.commands = new Collection();
 client.buttons = new Collection();
 

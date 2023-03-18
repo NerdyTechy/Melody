@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
-const { Player, useMasterPlayer, QueryType } = require("discord-player");
+const { Player, useMasterPlayer } = require("discord-player");
 const logger = require("../../utils/logger");
 
 module.exports = {
@@ -99,7 +99,7 @@ module.exports = {
     async autocompleteRun(interaction) {
         const player = useMasterPlayer();
         const query = interaction.options.getString('query', true);
-        const results = await player.search(query, { searchEngine: QueryType.YOUTUBE_SEARCH });
+        const results = await player.search(query);
         return interaction.respond(
             results.tracks.slice(0, 10).map((t) => ({
                 name: `${`${t.title} - ${t.author} (${t.duration})`.length > 85 ? `${`${t.title} - ${t.author}`.substring(0, 85)}... (${t.duration})` : `${t.title} - ${t.author} (${t.duration})`}`,
