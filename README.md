@@ -44,7 +44,19 @@ Melody is a feature-rich Discord music bot. It offers a clean look, easy to use 
 <li>An easy to reference help menu</li>
 <li>Saving songs right to your direct messages for you to refer back to later</li>
 <li>10+ effects to spice up your music</li>
+<li>Search autocomplete</li>
+<li>Support for YouTube, Spotify, SoundCloud, Apple Music, Vimeo and Reverbnation</li>
 </ul>
+
+<h2>Screenshots</h2>
+<p align="center">
+<img src="https://raw.githubusercontent.com/NerdyTechy/Melody/master/assets/screenshots/1.png" width="500px" />
+<img src="https://raw.githubusercontent.com/NerdyTechy/Melody/master/assets/screenshots/2.png" width="500px" />
+<img src="https://raw.githubusercontent.com/NerdyTechy/Melody/master/assets/screenshots/3.png" width="500px" />
+<img src="https://raw.githubusercontent.com/NerdyTechy/Melody/master/assets/screenshots/4.png" width="500px" />
+<img src="https://raw.githubusercontent.com/NerdyTechy/Melody/master/assets/screenshots/5.png" width="500px" />
+<img src="https://raw.githubusercontent.com/NerdyTechy/Melody/master/assets/screenshots/6.png" width="500px" />
+</p>
 
 <h2>Installation</h2>
 For a detailed installation guide, check out our <a href="https://github.com/NerdyTechy/Melody/wiki/Installation">Installation wiki page</a>.
@@ -55,7 +67,7 @@ By default, Melody tracks basic anonymous analytics when you start up the bot. T
 
 ## Genius
 
-Melody utilises Genius' API to find lyrics for songs. A Genius API key is therefore required to use the bot. Obtaining one is free, and can be done so <a href="https://genius.com/api-clients">here</a>.
+Melody utilises Genius' API to find lyrics for songs. A Genius API key isn't required to use the bot, but will make the lyrics features far more reliable. Obtaining one is free, and can be done so <a href="https://genius.com/api-clients">here</a>.
 
 ## Hosting
 
