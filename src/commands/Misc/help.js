@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder } = require("discord.js");
+const config = require("../../config");
 
 module.exports = {
     data: new SlashCommandBuilder().setName("help").setDescription("Shows all Melody commands available."),
@@ -7,7 +8,7 @@ module.exports = {
         const embed = new EmbedBuilder();
         embed.setTitle("Melody Help");
         embed.setDescription("Thank you for using **Melody**! To view all available commands, choose a category from the select menu below.");
-        embed.setColor(global.config.embedColour);
+        embed.setColor(config.embedColour);
 
         const row = new ActionRowBuilder().addComponents(
             new StringSelectMenuBuilder().setCustomId(`melody_help_category_select_${interaction.user.id}`).setPlaceholder("Select a category to view commands.").addOptions(

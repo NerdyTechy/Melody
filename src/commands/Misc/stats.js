@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
+const config = require("../../config");
 const fs = require("fs");
 
 module.exports = {
@@ -10,7 +11,7 @@ module.exports = {
 
         const embed = new EmbedBuilder();
         embed.setDescription(`Melody is currently in **${client.guilds.cache.size} servers**, has played **${data["songs-played"]} tracks**, skipped **${data["songs-skipped"]} tracks**, and shuffled **${data["queues-shuffled"]} queues**.`);
-        embed.setColor(global.config.embedColour);
+        embed.setColor(config.embedColour);
 
         return await interaction.reply({ embeds: [embed] });
     },

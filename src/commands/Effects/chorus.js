@@ -1,21 +1,22 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
+const { Player } = require("discord-player");
+const config = require("../../config");
 
 module.exports = {
     data: new SlashCommandBuilder().setName("chorus").setDescription("Applies the chorus effect to the current music.").setDMPermission(false),
     async execute(interaction) {
-        const queue = global.player.getQueue(interaction.guild.id);
+        const player = Player.singleton();
+        const queue = player.nodes.get(interaction.guild.id);
 
         const embed = new EmbedBuilder();
-        embed.setColor(global.config.embedColour);
+        embed.setColor(config.embedColour);
 
-        if (!queue || !queue.playing) {
+        if (!queue || !queue.isPlaying()) {
             embed.setDescription("There isn't currently any music playing.");
         } else {
-            queue.setFilters({
-                chorus: !queue.getFiltersEnabled().includes("chorus"),
-            });
-            embed.setDescription(`The **chorus** filter is now ${queue.getFiltersEnabled().includes("chorus") ? "enabled." : "disabled."}`);
+            queue.filters.ffmpeg.toggle(["chorus"]);
+            embed.setDescription(`The **chorus** filter is now ${queue.filters.ffmpeg.filters.includes("chorus") ? "enabled." : "disabled."}`);
         }
 
         return await interaction.reply({ embeds: [embed] });

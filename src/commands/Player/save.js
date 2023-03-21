@@ -1,37 +1,40 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
+const { Player } = require("discord-player");
+const config = require("../../config");
 
 module.exports = {
     data: new SlashCommandBuilder().setName("save").setDescription("Sends you a direct message with details about the current track.").setDMPermission(false),
     async execute(interaction) {
-        const queue = global.player.getQueue(interaction.guild.id);
+        const player = Player.singleton();
+        const queue = player.nodes.get(interaction.guild.id);
 
         const embed = new EmbedBuilder();
-        embed.setColor(global.config.embedColour);
+        embed.setColor(config.embedColour);
 
-        if (!queue) {
+        if (!queue || !queue.isPlaying()) {
             embed.setDescription("There isn't currently any music playing.");
             return await interaction.reply({ embeds: [embed] });
         }
 
         const info = new EmbedBuilder();
-        info.setColor(global.config.embedColour);
+        info.setColor(config.embedColour);
 
         info.setTitle("Track Saved");
 
         var message = `
-            **Track Name:** [${queue.current.title}](${queue.current.url})
-            **Author:** ${queue.current.author}
-            **Duration:** ${queue.current.duration}\n`;
+            **Track Name:** [${queue.currentTrack.title}](${queue.currentTrack.url})
+            **Author:** ${queue.currentTrack.author}
+            **Duration:** ${queue.currentTrack.duration}\n`;
 
-        if (queue.current.playlist) {
-            message += `**Playlist:** [${queue.current.playlist.title}](${queue.current.playlist.url})\n`;
+        if (queue.currentTrack.playlist) {
+            message += `**Playlist:** [${queue.currentTrack.playlist.title}](${queue.currentTrack.playlist.url})\n`;
         }
 
         message += `**Saved:** <t:${Math.round(Date.now() / 1000)}:R>`;
 
         info.setDescription(message);
-        info.setThumbnail(queue.current.thumbnail);
+        info.setThumbnail(queue.currentTrack.thumbnail);
         info.setFooter({ text: `Track saved from ${interaction.guild.name}` });
         info.setTimestamp();
 

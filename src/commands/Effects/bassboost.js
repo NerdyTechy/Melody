@@ -1,21 +1,22 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
+const { Player } = require("discord-player");
+const config = require("../../config");
 
 module.exports = {
     data: new SlashCommandBuilder().setName("bassboost").setDescription("Applies the bass boost effect to the current music.").setDMPermission(false),
     async execute(interaction) {
-        const queue = global.player.getQueue(interaction.guild.id);
+        const player = Player.singleton();
+        const queue = player.nodes.get(interaction.guild.id);
 
         const embed = new EmbedBuilder();
-        embed.setColor(global.config.embedColour);
+        embed.setColor(config.embedColour);
 
-        if (!queue || !queue.playing) {
+        if (!queue || !queue.isPlaying()) {
             embed.setDescription("There isn't currently any music playing.");
         } else {
-            queue.setFilters({
-                bassboost: !queue.getFiltersEnabled().includes("bassboost"),
-            });
-            embed.setDescription(`The **bass boost** filter is now ${queue.getFiltersEnabled().includes("bassboost") ? "enabled." : "disabled."}`);
+            queue.filters.ffmpeg.toggle(["bassboost"]);
+            embed.setDescription(`The **bassboost** filter is now ${queue.filters.ffmpeg.filters.includes("bassboost") ? "enabled." : "disabled."}`);
         }
 
         return await interaction.reply({ embeds: [embed] });
