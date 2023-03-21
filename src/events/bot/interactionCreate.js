@@ -1,5 +1,6 @@
 const { EmbedBuilder } = require("discord.js");
 const logger = require("../../utils/logger");
+const config = require("../../config");
 
 module.exports = {
     name: "interactionCreate",
@@ -39,7 +40,7 @@ module.exports = {
             const buttonOwner = interaction.customId.substring(interaction.customId.length - 18, interaction.customId.length);
 
             const embed = new EmbedBuilder();
-            embed.setColor(global.config.embedColour);
+            embed.setColor(config.embedColour);
 
             if (interaction.user.id != buttonOwner) {
                 embed.setDescription(`Only <@${buttonOwner}> can use this menu.`);
@@ -52,7 +53,7 @@ module.exports = {
             if (interaction.values[0] == "melody_help_category_general") {
                 embed.setAuthor({ name: "Melody Help" });
                 embed.setTitle("General Commands");
-                embed.setDescription("**/help** - Shows all Melody commands available.\n**/stats** - View some Melody bot statistics.");
+                embed.setDescription("**/help** - Shows all Melody commands available.\n**/stats** - View some Melody bot statistics.\n**/botinfo** - View information about Melody.");
             } else if (interaction.values[0] == "melody_help_category_music") {
                 embed.setAuthor({ name: "Melody Help" });
                 embed.setTitle("Music Commands");
@@ -64,6 +65,15 @@ module.exports = {
             }
 
             return await interaction.update({ embeds: [embed] });
+        } else if (interaction.isAutocomplete()) {
+            const command = client.commands.get(interaction.commandName);
+            if (!command) return;
+            try {
+                await command.autocompleteRun(interaction, client);
+            } catch (error) {
+                logger.error("An error occurred whilst attempting to run autocomplete:");
+                logger.error(error);
+            }
         }
     },
 };

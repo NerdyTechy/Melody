@@ -1,16 +1,20 @@
 const { EmbedBuilder } = require("discord.js");
+const { Player } = require("discord-player");
 const { lyricsExtractor } = require("@discord-player/extractor");
-const lyricsClient = lyricsExtractor(global.config.geniusKey);
+const config = require("../config");
+
+const lyricsClient = lyricsExtractor(config.geniusKey);
 
 module.exports = {
     name: "melody_song_lyrics",
     async execute(interaction) {
-        const queue = global.player.getQueue(interaction.guild.id);
+        const player = Player.singleton();
+        const queue = player.nodes.get(interaction.guild.id);
 
         const embed = new EmbedBuilder();
-        embed.setColor(global.config.embedColour);
+        embed.setColor(config.embedColour);
 
-        if (!queue || !queue.playing) {
+        if (!queue || !queue.isPlaying()) {
             embed.setDescription("There isn't currently any music playing.");
             return await interaction.reply({
                 embeds: [embed],
@@ -21,13 +25,13 @@ module.exports = {
         await interaction.deferReply({ ephemeral: true });
 
         await lyricsClient
-            .search(`${queue.current.title} ${queue.current.author}`)
-            .then((x) => {
+            .search(`${queue.currentTrack.title} ${queue.currentTrack.author}`)
+            .then((res) => {
                 embed.setAuthor({
-                    name: `${x.title} - ${x.artist.name}`,
-                    url: x.url,
+                    name: `${res.title} - ${res.artist.name}`,
+                    url: res.url,
                 });
-                embed.setDescription(x.lyrics);
+                embed.setDescription(res.lyrics.length > 4096 ? `[Click here to view lyrics](${res.url})` : res.lyrics);
                 embed.setFooter({ text: "Courtesy of Genius" });
             })
             .catch(() => {

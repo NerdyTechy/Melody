@@ -1,27 +1,30 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
+const { Player } = require("discord-player");
+const config = require("../../config");
 
 module.exports = {
     data: new SlashCommandBuilder().setName("resume").setDescription("Resumes the current track.").setDMPermission(false),
     async execute(interaction) {
-        const queue = global.player.getQueue(interaction.guild.id);
+        const player = Player.singleton();
+        const queue = player.nodes.get(interaction.guild.id);
 
         const embed = new EmbedBuilder();
-        embed.setColor(global.config.embedColour);
+        embed.setColor(config.embedColour);
 
-        if (!queue) {
+        if (!queue || !queue.isPlaying()) {
             embed.setDescription("There isn't currently any music playing.");
             return await interaction.reply({ embeds: [embed] });
         }
 
-        if (!queue.connection.paused) {
+        if (!queue.node.isPaused()) {
             embed.setDescription("The queue isn't currently paused.");
             return await interaction.reply({ embeds: [embed] });
         }
 
-        queue.setPaused(false);
+        queue.node.setPaused(false);
 
-        embed.setDescription(`Successfully resumed **[${queue.current.title}](${queue.current.url})**.`);
+        embed.setDescription(`Successfully unpaused **[${queue.currentTrack.title}](${queue.currentTrack.url})**.`);
 
         return await interaction.reply({ embeds: [embed] });
     },
