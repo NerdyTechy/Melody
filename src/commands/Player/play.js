@@ -34,7 +34,6 @@ module.exports = {
         let queue = player.nodes.get(interaction.guild.id);
 
         if (!queue) {
-            console.log(`Leave on empty: ${config.leaveUponChannelEmpty}`);
             player.nodes.create(interaction.guild.id, {
                 leaveOnEmptyCooldown: config.leaveOnEmptyDelay,
                 leaveOnEndCooldown: config.leaveOnEndCooldown,
