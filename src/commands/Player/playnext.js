@@ -35,13 +35,10 @@ module.exports = {
 
         if (!queue) {
             player.nodes.create(interaction.guild.id, {
-                leaveOnEnd: true,
-                leaveOnStop: true,
-                leaveOnEmpty: true,
-                leaveOnEmptyCooldown: 30000,
-                leaveOnEndCooldown: 30000,
-                leaveOnStopCooldown: 30000,
-                selfDeaf: false,
+                leaveOnEmptyCooldown: config.leaveOnEmptyDelay,
+                leaveOnEndCooldown: config.leaveOnEndCooldown,
+                leaveOnStopCooldown: config.leaveOnStopCooldown,
+                selfDeaf: config.deafenBot,
                 metadata: {
                     channel: interaction.channel,
                     client: interaction.guild.members.me,
@@ -104,12 +101,12 @@ module.exports = {
         const resultsSpotify = await player.search(query, { searchEngine: QueryType.SPOTIFY_SEARCH });
 
         const tracksYouTube = resultsYouTube.tracks.slice(0, 5).map((t) => ({
-            name: `YouTube: ${`${t.title} - ${t.author} (${t.duration})`.length > 80 ? `${`${t.title} - ${t.author}`.substring(0, 80)}... (${t.duration})` : `${t.title} - ${t.author} (${t.duration})`}`,
+            name: `YouTube: ${`${t.title} - ${t.author} (${t.duration})`.length > 75 ? `${`${t.title} - ${t.author}`.substring(0, 75)}... (${t.duration})` : `${t.title} - ${t.author} (${t.duration})`}`,
             value: t.url
         }));
 
         const tracksSpotify = resultsSpotify.tracks.slice(0, 5).map((t) => ({
-            name: `Spotify: ${`${t.title} - ${t.author} (${t.duration})`.length > 80 ? `${`${t.title} - ${t.author}`.substring(0, 80)}... (${t.duration})` : `${t.title} - ${t.author} (${t.duration})`}`,
+            name: `Spotify: ${`${t.title} - ${t.author} (${t.duration})`.length > 75 ? `${`${t.title} - ${t.author}`.substring(0, 75)}... (${t.duration})` : `${t.title} - ${t.author} (${t.duration})`}`,
             value: t.url
         }));
 

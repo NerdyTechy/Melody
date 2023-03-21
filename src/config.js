@@ -20,8 +20,8 @@ try {
         pauseEmoji: configFile.emojis.pause ?? "⏯",
         lyricsEmoji: configFile.emojis.lyrics ?? "📜",
         backEmoji: configFile.emojis.back ?? "⏮",
-        leaveUponSongEnd: configFile.player.leaveUponSongEnd ?? true,
-        leaveUponSongStop: configFile.player.leaveUponSongStop ?? true,
+        leaveOnEndDelay: configFile.player.leaveOnEndDelay ?? 300000,
+        leaveOnStopDelay: configFile.player.leaveOnStopDelay ?? 300000,
         leaveOnEmptyDelay: configFile.player.leaveOnEmptyDelay ?? 300000,
         deafenBot: configFile.player.deafenBot ?? false,
     };

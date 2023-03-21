@@ -36,13 +36,10 @@ module.exports = {
 
         if (!queue) {
             player.nodes.create(interaction.guild.id, {
-                leaveOnEnd: true,
-                leaveOnStop: true,
-                leaveOnEmpty: true,
-                leaveOnEmptyCooldown: 30000,
-                leaveOnEndCooldown: 30000,
-                leaveOnStopCooldown: 30000,
-                selfDeaf: false,
+                leaveOnEmptyCooldown: config.leaveOnEmptyDelay,
+                leaveOnEndCooldown: config.leaveOnEndCooldown,
+                leaveOnStopCooldown: config.leaveOnStopCooldown,
+                selfDeaf: config.deafenBot,
                 metadata: {
                     channel: interaction.channel,
                     client: interaction.guild.members.me,
