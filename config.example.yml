@@ -8,7 +8,8 @@ clientId: ""
 geniusApiKey: ""
 
 # The colour to use for embeds sent by the bot
-embedColour: "#2F3136"
+# embedColour: "#2F3136"
+embedColour: "#2B2D31"
 
 # Whether analytics should be sent when starting the bot
 # See https://github.com/NerdyTechy/Melody/wiki/Analytics
@@ -17,10 +18,10 @@ enableAnalytics: true
 # Settings to control the bot's player and controller
 player:
     # Leave VC when a song ends
-    leaveUponSongEnd: true
+    leaveOnEndDelay: 300000 # 5 minutes
     # Leave VC when a song is stopped
-    leaveUponSongStop: true
-    # Leave VC after X ms of inactivity
+    leaveOnStopDelay: 300000 # 5 minutes
+    # Leave VC when the channel is empty
     leaveOnEmptyDelay: 300000 # 5 minutes
     # Deafen bot while playing
     deafenBot: false
