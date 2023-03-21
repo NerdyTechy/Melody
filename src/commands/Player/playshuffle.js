@@ -3,7 +3,7 @@ const { EmbedBuilder } = require("discord.js");
 const { Player } = require("discord-player");
 const fs = require("node:fs");
 const logger = require("../../utils/logger");
-const config = require('../../config');
+const config = require("../../config");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -43,7 +43,7 @@ module.exports = {
                 metadata: {
                     channel: interaction.channel,
                     client: interaction.guild.members.me,
-                    requestedBy: interaction.user
+                    requestedBy: interaction.user,
                 },
             });
         }

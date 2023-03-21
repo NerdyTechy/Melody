@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
-const { Player } = require('discord-player');
-const config = require('../../config');
+const { Player } = require("discord-player");
+const config = require("../../config");
 
 module.exports = {
     data: new SlashCommandBuilder().setName("stop").setDescription("Stops the current track and clears the queue.").setDMPermission(false),

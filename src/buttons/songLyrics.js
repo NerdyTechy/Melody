@@ -1,7 +1,7 @@
 const { EmbedBuilder } = require("discord.js");
-const { Player } = require('discord-player');
+const { Player } = require("discord-player");
 const { lyricsExtractor } = require("@discord-player/extractor");
-const config = require('../config');
+const config = require("../config");
 
 const lyricsClient = lyricsExtractor(config.geniusKey);
 
@@ -31,7 +31,7 @@ module.exports = {
                     name: `${res.title} - ${res.artist.name}`,
                     url: res.url,
                 });
-                embed.setDescription(res.lyrics.length > 4096  ? `[Click here to view lyrics](${res.url})` : res.lyrics);
+                embed.setDescription(res.lyrics.length > 4096 ? `[Click here to view lyrics](${res.url})` : res.lyrics);
                 embed.setFooter({ text: "Courtesy of Genius" });
             })
             .catch(() => {

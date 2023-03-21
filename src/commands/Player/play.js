@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
 const { Player, useMasterPlayer, QueryType } = require("discord-player");
 const logger = require("../../utils/logger");
-const config = require('../../config');
+const config = require("../../config");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -42,7 +42,7 @@ module.exports = {
                 metadata: {
                     channel: interaction.channel,
                     client: interaction.guild.members.me,
-                    requestedBy: interaction.user
+                    requestedBy: interaction.user,
                 },
             });
         }
@@ -51,7 +51,7 @@ module.exports = {
 
         try {
             const res = await player.search(query, {
-                requestedBy: interaction.user
+                requestedBy: interaction.user,
             });
 
             if (!res || !res.tracks || res.tracks.length === 0) {
@@ -95,18 +95,18 @@ module.exports = {
     },
     async autocompleteRun(interaction) {
         const player = useMasterPlayer();
-        const query = interaction.options.getString('query', true);
+        const query = interaction.options.getString("query", true);
         const resultsYouTube = await player.search(query, { searchEngine: QueryType.YOUTUBE });
         const resultsSpotify = await player.search(query, { searchEngine: QueryType.SPOTIFY_SEARCH });
 
         const tracksYouTube = resultsYouTube.tracks.slice(0, 5).map((t) => ({
             name: `YouTube: ${`${t.title} - ${t.author} (${t.duration})`.length > 75 ? `${`${t.title} - ${t.author}`.substring(0, 75)}... (${t.duration})` : `${t.title} - ${t.author} (${t.duration})`}`,
-            value: t.url
+            value: t.url,
         }));
 
         const tracksSpotify = resultsSpotify.tracks.slice(0, 5).map((t) => ({
             name: `Spotify: ${`${t.title} - ${t.author} (${t.duration})`.length > 75 ? `${`${t.title} - ${t.author}`.substring(0, 75)}... (${t.duration})` : `${t.title} - ${t.author} (${t.duration})`}`,
-            value: t.url
+            value: t.url,
         }));
 
         const tracks = [];
@@ -115,5 +115,5 @@ module.exports = {
         tracksSpotify.forEach((t) => tracks.push({ name: t.name, value: t.value }));
 
         return interaction.respond(tracks);
-    }
+    },
 };

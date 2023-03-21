@@ -1,10 +1,12 @@
 const { EmbedBuilder } = require("discord.js");
-const config = require('../../config');
+const config = require("../../config");
 
 module.exports = {
     name: "emptyChannel",
     async execute(queue) {
-        try { queue.delete(); } catch (err) { }
+        try {
+            queue.delete();
+        } catch (err) {}
         const embed = new EmbedBuilder();
 
         embed.setDescription(`The music was stopped due to ${formatMS(config.leaveOnEmptyDelay)} inactivity.`);
@@ -15,9 +17,9 @@ module.exports = {
 };
 
 function formatMS(ms) {
-    var s = Math.floor((ms / 1000));
-    var m = Math.floor((ms / (1000 * 60)));
-    var h = Math.floor((ms / (1000 * 60 * 60)));
+    var s = Math.floor(ms / 1000);
+    var m = Math.floor(ms / (1000 * 60));
+    var h = Math.floor(ms / (1000 * 60 * 60));
 
     var str = "";
 

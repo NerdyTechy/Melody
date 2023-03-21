@@ -1,7 +1,7 @@
 const yaml = require("js-yaml");
-const fs = require('fs');
-const path = require('path');
-const logger = require('./utils/logger');
+const fs = require("fs");
+const path = require("path");
+const logger = require("./utils/logger");
 
 var config = {};
 

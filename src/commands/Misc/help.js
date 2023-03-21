@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder } = require("discord.js");
-const config = require('../../config');
+const config = require("../../config");
 
 module.exports = {
     data: new SlashCommandBuilder().setName("help").setDescription("Shows all Melody commands available."),

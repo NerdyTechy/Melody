@@ -2,7 +2,7 @@ const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord.js");
 const fs = require("node:fs");
 const logger = require("../utils/logger");
-const config = require('../config');
+const config = require("../config");
 
 const token = config.token;
 const clientId = config.clientId;

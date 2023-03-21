@@ -3,7 +3,7 @@ const { Client, Collection, GatewayIntentBits } = require("discord.js");
 const fs = require("node:fs");
 const logger = require("./utils/logger");
 const { YouTubeExtractor, SpotifyExtractor, SoundCloudExtractor, AppleMusicExtractor, VimeoExtractor, AttachmentExtractor, ReverbnationExtractor } = require("@discord-player/extractor");
-const config = require('./config');
+const config = require("./config");
 
 process.on("unhandledRejection", (reason) => {
     logger.error("An unhandled rejection occurred in the main process:");

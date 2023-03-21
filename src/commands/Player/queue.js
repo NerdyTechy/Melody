@@ -1,7 +1,7 @@
 const { SlashCommandBuilder, ButtonBuilder } = require("@discordjs/builders");
 const { EmbedBuilder, ActionRowBuilder, ButtonStyle } = require("discord.js");
-const { Player } = require('discord-player');
-const config = require('../../config');
+const { Player } = require("discord-player");
+const config = require("../../config");
 
 module.exports = {
     data: new SlashCommandBuilder().setName("queue").setDescription("Shows all tracks currently in the server queue.").setDMPermission(false),
@@ -27,7 +27,9 @@ module.exports = {
         embed.setThumbnail(interaction.guild.iconURL({ size: 2048, dynamic: true }) || client.user.displayAvatarURL({ size: 2048, dynamic: true }));
         embed.setAuthor({ name: `Server Queue - ${interaction.guild.name}` });
 
-        const tracks = queuedTracks.map((track, i) => { return `\`${i + 1}\` [${track.title}](${track.url}) by **${track.author}** (Requested by <@${track.requestedBy.id}>)` });
+        const tracks = queuedTracks.map((track, i) => {
+            return `\`${i + 1}\` [${track.title}](${track.url}) by **${track.author}** (Requested by <@${track.requestedBy.id}>)`;
+        });
         const songs = queuedTracks.length;
         const nextSongs = songs > 5 ? `And **${songs - 5}** other ${songs - 5 > 1 ? "tracks" : "track"} currently in queue.` : "";
         const progress = queue.node.createProgressBar();

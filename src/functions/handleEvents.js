@@ -1,6 +1,6 @@
 const fs = require("node:fs");
 const path = require("node:path");
-const { Player } = require('discord-player');
+const { Player } = require("discord-player");
 
 module.exports = (client) => {
     client.handleEvents = async () => {

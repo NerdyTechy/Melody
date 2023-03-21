@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
-const { Player, QueueRepeatMode } = require('discord-player');
-const config = require('../../config');
+const { Player, QueueRepeatMode } = require("discord-player");
+const config = require("../../config");
 
 module.exports = {
     data: new SlashCommandBuilder()

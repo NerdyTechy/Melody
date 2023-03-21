@@ -1,6 +1,6 @@
 const { EmbedBuilder } = require("discord.js");
 const logger = require("../../utils/logger");
-const config = require('../../config');
+const config = require("../../config");
 
 module.exports = {
     name: "interactionCreate",

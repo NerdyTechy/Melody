@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder } = require("discord.js");
-const { Player } = require('discord-player');
-const config = require('../../config');
+const { Player } = require("discord-player");
+const config = require("../../config");
 
 module.exports = {
     data: new SlashCommandBuilder().setName("save").setDescription("Sends you a direct message with details about the current track.").setDMPermission(false),
