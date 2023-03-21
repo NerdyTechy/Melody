@@ -8,7 +8,11 @@ clientId: ""
 geniusApiKey: ""
 
 # The colour to use for embeds sent by the bot
+<<<<<<< Updated upstream
 embedColour: "#2F3136"
+=======
+embedColour: "#2B2D31"
+>>>>>>> Stashed changes
 
 # Whether analytics should be sent when starting the bot
 # See https://github.com/NerdyTechy/Melody/wiki/Analytics
