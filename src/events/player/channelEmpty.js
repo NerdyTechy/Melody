@@ -4,9 +4,13 @@ const config = require("../../config");
 module.exports = {
     name: "emptyChannel",
     async execute(queue) {
+
         try {
             queue.delete();
-        } catch (err) {}
+        } catch (err) {
+            () => {};
+        }
+
         const embed = new EmbedBuilder();
 
         embed.setDescription(`The music was stopped due to ${formatMS(config.leaveOnEmptyDelay)} inactivity.`);

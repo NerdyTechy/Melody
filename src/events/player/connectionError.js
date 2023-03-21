@@ -10,7 +10,9 @@ module.exports = {
 
         try {
             queue.delete();
-        } catch (err) {}
+        } catch (err) {
+            () => {};
+        }
 
         const errEmbed = new EmbedBuilder();
         errEmbed.setDescription("A player error occurred whilst attempting to perform this action.");

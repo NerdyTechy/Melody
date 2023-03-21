@@ -88,7 +88,7 @@ module.exports = {
             }
         } catch (err) {
             logger.error(err);
-            return interaction.editReply({ content: `An error occurred whilst attempting to play this media.` });
+            return interaction.editReply({ content: "An error occurred whilst attempting to play this media." });
         }
 
         return await interaction.editReply({ embeds: [embed] });

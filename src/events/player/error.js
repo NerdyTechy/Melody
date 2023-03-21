@@ -10,7 +10,9 @@ module.exports = {
 
         try {
             queue.delete();
-        } catch (err) {}
+        } catch (err) {
+            () => {};
+        }
 
         const errEmbed = new EmbedBuilder();
         errEmbed.setDescription("An error occurred whilst attempting to perform this action. This media may not be supported.");

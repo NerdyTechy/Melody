@@ -30,7 +30,7 @@ module.exports = {
                 queue.setRepeatMode(QueueRepeatMode.TRACK);
                 embed.setDescription("The **track** will now repeat endlessly.");
             } else {
-                const success = queue.setRepeatMode(QueueRepeatMode.AUTOPLAY);
+                queue.setRepeatMode(QueueRepeatMode.AUTOPLAY);
                 embed.setDescription("The queue will now **autoplay**.");
             }
         }
