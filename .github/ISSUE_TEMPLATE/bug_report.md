@@ -3,7 +3,7 @@ name: Bug report
 about: Create a report to help us improve
 title: "[BUG] "
 labels: bug
-assignees: ''
+assignees: 'NerdyTechy'
 
 ---
 
@@ -24,6 +24,9 @@ A clear and concise description of what actually happened.
 
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
+
+**Log File**
+Please provide the log file from the day that you experienced the issue. (Found in the /logs/ directory)
 
 **Additional context**
 Add any other context about the problem here.
