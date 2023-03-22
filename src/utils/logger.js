@@ -16,7 +16,7 @@ async function info(str) {
     if (config.logToWebhook){
         await fetch(config.logToWebhookUrl, { 
             method: 'POST',
-            body: JSON.stringify({ content: `[Melody] [INFO]: ${str.length > 4000 ? str.substring(0, 4000) + "..." : str}` }),
+            body: JSON.stringify({ content: `[Melody] [INFO]: ${str.length > 1950 ? str.substring(0, 1950) + "..." : str}` }),
             headers: { "Content-Type": "application/json" } 
         });
     }
@@ -34,7 +34,7 @@ async function warn(str) {
     if (config.logToWebhook){
         await fetch(config.logToWebhookUrl, { 
             method: 'POST',
-            body: JSON.stringify({ content: `[Melody] [WARN]: ${str.length > 4000 ? str.substring(0, 4000) + "..." : str}` }),
+            body: JSON.stringify({ content: `[Melody] [WARN]: ${str.length > 1950 ? str.substring(0, 1950) + "..." : str}` }),
             headers: { "Content-Type": "application/json" } 
         });
     }
@@ -52,7 +52,7 @@ async function error(str) {
     if (config.logToWebhook){
         await fetch(config.logToWebhookUrl, { 
             method: 'POST',
-            body: JSON.stringify({ content: `[Melody] [ERROR]: ${str.length > 4000 ? str.substring(0, 4000) + "..." : str}` }),
+            body: JSON.stringify({ content: `[Melody] [ERROR]: ${str.length > 1950 ? str.substring(0, 1950) + "..." : str}` }),
             headers: { "Content-Type": "application/json" } 
         });
     }
@@ -70,7 +70,7 @@ async function success(str) {
     if (config.logToWebhook){
         await fetch(config.logToWebhookUrl, { 
             method: 'POST',
-            body: JSON.stringify({ content: `[Melody] [SUCCESS]: ${str.length > 4000 ? str.substring(0, 4000) + "..." : str}` }),
+            body: JSON.stringify({ content: `[Melody] [SUCCESS]: ${str.length > 1950 ? str.substring(0, 1950) + "..." : str}` }),
             headers: { "Content-Type": "application/json" } 
         });
     }
