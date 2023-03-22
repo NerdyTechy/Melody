@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
   - name: Support
-    url: https://techy.lol/discord
-    about: If you're having trouble setting up Melody, feel free to reach out via Discord.
+    url: https://github.com/NerdyTechy/Melody/discussions
+    about: If you're having trouble setting up Melody, feel free to create a discussion.
