@@ -24,6 +24,8 @@ try {
         leaveOnStopDelay: configFile.player.leaveOnStopDelay ?? 300000,
         leaveOnEmptyDelay: configFile.player.leaveOnEmptyDelay ?? 300000,
         deafenBot: configFile.player.deafenBot ?? false,
+        logToWebhook: configFile.logEventsToWebhook.enabled ?? false,
+        logToWebhookUrl: configFile.logEventsToWebhook.webhookUrl ?? "",
     };
 } catch (e) {
     logger.error("Unable to parse config.yml. Please make sure it is valid YAML.");
@@ -44,6 +46,11 @@ if (config.geniusKey === "") config.geniusKey = undefined;
 
 if (typeof config.geniusKey === "undefined") {
     logger.warn("No Genius API key was provided. The lyrics functions will not be as reliable.");
+}
+
+if (config.logToWebhook && (!config.logToWebhookUrl || config.logToWebhookUrl === "")) {
+    logger.warn("You have enabled logging to a webhook, but have not provided a webhook URL. Logging to a webhook will be disabled.");
+    config.logToWebhook = false;
 }
 
 module.exports = config;

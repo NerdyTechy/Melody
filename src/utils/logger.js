@@ -1,8 +1,10 @@
+const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+const config = require('../config');
 const chalk = require("chalk");
 const fs = require("node:fs");
 const { format } = require("date-fns");
 
-function info(str) {
+async function info(str) {
     if (!fs.existsSync("logs")) {
         fs.mkdirSync("logs");
     }
@@ -10,9 +12,17 @@ function info(str) {
         if (err) throw err;
     });
     console.info(chalk.cyan(`[Melody] ${chalk.bold("INFO:")} ${str}`));
+
+    if (config.logToWebhook){
+        await fetch(config.logToWebhookUrl, { 
+            method: 'POST',
+            body: JSON.stringify({ content: `[Melody] [INFO]: ${str.length > 4000 ? str.substring(0, 4000) + "..." : str}` }),
+            headers: { "Content-Type": "application/json" } 
+        });
+    }
 }
 
-function warn(str) {
+async function warn(str) {
     if (!fs.existsSync("logs")) {
         fs.mkdirSync("logs");
     }
@@ -20,9 +30,17 @@ function warn(str) {
         if (err) throw err;
     });
     console.warn(chalk.yellow(`[Melody] ${chalk.bold("WARNING:")} ${str}`));
+
+    if (config.logToWebhook){
+        await fetch(config.logToWebhookUrl, { 
+            method: 'POST',
+            body: JSON.stringify({ content: `[Melody] [WARN]: ${str.length > 4000 ? str.substring(0, 4000) + "..." : str}` }),
+            headers: { "Content-Type": "application/json" } 
+        });
+    }
 }
 
-function error(str) {
+async function error(str) {
     if (!fs.existsSync("logs")) {
         fs.mkdirSync("logs");
     }
@@ -30,9 +48,17 @@ function error(str) {
         if (err) throw err;
     });
     console.error(chalk.red(`[Melody] ${chalk.bold("ERROR:")} ${str}`));
+
+    if (config.logToWebhook){
+        await fetch(config.logToWebhookUrl, { 
+            method: 'POST',
+            body: JSON.stringify({ content: `[Melody] [ERROR]: ${str.length > 4000 ? str.substring(0, 4000) + "..." : str}` }),
+            headers: { "Content-Type": "application/json" } 
+        });
+    }
 }
 
-function success(str) {
+async function success(str) {
     if (!fs.existsSync("logs")) {
         fs.mkdirSync("logs");
     }
@@ -40,6 +66,14 @@ function success(str) {
         if (err) throw err;
     });
     console.info(chalk.green(`[Melody] ${chalk.bold("SUCCESS:")} ${str}`));
+
+    if (config.logToWebhook){
+        await fetch(config.logToWebhookUrl, { 
+            method: 'POST',
+            body: JSON.stringify({ content: `[Melody] [SUCCESS]: ${str.length > 4000 ? str.substring(0, 4000) + "..." : str}` }),
+            headers: { "Content-Type": "application/json" } 
+        });
+    }
 }
 
 module.exports = {

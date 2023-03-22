@@ -8,7 +8,6 @@ clientId: ""
 geniusApiKey: ""
 
 # The colour to use for embeds sent by the bot
-# embedColour: "#2F3136"
 embedColour: "#2B2D31"
 
 # Whether analytics should be sent when starting the bot
@@ -25,6 +24,11 @@ player:
     leaveOnEmptyDelay: 300000 # 5 minutes
     # Deafen bot while playing
     deafenBot: false
+
+# Whether the logger should send messages to a Discord webhook
+logEventsToWebhook:
+    enabled: false
+    webhookUrl: ""
 
 # The emojis to be used in buttons for certain embeds
 # See https://github.com/NerdyTechy/Melody/wiki/Using-Custom-Emojis
