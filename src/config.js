@@ -14,6 +14,7 @@ try {
         geniusKey: configFile.geniusApiKey ?? undefined,
         embedColour: configFile.embedColour ?? "#2F3136",
         analytics: configFile.enableAnalytics ?? true,
+        autocomplete: configFile.enableAutocomplete ?? true,
         stopEmoji: configFile.emojis.stop ?? "⏹",
         skipEmoji: configFile.emojis.skip ?? "⏭",
         queueEmoji: configFile.emojis.queue ?? "📜",

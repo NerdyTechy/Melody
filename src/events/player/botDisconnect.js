@@ -4,7 +4,6 @@ const config = require("../../config");
 module.exports = {
     name: "disconnect",
     async execute(queue) {
-
         try {
             queue.delete();
         } catch (err) {

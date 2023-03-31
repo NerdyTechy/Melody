@@ -14,6 +14,10 @@ embedColour: "#2B2D31"
 # See https://github.com/NerdyTechy/Melody/wiki/Analytics
 enableAnalytics: true
 
+# Whether the bot should autocomplete search results
+# Disable this if you're experiencing Unknown Interaction errors
+enableAutocomplete: true
+
 # Settings to control the bot's player and controller
 player:
     # Leave VC when a song ends
