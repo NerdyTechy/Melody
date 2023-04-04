@@ -14,10 +14,10 @@
     "license": "ISC",
     "dependencies": {
         "@discord-player/extractor": "^4.1.2",
-        "@discordjs/builders": "^1.5.0",
+        "@discordjs/builders": "^1.6.1",
         "@discordjs/opus": "^0.9.0",
-        "@discordjs/rest": "^1.5.0",
         "@discordjs/voice": "^0.16.0",
+        "@discordjs/rest": "^1.7.0",
         "chalk": "^4.1.2",
         "date-fns": "^2.29.3",
         "discord-player": "^6.1.1",
