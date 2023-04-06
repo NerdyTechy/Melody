@@ -1,3 +1,5 @@
+process.env['DP_FORCE_YTDL_MOD'] = "play-dl";
+
 const { Player } = require("discord-player");
 const { Client, Collection, GatewayIntentBits } = require("discord.js");
 const fs = require("node:fs");
