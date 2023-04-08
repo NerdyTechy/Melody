@@ -27,6 +27,8 @@ try {
         deafenBot: configFile.player.deafenBot ?? false,
         logToWebhook: configFile.logEventsToWebhook.enabled ?? false,
         logToWebhookUrl: configFile.logEventsToWebhook.webhookUrl ?? "",
+        enableProxy: configFile.proxy.enable ?? false,
+        proxyUrl: configFile.proxy.connectionUrl ?? "",
     };
 } catch (e) {
     logger.error("Unable to parse config.yml. Please make sure it is valid YAML.");
@@ -52,6 +54,11 @@ if (typeof config.geniusKey === "undefined") {
 if (config.logToWebhook && (!config.logToWebhookUrl || config.logToWebhookUrl === "")) {
     logger.warn("You have enabled logging to a webhook, but have not provided a webhook URL. Logging to a webhook will be disabled.");
     config.logToWebhook = false;
+}
+
+if (config.enableProxy && (!config.proxyUrl || config.proxyUrl === "")) {
+    logger.warn("You have enabled proxying, but have not provided a proxy URL. Proxying will be disabled.");
+    config.enableProxy = false;
 }
 
 module.exports = config;
