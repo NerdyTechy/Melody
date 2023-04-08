@@ -43,3 +43,18 @@ emojis:
     pause: "⏯"
     lyrics: "📜"
     back: "⏮"
+
+# Make Melody use a proxy when making requests.
+# Useful if you're experiencing 429 errors.
+# See https://github.com/NerdyTechy/Melody/wiki/Proxying-Requests
+# Omit user:pass@ if your proxy does not require authentication.
+proxy:
+    enable: false
+    connectionUrl: "http://user:pass@111.111.111.111:8080"
+
+# Make Melody use a custom YouTube cookie when making requests.
+# This can help to prevent against receiving 429 rate limits from YouTube.
+# See https://github.com/NerdyTechy/Melody/wiki/YouTube-Cookies
+cookies:
+    useCustomCookie: false
+    youtubeCookie: ""

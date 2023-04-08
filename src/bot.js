@@ -1,10 +1,11 @@
-process.env['DP_FORCE_YTDL_MOD'] = "play-dl";
+process.env["DP_FORCE_YTDL_MOD"] = "play-dl";
 
 const { Player } = require("discord-player");
 const { Client, Collection, GatewayIntentBits } = require("discord.js");
+const { YouTubeExtractor, SpotifyExtractor, SoundCloudExtractor, AppleMusicExtractor, VimeoExtractor, AttachmentExtractor, ReverbnationExtractor } = require("@discord-player/extractor");
+const HttpsProxyAgent = require("https-proxy-agent");
 const fs = require("node:fs");
 const logger = require("./utils/logger");
-const { YouTubeExtractor, SpotifyExtractor, SoundCloudExtractor, AppleMusicExtractor, VimeoExtractor, AttachmentExtractor, ReverbnationExtractor } = require("@discord-player/extractor");
 const config = require("./config");
 
 process.on("unhandledRejection", (reason) => {
@@ -40,8 +41,16 @@ if (!fs.existsSync("src/data.json")) {
     fs.writeFileSync("src/data.json", JSON.stringify({ "songs-played": 0, "queues-shuffled": 0, "songs-skipped": 0 }));
 }
 
+let proxy = null;
+let agent = null;
+
+if (config.enableProxy) {
+    proxy = config.proxyUrl;
+    agent = HttpsProxyAgent(proxy);
+}
+
 const client = new Client({ intents: [GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.Guilds] });
-const player = new Player(client, { autoRegisterExtractor: false });
+const player = new Player(client, { autoRegisterExtractor: false, ytdlOptions: { requestOptions: { agent, headers: { cookie: config.useYouTubeCookie ? config.youtubeCookie : null } } } });
 player.extractors.register(YouTubeExtractor);
 player.extractors.register(SpotifyExtractor);
 player.extractors.register(SoundCloudExtractor);
