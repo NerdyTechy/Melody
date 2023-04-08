@@ -29,6 +29,8 @@ try {
         logToWebhookUrl: configFile.logEventsToWebhook.webhookUrl ?? "",
         enableProxy: configFile.proxy.enable ?? false,
         proxyUrl: configFile.proxy.connectionUrl ?? "",
+        useYouTubeCookie: configFile.cookies.useCustomCookie ?? false,
+        youtubeCookie: configFile.cookies.youtubeCookie ?? "",
     };
 } catch (e) {
     logger.error("Unable to parse config.yml. Please make sure it is valid YAML.");
@@ -59,6 +61,11 @@ if (config.logToWebhook && (!config.logToWebhookUrl || config.logToWebhookUrl ==
 if (config.enableProxy && (!config.proxyUrl || config.proxyUrl === "")) {
     logger.warn("You have enabled proxying, but have not provided a proxy URL. Proxying will be disabled.");
     config.enableProxy = false;
+}
+
+if (config.useYouTubeCookie && (!config.youtubeCookie || config.youtubeCookie === "")) {
+    logger.warn("You have enabled using a custom YouTube cookie, but have not provided a cookie. Using a custom YouTube cookie will be disabled.");
+    config.useYouTubeCookie = false;
 }
 
 module.exports = config;

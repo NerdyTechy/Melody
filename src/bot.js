@@ -50,7 +50,7 @@ if (config.enableProxy){
 }
 
 const client = new Client({ intents: [GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.Guilds] });
-const player = new Player(client, { autoRegisterExtractor: false, ytdlOptions: { requestOptions: { agent } } });
+const player = new Player(client, { autoRegisterExtractor: false, ytdlOptions: { requestOptions: { agent, headers: { cookie: config.useYouTubeCookie ? config.youtubeCookie : null } } } });
 player.extractors.register(YouTubeExtractor);
 player.extractors.register(SpotifyExtractor);
 player.extractors.register(SoundCloudExtractor);
