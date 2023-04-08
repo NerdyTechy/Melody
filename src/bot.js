@@ -1,9 +1,9 @@
-process.env['DP_FORCE_YTDL_MOD'] = "play-dl";
+process.env["DP_FORCE_YTDL_MOD"] = "play-dl";
 
 const { Player } = require("discord-player");
 const { Client, Collection, GatewayIntentBits } = require("discord.js");
 const { YouTubeExtractor, SpotifyExtractor, SoundCloudExtractor, AppleMusicExtractor, VimeoExtractor, AttachmentExtractor, ReverbnationExtractor } = require("@discord-player/extractor");
-const HttpsProxyAgent = require('https-proxy-agent');
+const HttpsProxyAgent = require("https-proxy-agent");
 const fs = require("node:fs");
 const logger = require("./utils/logger");
 const config = require("./config");
@@ -44,7 +44,7 @@ if (!fs.existsSync("src/data.json")) {
 let proxy = null;
 let agent = null;
 
-if (config.enableProxy){
+if (config.enableProxy) {
     proxy = config.proxyUrl;
     agent = HttpsProxyAgent(proxy);
 }
