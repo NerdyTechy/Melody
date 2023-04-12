@@ -29,11 +29,6 @@ player:
     # Deafen bot while playing
     deafenBot: false
 
-# Whether the logger should send messages to a Discord webhook
-logEventsToWebhook:
-    enabled: false
-    webhookUrl: ""
-
 # The emojis to be used in buttons for certain embeds
 # See https://github.com/NerdyTechy/Melody/wiki/Using-Custom-Emojis
 emojis:
