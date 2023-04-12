@@ -1,5 +1,3 @@
-const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args));
-const config = require("../config");
 const chalk = require("chalk");
 const fs = require("node:fs");
 const { format } = require("date-fns");
@@ -12,14 +10,6 @@ async function info(str) {
         if (err) throw err;
     });
     console.info(chalk.cyan(`[Melody] ${chalk.bold("INFO:")} ${str}`));
-
-    if (config.logToWebhook) {
-        await fetch(config.logToWebhookUrl, {
-            method: "POST",
-            body: JSON.stringify({ content: `[Melody] [INFO]: ${str.length > 1950 ? str.substring(0, 1950) + "..." : str}` }),
-            headers: { "Content-Type": "application/json" },
-        });
-    }
 }
 
 async function warn(str) {
@@ -30,14 +20,6 @@ async function warn(str) {
         if (err) throw err;
     });
     console.warn(chalk.yellow(`[Melody] ${chalk.bold("WARNING:")} ${str}`));
-
-    if (config.logToWebhook) {
-        await fetch(config.logToWebhookUrl, {
-            method: "POST",
-            body: JSON.stringify({ content: `[Melody] [WARN]: ${str.length > 1950 ? str.substring(0, 1950) + "..." : str}` }),
-            headers: { "Content-Type": "application/json" },
-        });
-    }
 }
 
 async function error(str) {
@@ -48,14 +30,6 @@ async function error(str) {
         if (err) throw err;
     });
     console.error(chalk.red(`[Melody] ${chalk.bold("ERROR:")} ${str}`));
-
-    if (config.logToWebhook) {
-        await fetch(config.logToWebhookUrl, {
-            method: "POST",
-            body: JSON.stringify({ content: `[Melody] [ERROR]: ${str.length > 1950 ? str.substring(0, 1950) + "..." : str}` }),
-            headers: { "Content-Type": "application/json" },
-        });
-    }
 }
 
 async function success(str) {
@@ -66,14 +40,6 @@ async function success(str) {
         if (err) throw err;
     });
     console.info(chalk.green(`[Melody] ${chalk.bold("SUCCESS:")} ${str}`));
-
-    if (config.logToWebhook) {
-        await fetch(config.logToWebhookUrl, {
-            method: "POST",
-            body: JSON.stringify({ content: `[Melody] [SUCCESS]: ${str.length > 1950 ? str.substring(0, 1950) + "..." : str}` }),
-            headers: { "Content-Type": "application/json" },
-        });
-    }
 }
 
 module.exports = {
