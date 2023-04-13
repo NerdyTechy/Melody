@@ -20,8 +20,8 @@ module.exports = {
 };
 
 function formatMS(ms) {
-    var s = Math.floor(ms / 1000);
-    var m = Math.floor(ms / (1000 * 60));
+    var s = Math.floor(ms / 1000) % 60;
+    var m = Math.floor(ms / (1000 * 60)) % 60;
     var h = Math.floor(ms / (1000 * 60 * 60));
 
     var str = "";
