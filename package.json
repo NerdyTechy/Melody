@@ -1,6 +1,7 @@
 {
     "name": "melody",
-    "version": "1.0.0",
+    "private": true,
+    "version": "1.0.1",
     "description": "Discord music bot",
     "main": "src/bot.js",
     "scripts": {
