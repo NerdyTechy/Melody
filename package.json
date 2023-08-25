@@ -30,7 +30,7 @@
         "prism-media": "^1.3.5"
     },
     "devDependencies": {
-        "eslint": "^8.46.0",
+        "eslint": "^8.48.0",
         "prettier": "^3.0.1"
     }
 }
