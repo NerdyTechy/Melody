@@ -1,36 +1,48 @@
 {
-    "name": "melody",
-    "private": true,
-    "version": "1.0.1",
-    "description": "Discord music bot",
-    "main": "src/bot.js",
-    "scripts": {
-        "test": "echo The test script is deprecated and will not start the bot in a future release. Please use 'npm run start'. && node src/bot.js",
-        "start": "node src/bot.js",
-        "format": "npx prettier --write .",
-        "lint": "eslint . --ext .js",
-        "lint:fix": "eslint . --ext .js --fix"
-    },
-    "author": "NerdyTechy",
-    "license": "ISC",
-    "dependencies": {
-        "@discord-player/extractor": "^4.4.0",
-        "@discordjs/builders": "^1.6.3",
-        "@discordjs/opus": "^0.9.0",
-        "@discordjs/voice": "^0.16.0",
-        "@discordjs/rest": "^1.7.1",
-        "chalk": "^4.1.2",
-        "date-fns": "^2.30.0",
-        "discord-player": "^6.6.1",
-        "discord.js": "^14.11.0",
-        "ffmpeg-static": "^5.1.0",
-        "https-proxy-agent": "^7.0.1",
-        "js-yaml": "^4.1.0",
-        "play-dl": "^1.9.6",
-        "prism-media": "^1.3.5"
-    },
-    "devDependencies": {
-        "eslint": "^8.44.0",
-        "prettier": "^3.0.0"
-    }
+  "name": "melody",
+  "description": "Discord music bot with many useful commands and effects.",
+  "version": "2.0.0",
+  "author": "NerdyTechy",
+  "license": "ISC",
+  "main": "src/index.ts",
+  "private": true,
+  "homepage": "https://github.com/NerdyTechy/Melody#readme",
+  "bugs": {
+    "url": "https://github.com/NerdyTechy/Melody/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NerdyTechy/Melody.git"
+  },
+  "scripts": {
+    "dev": "nodemon --exec ts-node --files src/index.ts",
+    "run": "ts-node --files src/index.ts",
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "format": "prettier --write \"**/*.{js,ts,md}\"",
+    "lint": "eslint . --ext .js,.ts",
+    "lint:fix": "eslint . --ext .js,.ts --fix"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "date-fns": "^2.30.0",
+    "discord-player": "^6.6.2",
+    "discord.js": "^14.13.0",
+    "ffmpeg-static": "^5.2.0",
+    "https-proxy-agent": "^7.0.1",
+    "mediaplex": "^0.0.8",
+    "ms": "^2.1.3",
+    "os-utils": "^0.0.14",
+    "play-dl": "^1.9.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.1",
+    "@types/os-utils": "^0.0.3",
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "@typescript-eslint/parser": "^6.4.0",
+    "eslint": "^8.47.0",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.0.2",
+    "ts-node": "^10.9.1"
+  }
 }

@@ -21,12 +21,14 @@ enableAutocomplete: true
 # Settings to control the bot's player and controller
 player:
     # Leave VC when a song ends
-    leaveOnEndDelay: 300000 # 5 minutes
+    leaveOnEndDelay: "5m"
     # Leave VC when a song is stopped
-    leaveOnStopDelay: 300000 # 5 minutes
+    leaveOnStopDelay: "5m"
     # Leave VC when the channel is empty
-    leaveOnEmptyDelay: 300000 # 5 minutes
+    leaveOnEmptyDelay: "5m"
     # Deafen bot while playing
+    # Off by default because it looks cleaner - the bot wont ever listen
+    # to you, but the option is here just in case you want to be sure.
     deafenBot: false
 
 # The emojis to be used in buttons for certain embeds
@@ -45,7 +47,7 @@ emojis:
 # Omit user:pass@ if your proxy does not require authentication.
 proxy:
     enable: false
-    connectionUrl: "http://user:pass@111.111.111.111:8080"
+    connectionUrl: "http://username:password@123.45.67.89:1234"
 
 # Make Melody use a custom YouTube cookie when making requests.
 # This can help to prevent against receiving 429 rate limits from YouTube.
@@ -53,3 +55,8 @@ proxy:
 cookies:
     useCustomCookie: false
     youtubeCookie: ""
+
+# Make Melody emit advanced debug logs
+# Unless you've specifically been asked by a developer to enable this,
+# you should just leave this disabled to prevent logs from being spammed.
+debug: false

@@ -1,28 +1,24 @@
 {
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "ecmaVersion": "latest"
+        "ecmaVersion": "latest",
+        "sourceType": "module"
     },
     "env": {
         "node": true,
         "es6": true
     },
-    "extends": ["eslint:recommended"],
+    "extends": ["eslint:recommended", "plugin:@typescript-eslint/eslint-recommended", "plugin:@typescript-eslint/recommended"],
+    "plugins": ["@typescript-eslint"],
     "rules": {
-        "semi": "error",
+        "semi": "warn",
         "quotes": ["warn", "double"],
         "no-dupe-args": "error",
         "no-dupe-else-if": "error",
-        "no-use-before-define": [
-            "error",
-            {
-                "functions": false,
-                "classes": true,
-                "variables": true,
-                "allowNamedExports": false
-            }
-        ],
         "no-unreachable-loop": "error",
         "no-unreachable": "error",
-        "no-duplicate-imports": "error"
+        "no-duplicate-imports": "error",
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/no-explicit-any": "off"
     }
 }

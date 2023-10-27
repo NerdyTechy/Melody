@@ -1,5 +1,6 @@
-config.yml
-/src/data.json
-node_modules
+dist/
+logs/
+node_modules/
 .DS_Store
-/logs
+config.yml
+data.json
