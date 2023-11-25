@@ -27,3 +27,5 @@ We do ask that once you fork Melody with the intention of merging back in, that 
 Developing Melody locally is actually really simple, just clone the repository, rename `config.yml.example` to `config.yml`, fill in the configuration details, then run `npm run dev` to start the bot in test mode. Once you have finished, you can compile the TypeScript with `npm run build`, and use `npm run start` to test the compiled JavaScript output. Finally, run `npm run format` and `npm run lint` to format the code and ensure that there are no linting errors, then push your code and open a PR!
 
 ### Thanks for contributing to Melody <3
+
+i contributed
