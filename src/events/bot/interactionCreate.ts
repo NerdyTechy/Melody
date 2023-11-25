@@ -1,11 +1,11 @@
-import { ColorResolvable, EmbedBuilder } from "discord.js";
+import { ColorResolvable, EmbedBuilder, Events, Interaction } from "discord.js";
 import logger from "../../utils/logger";
 import config from "../../config";
 
 export default {
-    name: "interactionCreate",
+    name: Events.InteractionCreate,
     once: false,
-    async execute(interaction, client) {
+    async execute(interaction: Interaction, client) {
         if (interaction.isChatInputCommand()) {
             const command = client.commands.get(interaction.commandName);
             if (!command) return;

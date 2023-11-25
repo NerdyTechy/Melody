@@ -3,9 +3,10 @@ import config from "../../config";
 import { initConsole } from "../../utils/console";
 import axios from "axios";
 import crypto from "crypto";
+import { Events } from "discord.js";
 
 export default {
-    name: "ready",
+    name: Events.ClientReady,
     once: true,
     async execute(client) {
         if (config.enableAnalytics) {

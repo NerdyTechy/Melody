@@ -1,7 +1,8 @@
+import { Events } from "discord.js";
 import logger from "../../utils/logger";
 
 export default {
-    name: "shardError",
+    name: Events.ShardError,
     once: false,
     async execute(error) {
         logger.error("An unhandled error occurred during runtime:");
