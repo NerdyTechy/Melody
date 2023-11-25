@@ -1,6 +1,6 @@
 process.env["DP_FORCE_YTDL_MOD"] = "play-dl";
 
-import { ActivityType, Client, Collection, GatewayIntentBits } from "discord.js";
+import { Client, Collection, GatewayIntentBits } from "discord.js";
 import { Player } from "discord-player";
 import { YouTubeExtractor, SpotifyExtractor, SoundCloudExtractor, AppleMusicExtractor, VimeoExtractor, AttachmentExtractor, ReverbnationExtractor } from "@discord-player/extractor";
 import { HttpsProxyAgent } from "https-proxy-agent";
