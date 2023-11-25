@@ -1,11 +1,11 @@
-import { ButtonBuilder, EmbedBuilder, ActionRowBuilder, ButtonStyle } from "discord.js";
+import { ButtonBuilder, EmbedBuilder, ActionRowBuilder, ButtonStyle, ButtonInteraction } from "discord.js";
 import { useMainPlayer } from "discord-player";
 import { paginate, numberOfPages } from "../utils/pagination";
 import config from "../config";
 
 export default {
     name: "pageFirst",
-    async execute(interaction, client) {
+    async execute(interaction: ButtonInteraction) {
         const player = useMainPlayer();
         const queue = player.nodes.get(interaction.guild.id);
 
@@ -13,7 +13,7 @@ export default {
 
         const queuedTracks = queue.tracks.toArray();
 
-        embed.setThumbnail(interaction.guild.iconURL({ size: 2048, dynamic: true }) || client.user.displayAvatarURL({ size: 2048, dynamic: true }));
+        embed.setThumbnail(interaction.guild.iconURL({ size: 2048 }) || interaction.client.user.displayAvatarURL({ size: 2048 }));
         embed.setAuthor({ name: `Server Queue - ${interaction.guild.name}` });
 
         const paginated = paginate(queuedTracks, 5, 1);
@@ -26,32 +26,32 @@ export default {
         embed.setFooter({ text: `${queuedTracks.length} songs  •  Page 1 of ${numPages}` });
         embed.setTimestamp();
 
-        const row1 = new ActionRowBuilder().addComponents(
+        const row1 = new ActionRowBuilder<any>().addComponents(
             new ButtonBuilder().setCustomId(`pageFirst-${interaction.user.id}-1`).setLabel("First Page").setStyle(ButtonStyle.Primary),
             new ButtonBuilder().setCustomId(`pagePrevious-${interaction.user.id}-1`).setLabel("Previous Page").setStyle(ButtonStyle.Primary),
             new ButtonBuilder().setCustomId(`pageNext-${interaction.user.id}-1`).setLabel("Next Page").setStyle(ButtonStyle.Primary),
             new ButtonBuilder().setCustomId(`pageLast-${interaction.user.id}-1`).setLabel("Last Page").setStyle(ButtonStyle.Primary)
         );
 
-        const row2 = new ActionRowBuilder().addComponents(
+        const row2 = new ActionRowBuilder<any>().addComponents(
             new ButtonBuilder()
-                .setCustomId(`playerBack`)
+                .setCustomId("playerBack")
                 .setEmoji(config.emojis.back.length <= 3 ? { name: config.emojis.back.trim() } : { id: config.emojis.back.trim() })
                 .setStyle(ButtonStyle.Secondary),
             new ButtonBuilder()
-                .setCustomId(`playerPause`)
+                .setCustomId("playerPause")
                 .setEmoji(config.emojis.pause.length <= 3 ? { name: config.emojis.pause.trim() } : { id: config.emojis.pause.trim() })
                 .setStyle(ButtonStyle.Secondary),
             new ButtonBuilder()
-                .setCustomId(`playerSkip`)
+                .setCustomId("playerSkip")
                 .setEmoji(config.emojis.pause.length <= 3 ? { name: config.emojis.skip.trim() } : { id: config.emojis.skip.trim() })
                 .setStyle(ButtonStyle.Secondary),
             new ButtonBuilder()
-                .setCustomId(`playerStop`)
+                .setCustomId("playerStop")
                 .setEmoji(config.emojis.stop.length <= 3 ? { name: config.emojis.stop.trim() } : { id: config.emojis.stop.trim() })
                 .setStyle(ButtonStyle.Secondary),
             new ButtonBuilder()
-                .setCustomId(`lyrics`)
+                .setCustomId("lyrics")
                 .setEmoji(config.emojis.lyrics.length <= 3 ? { name: config.emojis.lyrics.trim() } : { id: config.emojis.lyrics.trim() })
                 .setStyle(ButtonStyle.Secondary)
         );
