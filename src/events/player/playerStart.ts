@@ -6,11 +6,11 @@ import path from "path";
 export default {
     name: "playerStart",
     once: true,
-    async execute(queue, track, client) {
+    async execute(queue, track) {
         const embed = new EmbedBuilder();
 
         const data = fs.readFileSync(path.join(__dirname, "..", "..", "..", "data.json"), "utf8");
-        var parsed = JSON.parse(data);
+        const parsed = JSON.parse(data);
 
         parsed["songs-played"] += 1;
 

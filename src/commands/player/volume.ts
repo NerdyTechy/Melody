@@ -1,4 +1,4 @@
-import { ColorResolvable, EmbedBuilder, SlashCommandBuilder } from "discord.js";
+import { ChatInputCommandInteraction, ColorResolvable, EmbedBuilder, SlashCommandBuilder } from "discord.js";
 import { useMainPlayer } from "discord-player";
 import config from "../../config";
 
@@ -8,7 +8,7 @@ export default {
         .setDescription("Adjusts the volume of the current music.")
         .setDMPermission(false)
         .addIntegerOption((option) => option.setName("volume").setDescription("The volume to set the music to.").setRequired(true)),
-    async execute(interaction) {
+    async execute(interaction: ChatInputCommandInteraction) {
         const player = useMainPlayer();
         const queue = player.nodes.get(interaction.guild.id);
 
@@ -26,7 +26,7 @@ export default {
             }
 
             if (vol < 0 || vol > 1000) {
-                embed.setDescription(`The number that you have specified is not valid. Please enter a number between **0** and **1000**.`);
+                embed.setDescription("The number that you have specified is not valid. Please enter a number between **0** and **1000**.");
                 return await interaction.reply({ embeds: [embed] });
             }
 
