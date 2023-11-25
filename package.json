@@ -36,6 +36,7 @@
     "play-dl": "^1.9.7"
   },
   "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
     "@types/node": "^20.5.1",
     "@types/os-utils": "^0.0.3",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
