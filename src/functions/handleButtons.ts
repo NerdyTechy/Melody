@@ -1,7 +1,8 @@
+import { Client } from "discord.js";
 import fs from "fs";
 import path from "path";
 
-export default (client: any) => {
+export default (client: Client) => {
     if (!fs.existsSync(path.join(__dirname, "..", "buttons"))) return;
 
     fs.readdirSync(path.join(__dirname, "..", "buttons"))
