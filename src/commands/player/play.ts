@@ -10,7 +10,7 @@ export default {
         .setDescription("Adds a track to the end of the server queue.")
         .setDMPermission(false)
         .addStringOption((option) => option.setName("query").setDescription("Enter a track name, artist name, or URL.").setRequired(true).setAutocomplete(config.enableAutocomplete)),
-    async execute(interaction, client) {
+    async execute(interaction) {
         await interaction.deferReply();
 
         const embed = new EmbedBuilder();

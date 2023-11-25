@@ -1,11 +1,11 @@
-import { ColorResolvable, EmbedBuilder } from "discord.js";
+import { ColorResolvable, EmbedBuilder, Events, Interaction } from "discord.js";
 import logger from "../../utils/logger";
 import config from "../../config";
 
 export default {
-    name: "interactionCreate",
+    name: Events.InteractionCreate,
     once: false,
-    async execute(interaction, client) {
+    async execute(interaction: Interaction, client) {
         if (interaction.isChatInputCommand()) {
             const command = client.commands.get(interaction.commandName);
             if (!command) return;
@@ -16,9 +16,7 @@ export default {
                 logger.error("An error occurred whilst attempting to execute a chat input command:");
                 logger.error(error);
             }
-        }
-        
-        else if (interaction.isButton()) {
+        } else if (interaction.isButton()) {
             if (interaction.customId.includes("-")) {
                 const sections = String(interaction.customId).split("-");
 
@@ -49,9 +47,7 @@ export default {
                     logger.error(error);
                 }
             }
-        }
-        
-        else if (interaction.isStringSelectMenu()) {
+        } else if (interaction.isStringSelectMenu()) {
             if (interaction.customId.includes("-")) {
                 const sections = String(interaction.customId).split("-");
 
@@ -82,12 +78,10 @@ export default {
                     logger.error(error);
                 }
             }
-        }
-        
-        else if (interaction.isAutocomplete()) {
+        } else if (interaction.isAutocomplete()) {
             const command = client.commands.get(interaction.commandName);
             if (!command) return;
-            
+
             try {
                 await command.autocompleteRun(interaction, client);
             } catch (error) {

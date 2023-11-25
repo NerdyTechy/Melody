@@ -1,10 +1,10 @@
-import { ColorResolvable, EmbedBuilder, SlashCommandBuilder } from "discord.js";
+import { ChatInputCommandInteraction, ColorResolvable, EmbedBuilder, SlashCommandBuilder } from "discord.js";
 import { useMainPlayer } from "discord-player";
 import config from "../../config";
 
 export default {
     data: new SlashCommandBuilder().setName("effects").setDescription("Lists all effects that are currently enabled.").setDMPermission(false),
-    async execute(interaction) {
+    async execute(interaction: ChatInputCommandInteraction) {
         const player = useMainPlayer();
         const queue = player.nodes.get(interaction.guild.id);
 

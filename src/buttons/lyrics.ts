@@ -1,4 +1,4 @@
-import { ColorResolvable, EmbedBuilder } from "discord.js";
+import { ColorResolvable, EmbedBuilder, ButtonInteraction } from "discord.js";
 import { useMainPlayer } from "discord-player";
 import { lyricsExtractor } from "@discord-player/extractor";
 import config from "../config";
@@ -7,7 +7,7 @@ const lyricsClient = lyricsExtractor(config.geniusApiKey);
 
 export default {
     name: "lyrics",
-    async execute(interaction) {
+    async execute(interaction: ButtonInteraction) {
         const player = useMainPlayer();
         const queue = player.nodes.get(interaction.guild.id);
 

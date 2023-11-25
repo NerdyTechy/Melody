@@ -1,5 +1,4 @@
 import { ColorResolvable, EmbedBuilder } from "discord.js";
-import ms from 'ms';
 import config from "../../config";
 
 export default {
@@ -13,7 +12,7 @@ export default {
 
         const embed = new EmbedBuilder();
 
-        embed.setDescription(`The music was stopped because there were no more songs in the queue.`);
+        embed.setDescription("The music was stopped because there were no more songs in the queue.");
         embed.setColor(config.embedColour as ColorResolvable);
 
         queue.metadata.channel.send({ embeds: [embed] });

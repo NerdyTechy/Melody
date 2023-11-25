@@ -1,4 +1,4 @@
-import { ColorResolvable, EmbedBuilder, SlashCommandBuilder } from "discord.js";
+import { ChatInputCommandInteraction, ColorResolvable, EmbedBuilder, SlashCommandBuilder } from "discord.js";
 import { useMainPlayer } from "discord-player";
 import config from "../../config";
 
@@ -9,7 +9,7 @@ export default {
         .setDMPermission(false)
         .addIntegerOption((option) => option.setName("minutes").setDescription("The amount of minutes to seek to.").setRequired(true))
         .addIntegerOption((option) => option.setName("seconds").setDescription("The amount of seconds to seek to.").setRequired(true)),
-    async execute(interaction) {
+    async execute(interaction: ChatInputCommandInteraction) {
         const player = useMainPlayer();
         const queue = player.nodes.get(interaction.guild.id);
 

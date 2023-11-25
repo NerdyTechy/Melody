@@ -1,4 +1,4 @@
-import { ColorResolvable, EmbedBuilder } from "discord.js";
+import { ButtonInteraction, ColorResolvable, EmbedBuilder } from "discord.js";
 import { useMainPlayer } from "discord-player";
 import fs from "fs";
 import path from "path";
@@ -6,7 +6,7 @@ import config from "../config";
 
 export default {
     name: "playerSkip",
-    async execute(interaction) {
+    async execute(interaction: ButtonInteraction) {
         const player = useMainPlayer();
         const queue = player.nodes.get(interaction.guild.id);
 
@@ -20,8 +20,8 @@ export default {
 
         queue.node.skip();
 
-        let rawdata = fs.readFileSync(path.join(__dirname, '..', '..', 'data.json'), 'utf8');
-        var data = JSON.parse(rawdata);
+        const rawdata = fs.readFileSync(path.join(__dirname, "..", "..", "data.json"), "utf8");
+        const data = JSON.parse(rawdata);
         data["songs-skipped"] += 1;
         fs.writeFileSync("src/data.json", JSON.stringify(data));
 

@@ -12,7 +12,7 @@ export default {
         .setDescription("Plays the specified playlist with a random track order.")
         .setDMPermission(false)
         .addStringOption((option) => option.setName("playlist").setDescription("Enter a playlist URL here to playshuffle.").setRequired(true)),
-    async execute(interaction, client) {
+    async execute(interaction) {
         await interaction.deferReply();
 
         const embed = new EmbedBuilder();
@@ -84,9 +84,9 @@ export default {
             } catch (err) {
                 logger.error("An error occurred whilst attempting to play this media:");
                 logger.error(err);
-    
+
                 await queue.delete();
-    
+
                 embed.setDescription("This media doesn't seem to be working right now, please try again later.");
                 return await interaction.followUp({ embeds: [embed] });
             }
@@ -97,10 +97,10 @@ export default {
             return interaction.editReply({ content: "An error occurred whilst attempting to play this media." });
         }
 
-        const data = fs.readFileSync(path.join(__dirname, '..', '..', '..', 'data.json'), 'utf8');
+        const data = fs.readFileSync(path.join(__dirname, "..", "..", "..", "data.json"), "utf8");
         const parsed = JSON.parse(data);
         parsed["queues-shuffled"] += 1;
-        fs.writeFileSync(path.join(__dirname, '..', '..', '..', 'data.json'), JSON.stringify(parsed));
+        fs.writeFileSync(path.join(__dirname, "..", "..", "..", "data.json"), JSON.stringify(parsed));
 
         return await interaction.editReply({ embeds: [embed] });
     },

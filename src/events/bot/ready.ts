@@ -3,20 +3,18 @@ import config from "../../config";
 import { initConsole } from "../../utils/console";
 import axios from "axios";
 import crypto from "crypto";
+import { Events } from "discord.js";
 
 export default {
-    name: "ready",
+    name: Events.ClientReady,
     once: true,
     async execute(client) {
         if (config.enableAnalytics) {
-            axios.post("https://analytics.techy.lol/melody",
-                { identifier: crypto.createHash("sha256").update(config.clientId).digest("hex") }, 
-                { headers: { "Content-Type": "application/json" } })
-            .catch(() => null);
+            axios.post("https://analytics.techy.lol/melody", { identifier: crypto.createHash("sha256").update(config.clientId).digest("hex") }, { headers: { "Content-Type": "application/json" } }).catch(() => null);
         }
 
         initConsole(client);
-        
+
         logger.success("Melody is now ready.");
 
         if (client.guilds.cache.size === 0) {

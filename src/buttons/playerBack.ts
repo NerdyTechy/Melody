@@ -1,10 +1,10 @@
-import { ColorResolvable, EmbedBuilder } from "discord.js";
+import { ButtonInteraction, ColorResolvable, EmbedBuilder } from "discord.js";
 import { useMainPlayer } from "discord-player";
 import config from "../config";
 
 export default {
     name: "playerBack",
-    async execute(interaction) {
+    async execute(interaction: ButtonInteraction) {
         const player = useMainPlayer();
         const queue = player.nodes.get(interaction.guild.id);
 

@@ -1,10 +1,10 @@
-import { ColorResolvable, EmbedBuilder, SlashCommandBuilder } from "discord.js";
+import { ChatInputCommandInteraction, ColorResolvable, EmbedBuilder, SlashCommandBuilder } from "discord.js";
 import { useMainPlayer } from "discord-player";
 import config from "../../config";
 
 export default {
     data: new SlashCommandBuilder().setName("save").setDescription("Sends you a direct message with details about the current track.").setDMPermission(false),
-    async execute(interaction) {
+    async execute(interaction: ChatInputCommandInteraction) {
         const player = useMainPlayer();
         const queue = player.nodes.get(interaction.guild.id);
 
@@ -16,7 +16,7 @@ export default {
             return await interaction.reply({ embeds: [embed] });
         }
 
-        var message = `
+        let message = `
             **Track Name:** [${queue.currentTrack.title}](${queue.currentTrack.url})
             **Artist:** ${queue.currentTrack.author}
             **Duration:** ${queue.currentTrack.duration}\n`;

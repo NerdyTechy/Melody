@@ -7,7 +7,7 @@ import os from "os-utils";
 
 const Console = readline.createInterface({
     input: process.stdin,
-    output: process.stdout
+    output: process.stdout,
 });
 
 const banner = ` __  __      _           _       
@@ -19,13 +19,13 @@ const banner = ` __  __      _           _
                             __/ |
                            |___/ `;
 
-function print(str) {
+function print(str: string) {
     console.info(chalk.magenta(str));
 }
 
 function getCpuUsage(): Promise<string> {
-    return new Promise(resolve => {
-        os.cpuUsage(value => resolve((value * 100).toFixed(2)));
+    return new Promise((resolve) => {
+        os.cpuUsage((value) => resolve((value * 100).toFixed(2)));
     });
 }
 
@@ -49,7 +49,7 @@ invite: Prints a Discord bot invite link for this Melody instance
 servers: Prints the number of servers that this Melody instance is currently in
 stop: Stops the bot instance`);
                 return initConsole(client);
-            case "info":
+            case "info": {
                 const usageStats = await getUsageStats();
                 print(`-----------------------------------------------------------------------------------
 ${banner}
@@ -66,6 +66,7 @@ Platform: ${usageStats.platform}
 Uptime: ${usageStats.uptime} seconds
 -----------------------------------------------------------------------------------`);
                 return initConsole(client);
+            }
             case "invite":
                 print(`Use this link to invite your instance of Melody to a server:\nhttps://discord.com/api/oauth2/authorize?client_id=${config.clientId}&permissions=274914887744&scope=bot%20applications.commands`);
                 return initConsole(client);
@@ -73,7 +74,7 @@ Uptime: ${usageStats.uptime} seconds
                 print(`Your instance of Melody is in ${client.guilds.cache.size} guilds.`);
                 return initConsole(client);
             case "stop":
-                process.exit(0);
+                return process.exit(0);
             default:
                 console.error("Invalid command: The command you have entered is invalid. Use 'help' to see a list of commands.");
                 return initConsole(client);

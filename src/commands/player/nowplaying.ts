@@ -1,10 +1,10 @@
-import { EmbedBuilder, ActionRowBuilder, ButtonStyle, SlashCommandBuilder, ButtonBuilder, ColorResolvable } from "discord.js";
+import { EmbedBuilder, ActionRowBuilder, ButtonStyle, SlashCommandBuilder, ButtonBuilder, ColorResolvable, ChatInputCommandInteraction } from "discord.js";
 import { useMainPlayer } from "discord-player";
 import config from "../../config";
 
 export default {
     data: new SlashCommandBuilder().setName("nowplaying").setDescription("View information about the current track.").setDMPermission(false),
-    async execute(interaction) {
+    async execute(interaction: ChatInputCommandInteraction) {
         const player = useMainPlayer();
         const queue = player.nodes.get(interaction.guild.id);
 
@@ -22,7 +22,7 @@ export default {
         embed.setDescription(`${progress}\n\nThis track was requested by <@${queue.currentTrack.requestedBy.id}>.`);
         embed.setThumbnail(queue.currentTrack.thumbnail);
 
-        const row = new ActionRowBuilder().addComponents(
+        const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
             new ButtonBuilder()
                 .setCustomId(`melody_back_song-${interaction.user.id}`)
                 .setEmoji(config.emojis.back.length <= 3 ? { name: config.emojis.back.trim() } : { id: config.emojis.back.trim() })

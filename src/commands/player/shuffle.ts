@@ -1,4 +1,4 @@
-import { ColorResolvable, EmbedBuilder, SlashCommandBuilder } from "discord.js";
+import { ChatInputCommandInteraction, ColorResolvable, EmbedBuilder, SlashCommandBuilder } from "discord.js";
 import { useMainPlayer } from "discord-player";
 import config from "../../config";
 import fs from "fs";
@@ -6,7 +6,7 @@ import path from "path";
 
 export default {
     data: new SlashCommandBuilder().setName("shuffle").setDescription("Shuffles all tracks currently in the queue.").setDMPermission(false),
-    async execute(interaction) {
+    async execute(interaction: ChatInputCommandInteraction) {
         const player = useMainPlayer();
         const queue = player.nodes.get(interaction.guild.id);
 
@@ -25,8 +25,8 @@ export default {
 
         queue.tracks.shuffle();
 
-        let rawdata = fs.readFileSync(path.join(__dirname, '..', '..', '..', 'data.json'), 'utf8');
-        var data = JSON.parse(rawdata);
+        const rawdata = fs.readFileSync(path.join(__dirname, "..", "..", "..", "data.json"), "utf8");
+        const data = JSON.parse(rawdata);
         data["queues-shuffled"] += 1;
         fs.writeFileSync("src/data.json", JSON.stringify(data));
 
