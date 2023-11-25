@@ -1,4 +1,4 @@
-import { ColorResolvable, EmbedBuilder, SlashCommandBuilder } from "discord.js";
+import { ChatInputCommandInteraction, ColorResolvable, EmbedBuilder, SlashCommandBuilder } from "discord.js";
 import { lyricsExtractor } from "@discord-player/extractor";
 import config from "../../config";
 
@@ -9,8 +9,8 @@ export default {
         .setName("lyrics")
         .setDescription("View lyrics for the specified track.")
         .addStringOption((option) => option.setName("query").setDescription("Enter a track name, artist name, or URL.").setRequired(true)),
-    async execute(interaction) {
-        await interaction.deferReply();
+    async execute(interaction: ChatInputCommandInteraction) {
+        await interaction.deferReply({ ephemeral: true });
 
         const embed = new EmbedBuilder();
         embed.setColor(config.embedColour as ColorResolvable);
@@ -31,7 +31,6 @@ export default {
 
         return await interaction.editReply({
             embeds: [embed],
-            ephemeral: true,
         });
     },
 };
