@@ -40,11 +40,8 @@ player.extractors.register(VimeoExtractor, {});
 player.extractors.register(ReverbnationExtractor, {});
 player.extractors.register(AttachmentExtractor, {});
 
-// @ts-expect-error - Type declarations not defined for this object
 client.commands = new Collection();
-// @ts-expect-error - Type declarations not defined for this object
 client.buttons = new Collection();
-// @ts-expect-error - Type declarations not defined for this object
 client.menus = new Collection();
 
 (async () => {
