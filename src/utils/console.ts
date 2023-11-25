@@ -74,8 +74,7 @@ Uptime: ${usageStats.uptime} seconds
                 print(`Your instance of Melody is in ${client.guilds.cache.size} guilds.`);
                 return initConsole(client);
             case "stop":
-                process.exit(0);
-                break;
+                return process.exit(0);
             default:
                 console.error("Invalid command: The command you have entered is invalid. Use 'help' to see a list of commands.");
                 return initConsole(client);
