@@ -17,7 +17,7 @@ export default {
         }
 
         queue.delete();
-        
+
         embed.setDescription(`<@${interaction.user.id}>: The music has been stopped.`);
         return await interaction.reply({ embeds: [embed] });
     },

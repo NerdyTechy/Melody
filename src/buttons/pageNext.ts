@@ -1,7 +1,7 @@
 import { ButtonBuilder, EmbedBuilder, ActionRowBuilder, ButtonStyle } from "discord.js";
 import { useMainPlayer } from "discord-player";
 import { paginate, numberOfPages } from "../utils/pagination";
-import config from '../config';
+import config from "../config";
 
 export default {
     name: "pageNext",

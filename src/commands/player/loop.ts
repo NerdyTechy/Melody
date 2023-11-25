@@ -28,7 +28,7 @@ export default {
                     embed.setDescription("The **queue** will now repeat endlessly.");
                     break;
                 case "track":
-                    queue.setRepeatMode(QueueRepeatMode.TRACK)
+                    queue.setRepeatMode(QueueRepeatMode.TRACK);
                     embed.setDescription("The **track** will now repeat endlessly.");
                     break;
                 case "autoplay":

@@ -1,5 +1,5 @@
 import { ColorResolvable, EmbedBuilder } from "discord.js";
-import ms from 'ms';
+import ms from "ms";
 import config from "../../config";
 
 export default {

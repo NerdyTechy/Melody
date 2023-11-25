@@ -25,7 +25,7 @@ export default {
 
         queue.tracks.shuffle();
 
-        let rawdata = fs.readFileSync(path.join(__dirname, '..', '..', '..', 'data.json'), 'utf8');
+        let rawdata = fs.readFileSync(path.join(__dirname, "..", "..", "..", "data.json"), "utf8");
         var data = JSON.parse(rawdata);
         data["queues-shuffled"] += 1;
         fs.writeFileSync("src/data.json", JSON.stringify(data));

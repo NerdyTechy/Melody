@@ -1,7 +1,7 @@
 import { ButtonBuilder, EmbedBuilder, ActionRowBuilder, ButtonStyle } from "discord.js";
 import { useMainPlayer } from "discord-player";
 import { paginate, numberOfPages } from "../utils/pagination";
-import config from '../config';
+import config from "../config";
 
 export default {
     name: "pageLast",
@@ -27,22 +27,10 @@ export default {
         embed.setTimestamp();
 
         const row1 = new ActionRowBuilder().addComponents(
-            new ButtonBuilder()
-                .setCustomId(`pageFirst-${interaction.user.id}-${numPages}`)
-                .setLabel("First Page")
-                .setStyle(ButtonStyle.Primary),
-            new ButtonBuilder()
-                .setCustomId(`pagePrevious-${interaction.user.id}-${numPages}`)
-                .setLabel("Previous Page")
-                .setStyle(ButtonStyle.Primary),
-            new ButtonBuilder()
-                .setCustomId(`pageNext-${interaction.user.id}-${numPages}`)
-                .setLabel("Next Page")
-                .setStyle(ButtonStyle.Primary),
-            new ButtonBuilder()
-                .setCustomId(`pageLast-${interaction.user.id}-${numPages}`)
-                .setLabel("Last Page")
-                .setStyle(ButtonStyle.Primary)
+            new ButtonBuilder().setCustomId(`pageFirst-${interaction.user.id}-${numPages}`).setLabel("First Page").setStyle(ButtonStyle.Primary),
+            new ButtonBuilder().setCustomId(`pagePrevious-${interaction.user.id}-${numPages}`).setLabel("Previous Page").setStyle(ButtonStyle.Primary),
+            new ButtonBuilder().setCustomId(`pageNext-${interaction.user.id}-${numPages}`).setLabel("Next Page").setStyle(ButtonStyle.Primary),
+            new ButtonBuilder().setCustomId(`pageLast-${interaction.user.id}-${numPages}`).setLabel("Last Page").setStyle(ButtonStyle.Primary)
         );
 
         const row2 = new ActionRowBuilder().addComponents(

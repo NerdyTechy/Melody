@@ -20,7 +20,7 @@ export default {
 
         queue.node.skip();
 
-        let rawdata = fs.readFileSync(path.join(__dirname, '..', '..', 'data.json'), 'utf8');
+        let rawdata = fs.readFileSync(path.join(__dirname, "..", "..", "data.json"), "utf8");
         var data = JSON.parse(rawdata);
         data["songs-skipped"] += 1;
         fs.writeFileSync("src/data.json", JSON.stringify(data));

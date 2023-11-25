@@ -7,7 +7,7 @@ import os from "os-utils";
 
 const Console = readline.createInterface({
     input: process.stdin,
-    output: process.stdout
+    output: process.stdout,
 });
 
 const banner = ` __  __      _           _       
@@ -24,8 +24,8 @@ function print(str) {
 }
 
 function getCpuUsage(): Promise<string> {
-    return new Promise(resolve => {
-        os.cpuUsage(value => resolve((value * 100).toFixed(2)));
+    return new Promise((resolve) => {
+        os.cpuUsage((value) => resolve((value * 100).toFixed(2)));
     });
 }
 

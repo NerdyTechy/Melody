@@ -6,7 +6,7 @@ import path from "path";
 export default {
     data: new SlashCommandBuilder().setName("stats").setDescription("Shows global Melody statistics."),
     async execute(interaction, client) {
-        let rawdata = fs.readFileSync(path.join(__dirname, '..', '..', '..', 'data.json'), 'utf8');
+        let rawdata = fs.readFileSync(path.join(__dirname, "..", "..", "..", "data.json"), "utf8");
         var data = JSON.parse(rawdata);
 
         const embed = new EmbedBuilder();

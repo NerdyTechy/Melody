@@ -38,22 +38,10 @@ export default {
         embed.setTimestamp();
 
         const row1 = new ActionRowBuilder().addComponents(
-            new ButtonBuilder()
-                .setCustomId(`pageFirst-${interaction.user.id}-1`)
-                .setLabel("First Page")
-                .setStyle(ButtonStyle.Primary),
-            new ButtonBuilder()
-                .setCustomId(`pagePrevious-${interaction.user.id}-1`)
-                .setLabel("Previous Page")
-                .setStyle(ButtonStyle.Primary),
-            new ButtonBuilder()
-                .setCustomId(`pageNext-${interaction.user.id}-1`)
-                .setLabel("Next Page")
-                .setStyle(ButtonStyle.Primary),
-            new ButtonBuilder()
-                .setCustomId(`pageLast-${interaction.user.id}-1`)
-                .setLabel("Last Page")
-                .setStyle(ButtonStyle.Primary)
+            new ButtonBuilder().setCustomId(`pageFirst-${interaction.user.id}-1`).setLabel("First Page").setStyle(ButtonStyle.Primary),
+            new ButtonBuilder().setCustomId(`pagePrevious-${interaction.user.id}-1`).setLabel("Previous Page").setStyle(ButtonStyle.Primary),
+            new ButtonBuilder().setCustomId(`pageNext-${interaction.user.id}-1`).setLabel("Next Page").setStyle(ButtonStyle.Primary),
+            new ButtonBuilder().setCustomId(`pageLast-${interaction.user.id}-1`).setLabel("Last Page").setStyle(ButtonStyle.Primary)
         );
 
         const row2 = new ActionRowBuilder().addComponents(

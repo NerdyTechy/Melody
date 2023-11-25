@@ -1,7 +1,7 @@
 import { ButtonBuilder, EmbedBuilder, ActionRowBuilder, ButtonStyle } from "discord.js";
 import { useMainPlayer } from "discord-player";
 import { paginate, numberOfPages } from "../utils/pagination";
-import config from '../config';
+import config from "../config";
 
 export default {
     name: "pagePrevious",
@@ -22,7 +22,7 @@ export default {
 
         if (currentPage - 1 <= 0) return interaction.update({ content: null });
 
-        const paginated = paginate(queuedTracks, 5, (currentPage - 1));        
+        const paginated = paginate(queuedTracks, 5, currentPage - 1);
 
         const tracks = paginated.data.map((track, i) => `\`${paginated.startIndex + i + 1}\` [${track.title}](${track.url}) by **${track.author}** (Requested by <@${track.requestedBy.id}>)`);
         const progress = queue.node.createProgressBar();

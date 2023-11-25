@@ -1,6 +1,6 @@
 import { ColorResolvable, EmbedBuilder, SlashCommandBuilder } from "discord.js";
 import { useMainPlayer, QueryType } from "discord-player";
-import ms from 'ms';
+import ms from "ms";
 import logger from "../../utils/logger";
 import config from "../../config";
 

@@ -31,7 +31,7 @@ interface IConfig {
     cookies: {
         useCustomCookie: boolean;
         youtubeCookie: string;
-    }
+    };
     debug: boolean;
 }
 
@@ -46,7 +46,7 @@ let config: IConfig = {
         leaveOnEndDelay: "5m",
         leaveOnStopDelay: "5m",
         leaveOnEmptyDelay: "5m",
-        deafenBot: true
+        deafenBot: true,
     },
     emojis: {
         stop: "⏹",
@@ -54,17 +54,17 @@ let config: IConfig = {
         queue: "📜",
         pause: "⏯",
         lyrics: "📜",
-        back: "⏮"
+        back: "⏮",
     },
     proxy: {
         enable: false,
-        connectionUrl: ""
+        connectionUrl: "",
     },
     cookies: {
         useCustomCookie: false,
-        youtubeCookie: ""
+        youtubeCookie: "",
     },
-    debug: false
+    debug: false,
 };
 
 try {
@@ -86,7 +86,7 @@ try {
             leaveOnEndDelay: configFile.player.leaveOnEndDelay ?? "5m",
             leaveOnStopDelay: configFile.player.leaveOnStopDelay ?? "5m",
             leaveOnEmptyDelay: configFile.player.leaveOnEmptyDelay ?? "5m",
-            deafenBot: configFile.player.deafenBot ?? true
+            deafenBot: configFile.player.deafenBot ?? true,
         },
         emojis: {
             stop: configFile.emojis.stop ?? "⏹",
@@ -94,17 +94,17 @@ try {
             queue: configFile.emojis.queue ?? "📜",
             pause: configFile.emojis.pause ?? "⏯",
             lyrics: configFile.emojis.lyrics ?? "📜",
-            back: configFile.emojis.back ?? "⏮"
+            back: configFile.emojis.back ?? "⏮",
         },
         proxy: {
             enable: configFile.proxy.enable ?? false,
-            connectionUrl: configFile.proxy.connectionUrl ?? ""
+            connectionUrl: configFile.proxy.connectionUrl ?? "",
         },
         cookies: {
             useCustomCookie: configFile.cookies.useCustomCookie ?? false,
-            youtubeCookie: configFile.cookies.youtubeCookie ?? ""
+            youtubeCookie: configFile.cookies.youtubeCookie ?? "",
         },
-        debug: configFile.debug ?? false
+        debug: configFile.debug ?? false,
     };
 } catch (err) {
     logger.error("Unable to parse config.yml. Please make sure it is valid YAML.");
