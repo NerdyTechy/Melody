@@ -10,7 +10,7 @@ export default {
         .setDescription("Adds a track to the next position in the server queue.")
         .setDMPermission(false)
         .addStringOption((option) => option.setName("query").setDescription("Enter a track name, artist name, or URL.").setRequired(true).setAutocomplete(config.enableAutocomplete)),
-    async execute(interaction, client) {
+    async execute(interaction) {
         await interaction.deferReply();
 
         const embed = new EmbedBuilder();
@@ -79,7 +79,7 @@ export default {
                     logger.error("An error occurred whilst attempting to play this media:");
                     logger.error(err);
 
-                    await queue.delete();
+                    queue.delete();
 
                     embed.setDescription("This media doesn't seem to be working right now, please try again later.");
                     return await interaction.followUp({ embeds: [embed] });
