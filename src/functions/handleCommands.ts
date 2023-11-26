@@ -3,11 +3,12 @@ import fs from "fs";
 import path from "path";
 import logger from "../utils/logger";
 import config from "../config";
+import { Client } from "discord.js";
 
 const token = config.botToken;
 const clientId = config.clientId;
 
-export default (client: any) => {
+export default (client: Client) => {
     if (!fs.existsSync(path.join(__dirname, "..", "commands"))) return;
 
     client.commandArray = [];

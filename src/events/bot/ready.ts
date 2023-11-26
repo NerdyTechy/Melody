@@ -3,12 +3,12 @@ import config from "../../config";
 import { initConsole } from "../../utils/console";
 import axios from "axios";
 import crypto from "crypto";
-import { Events } from "discord.js";
+import { Client, Events } from "discord.js";
 
 export default {
     name: Events.ClientReady,
     once: true,
-    async execute(client) {
+    async execute(client: Client) {
         if (config.enableAnalytics) {
             axios.post("https://analytics.techy.lol/melody", { identifier: crypto.createHash("sha256").update(config.clientId).digest("hex") }, { headers: { "Content-Type": "application/json" } }).catch(() => null);
         }

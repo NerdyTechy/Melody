@@ -3,8 +3,9 @@ import path from "path";
 import { useMainPlayer } from "discord-player";
 import config from "../config";
 import logger from "../utils/logger";
+import { Client } from "discord.js";
 
-export default (client: any) => {
+export default (client: Client) => {
     const botEventsPath = path.join(__dirname, "../events/bot");
     fs.readdirSync(botEventsPath)
         .filter((file) => file.endsWith(".js") || file.endsWith(".ts"))
