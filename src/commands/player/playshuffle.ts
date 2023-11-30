@@ -59,13 +59,11 @@ export default {
 
             if (!res || !res.tracks || res.tracks.length === 0) {
                 embed.setDescription(`I couldn't find a playlist with the name **${query}**`);
-                await queue.delete();
                 return await interaction.editReply({ embeds: [embed] });
             }
 
             if (!res.playlist) {
                 embed.setDescription("The query specified doesn't appear to be a playlist.");
-                await queue.delete();
                 return await interaction.editReply({ embeds: [embed] });
             }
 

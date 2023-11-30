@@ -56,7 +56,6 @@ export default {
             const res = await player.search(query, { requestedBy: interaction.user });
 
             if (!res || !res.tracks || res.tracks.length === 0) {
-                if (queue) queue.delete();
                 embed.setDescription(`I couldn't find anything with the name **${query}**.`);
                 return await interaction.editReply({ embeds: [embed] });
             }

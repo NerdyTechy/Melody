@@ -24,23 +24,23 @@ export default {
 
         const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
             new ButtonBuilder()
-                .setCustomId(`melody_back_song-${interaction.user.id}`)
+                .setCustomId(`playerBack`)
                 .setEmoji(config.emojis.back.length <= 3 ? { name: config.emojis.back.trim() } : { id: config.emojis.back.trim() })
                 .setStyle(ButtonStyle.Secondary),
             new ButtonBuilder()
-                .setCustomId(`melody_pause_song-${interaction.user.id}`)
+                .setCustomId(`playerPause`)
                 .setEmoji(config.emojis.pause.length <= 3 ? { name: config.emojis.pause.trim() } : { id: config.emojis.pause.trim() })
                 .setStyle(ButtonStyle.Secondary),
             new ButtonBuilder()
-                .setCustomId(`melody_skip_song-${interaction.user.id}`)
+                .setCustomId(`playerSkip`)
                 .setEmoji(config.emojis.pause.length <= 3 ? { name: config.emojis.skip.trim() } : { id: config.emojis.skip.trim() })
                 .setStyle(ButtonStyle.Secondary),
             new ButtonBuilder()
-                .setCustomId(`melody_stop-${interaction.user.id}`)
+                .setCustomId(`playerStop`)
                 .setEmoji(config.emojis.stop.length <= 3 ? { name: config.emojis.stop.trim() } : { id: config.emojis.stop.trim() })
                 .setStyle(ButtonStyle.Secondary),
             new ButtonBuilder()
-                .setCustomId(`melody_song_lyrics-${interaction.user.id}`)
+                .setCustomId(`lyrics`)
                 .setEmoji(config.emojis.lyrics.length <= 3 ? { name: config.emojis.lyrics.trim() } : { id: config.emojis.lyrics.trim() })
                 .setStyle(ButtonStyle.Secondary)
         );

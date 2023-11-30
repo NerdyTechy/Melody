@@ -5,7 +5,7 @@ export default {
     data: new SlashCommandBuilder().setName("botinfo").setDescription("Shows information about the Melody bot."),
     async execute(interaction: ChatInputCommandInteraction) {
         const embed = new EmbedBuilder();
-        embed.setDescription("Melody is an open source Discord music bot that can be self-hosted to allow users to listen to music, videos, and livestreams in a voice channel together.");
+        embed.setDescription("Melody is an open source Discord music bot that can be self-hosted to allow users to listen to music and videos in a voice channel together.");
         embed.setColor(config.embedColour as ColorResolvable);
 
         const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
