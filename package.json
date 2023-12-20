@@ -20,7 +20,7 @@
         "@discordjs/voice": "^0.16.0",
         "@discordjs/rest": "^2.0.1",
         "chalk": "^4.1.2",
-        "date-fns": "^3.0.0",
+        "date-fns": "^3.0.1",
         "discord-player": "^6.6.6",
         "discord.js": "^14.13.0",
         "ffmpeg-static": "^5.2.0",
