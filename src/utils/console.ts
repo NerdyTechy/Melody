@@ -1,9 +1,12 @@
 import readline from "readline";
 import { Client } from "discord.js";
-import packageJson from "../../package.json";
 import config from "../config";
 import chalk from "chalk";
 import os from "os-utils";
+import fs from "fs";
+import path from "path";
+
+const packageJson = JSON.parse(fs.readFileSync(path.join(__dirname, '..', '..', 'package.json'), 'utf8'));
 
 const Console = readline.createInterface({
     input: process.stdin,

@@ -1,4 +1,4 @@
-import { ButtonBuilder, EmbedBuilder, ActionRowBuilder, ButtonStyle, ButtonInteraction } from "discord.js";
+import { ButtonBuilder, EmbedBuilder, ActionRowBuilder, ButtonStyle, ButtonInteraction, ColorResolvable } from "discord.js";
 import { useMainPlayer } from "discord-player";
 import { paginate, numberOfPages } from "../utils/pagination";
 import config from "../config";
@@ -12,6 +12,12 @@ export default {
         const currentPage = parseInt(String(interaction.customId).split("-")[2]);
 
         const embed = new EmbedBuilder();
+        embed.setColor(config.embedColour as ColorResolvable);
+
+        if (!queue) {
+            embed.setDescription("The queue for this server doesn't seem to exist anymore.");
+            return interaction.reply({ embeds: [embed], ephemeral: true });   
+        }
 
         const queuedTracks = queue.tracks.toArray();
 
