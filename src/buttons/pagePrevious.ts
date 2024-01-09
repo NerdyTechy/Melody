@@ -16,7 +16,7 @@ export default {
 
         if (!queue) {
             embed.setDescription("The queue for this server doesn't seem to exist anymore.");
-            return interaction.reply({ embeds: [embed], ephemeral: true });   
+            return interaction.reply({ embeds: [embed], ephemeral: true });
         }
 
         const queuedTracks = queue.tracks.toArray();

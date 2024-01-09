@@ -6,7 +6,7 @@ import os from "os-utils";
 import fs from "fs";
 import path from "path";
 
-const packageJson = JSON.parse(fs.readFileSync(path.join(__dirname, '..', '..', 'package.json'), 'utf8'));
+const packageJson = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "..", "package.json"), "utf8"));
 
 const Console = readline.createInterface({
     input: process.stdin,
