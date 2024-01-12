@@ -21,7 +21,7 @@
         "@discordjs/rest": "^2.2.0",
         "chalk": "^4.1.2",
         "date-fns": "^3.2.0",
-        "discord-player": "^6.6.6",
+        "discord-player": "^6.6.7",
         "discord.js": "^14.13.0",
         "ffmpeg-static": "^5.2.0",
         "https-proxy-agent": "^7.0.2",
