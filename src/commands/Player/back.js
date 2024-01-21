@@ -4,15 +4,22 @@ const { Player } = require("discord-player");
 const config = require("../../config");
 
 module.exports = {
-    data: new SlashCommandBuilder().setName("back").setDescription("Returns to the previous track.").setDMPermission(false),
+    data: new SlashCommandBuilder()
+        .setName("back")
+        .setDescription("Returns to the previous track.")
+        .setDMPermission(false),
+    
     async execute(interaction) {
         const player = Player.singleton();
         const queue = player.nodes.get(interaction.guild.id);
 
-        const embed = new EmbedBuilder();
-        embed.setColor(config.embedColour);
+        if (!queue) {
+            return await interaction.reply({ content: "There isn't currently any music playing.", ephemeral: true });
+        }
 
-        if (!queue || !queue.isPlaying()) {
+        const embed = new EmbedBuilder().setColor(config.embedColour);
+
+        if (!queue.isPlaying()) {
             embed.setDescription("There isn't currently any music playing.");
         } else if (!queue.history.tracks.toArray()[0]) {
             embed.setDescription("There was no music played before this track.");
