@@ -1,3 +1,5 @@
-.github
-emojis
-logs
+.github/
+emojis/
+dist/
+logs/
+node_modules/
