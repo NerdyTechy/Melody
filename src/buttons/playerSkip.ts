@@ -23,7 +23,7 @@ export default {
         const rawdata = fs.readFileSync(path.join(__dirname, "..", "..", "data.json"), "utf8");
         const data = JSON.parse(rawdata);
         data["songs-skipped"] += 1;
-        fs.writeFileSync("src/data.json", JSON.stringify(data));
+        fs.writeFileSync(path.join(__dirname, "..", "..", "data.json"), JSON.stringify(data));
 
         embed.setDescription(`<@${interaction.user.id}>: The track **[${queue.currentTrack.title}](${queue.currentTrack.url})** was skipped.`);
         return await interaction.reply({ embeds: [embed] });

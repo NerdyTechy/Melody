@@ -28,7 +28,7 @@ export default {
         const rawdata = fs.readFileSync(path.join(__dirname, "..", "..", "..", "data.json"), "utf8");
         const data = JSON.parse(rawdata);
         data["queues-shuffled"] += 1;
-        fs.writeFileSync("src/data.json", JSON.stringify(data));
+        fs.writeFileSync(path.join(__dirname, "..", "..", "..", "data.json"), JSON.stringify(data));
 
         embed.setDescription(`Successfully shuffled **${queue.tracks.toArray().length} track${queue.tracks.size === 1 ? "" : "s"}**!`);
         return await interaction.reply({ embeds: [embed] });
