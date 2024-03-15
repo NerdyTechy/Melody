@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "axios": "^1.6.7",
-    "date-fns": "^2.30.0",
+    "date-fns": "^3.5.0",
     "discord-player": "^6.6.7",
     "discord.js": "^14.13.0",
     "ffmpeg-static": "^5.2.0",
