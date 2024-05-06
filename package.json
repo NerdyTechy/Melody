@@ -38,7 +38,7 @@
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
     "@types/ms": "^0.7.34",
-    "@types/node": "^20.12.7",
+    "@types/node": "^20.12.10",
     "@types/os-utils": "^0.0.4",
     "@typescript-eslint/eslint-plugin": "^7.7.1",
     "@typescript-eslint/parser": "^7.7.1",
