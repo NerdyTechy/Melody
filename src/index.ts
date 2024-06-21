@@ -1,4 +1,4 @@
-process.env["DP_FORCE_YTDL_MOD"] = "play-dl";
+process.env["DP_FORCE_YTDL_MOD"] = "@distube/ytdl-core";
 
 import { Client, Collection, GatewayIntentBits } from "discord.js";
 import { Player } from "discord-player";
