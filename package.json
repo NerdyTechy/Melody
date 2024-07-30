@@ -23,7 +23,7 @@
         "lint:fix": "eslint . --ext .js,.ts --fix"
     },
     "dependencies": {
-        "@distube/ytdl-core": "^4.13.5",
+        "@distube/ytdl-core": "^4.13.7",
         "axios": "^1.7.2",
         "date-fns": "^3.6.0",
         "discord-player": "^6.7.0",
