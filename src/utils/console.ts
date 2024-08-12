@@ -9,8 +9,8 @@ import path from "path";
 const packageJson = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "..", "package.json"), "utf8"));
 
 const Console = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
+    input: process.stdin as unknown as NodeJS.ReadableStream,
+    output: process.stdout as unknown as NodeJS.WritableStream,
 });
 
 const banner = ` __  __      _           _       
