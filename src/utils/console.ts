@@ -44,13 +44,14 @@ async function getUsageStats() {
 
 export function initConsole(client: Client): void {
     Console.question("", async (input) => {
-        switch (input.toLowerCase()) {
+        switch (input.split(" ")[0].toLowerCase()) {
             case "help":
                 print(`help: Prints this menu
 info: Prints information about this instance of the bot
 invite: Prints a Discord bot invite link for this Melody instance
 servers: Prints the number of servers that this Melody instance is currently in
-stop: Stops the bot instance`);
+stop: Stops the bot instance
+leaveguild <guild id>: Makes the bot leave the specified guild`);
                 return initConsole(client);
             case "info": {
                 const usageStats = await getUsageStats();
@@ -75,10 +76,26 @@ Uptime: ${usageStats.uptime} seconds
                 return initConsole(client);
             case "servers":
                 print(`Your instance of Melody is in ${client.guilds.cache.size} guilds.`);
-                print(`Server List: ${client.guilds.cache.map((g) => g.name).join(", ")}`);
+                print(`Server List: ${client.guilds.cache.map((g) => `${g.name} (${g.id})`).join(", ")}`);
                 return initConsole(client);
             case "stop":
                 return process.exit(0);
+            case "leaveguild":
+                const args = input.split(" ").splice(1);
+                if (!args || args.length !== 1 || args[0].length === 0) {
+                    print("Invalid usage: leaveguild <guild id>");
+                    return initConsole(client);
+                }
+
+                const guild = client.guilds.cache.get(args[0]);
+                if (!guild) {
+                    print("This instance of Melody is not in the specified guild.");
+                    return initConsole(client);
+                }
+
+                await guild.leave();
+                print(`Successfully left ${guild.name} (${guild.id}).`);
+                return initConsole(client);
             default:
                 console.error("Invalid command: The command you have entered is invalid. Use 'help' to see a list of commands.");
                 return initConsole(client);
