@@ -49,6 +49,7 @@ export default {
                     client: interaction.guild.members.me,
                     requestedBy: interaction.user,
                 },
+                volume: config.player.defaultVolume,
             });
 
             queue = player.nodes.get(interaction.guild.id);

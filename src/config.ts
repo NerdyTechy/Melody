@@ -15,6 +15,7 @@ interface IConfig {
         leaveOnStopDelay: string;
         leaveOnEmptyDelay: string;
         deafenBot: boolean;
+        defaultVolume: number;
     };
     emojis: {
         stop: string;
@@ -47,6 +48,7 @@ let config: IConfig = {
         leaveOnStopDelay: "5m",
         leaveOnEmptyDelay: "5m",
         deafenBot: true,
+        defaultVolume: 100,
     },
     emojis: {
         stop: "⏹",
@@ -87,6 +89,7 @@ try {
             leaveOnStopDelay: configFile.player.leaveOnStopDelay ?? "5m",
             leaveOnEmptyDelay: configFile.player.leaveOnEmptyDelay ?? "5m",
             deafenBot: configFile.player.deafenBot ?? true,
+            defaultVolume: configFile.player.defaultVolume ?? 100,
         },
         emojis: {
             stop: configFile.emojis.stop ?? "⏹",
