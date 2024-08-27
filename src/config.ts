@@ -110,6 +110,7 @@ try {
         debug: configFile.debug ?? false,
     };
 } catch (err) {
+    logger.debug(err);
     logger.error("Unable to parse config.yml. Please make sure it is valid YAML.");
     process.exit(1);
 }

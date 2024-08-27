@@ -71,6 +71,7 @@ export default {
             try {
                 if (!queue.connection) await queue.connect(interaction.member.voice.channel);
             } catch (err) {
+                logger.debug(err);
                 if (queue) queue.delete();
                 embed.setDescription("I can't join that voice channel. It may be full, or I may not have the correct permissions.");
                 return await interaction.editReply({ embeds: [embed] });

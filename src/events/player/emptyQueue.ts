@@ -1,5 +1,6 @@
 import { ColorResolvable, EmbedBuilder } from "discord.js";
 import config from "../../config";
+import logger from "../../utils/logger";
 
 export default {
     name: "emptyQueue",
@@ -7,7 +8,7 @@ export default {
         try {
             queue.delete();
         } catch (err) {
-            null;
+            logger.debug(err);
         }
 
         const embed = new EmbedBuilder();

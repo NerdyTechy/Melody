@@ -80,7 +80,7 @@ Uptime: ${usageStats.uptime} seconds
                 return initConsole(client);
             case "stop":
                 return process.exit(0);
-            case "leaveguild":
+            case "leaveguild": {
                 const args = input.split(" ").splice(1);
                 if (!args || args.length !== 1 || args[0].length === 0) {
                     print("Invalid usage: leaveguild <guild id>");
@@ -96,6 +96,7 @@ Uptime: ${usageStats.uptime} seconds
                 await guild.leave();
                 print(`Successfully left ${guild.name} (${guild.id}).`);
                 return initConsole(client);
+            }
             default:
                 console.error("Invalid command: The command you have entered is invalid. Use 'help' to see a list of commands.");
                 return initConsole(client);

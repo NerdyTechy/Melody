@@ -11,7 +11,7 @@ export default {
         try {
             queue.delete();
         } catch (err) {
-            null;
+            logger.debug(err);
         }
 
         const errEmbed = new EmbedBuilder();

@@ -65,13 +65,14 @@ export default {
             try {
                 if (!queue.connection) await queue.connect(interaction.member.voice.channel);
             } catch (err) {
+                logger.debug(err);
                 if (queue) queue.delete();
                 embed.setDescription("I can't join that voice channel. It may be full, or I may not have the correct permissions.");
                 return await interaction.editReply({ embeds: [embed] });
             }
 
             try {
-                res.playlist ? queue.addTrack(res.tracks) : queue.addTrack(res.tracks[0]);
+                queue.addTrack(res.playlist ? res.tracks : res.tracks[0]);
                 if (!queue.isPlaying()) await queue.node.play(queue.tracks[0]);
             } catch (err) {
                 logger.error("An error occurred whilst attempting to play this media:");

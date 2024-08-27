@@ -1,6 +1,7 @@
 import { ChatInputCommandInteraction, ColorResolvable, EmbedBuilder, SlashCommandBuilder } from "discord.js";
 import { useMainPlayer } from "discord-player";
 import config from "../../config";
+import logger from "../../utils/logger";
 
 export default {
     data: new SlashCommandBuilder().setName("save").setDescription("Sends you a direct message with details about the current track.").setDMPermission(false),
@@ -35,6 +36,7 @@ export default {
         try {
             await interaction.user.send({ embeds: [info] });
         } catch (err) {
+            logger.debug(err);
             embed.setDescription("I am unable to send you direct messages. Check your privacy settings and try again.");
             return await interaction.reply({
                 embeds: [embed],

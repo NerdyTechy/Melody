@@ -31,7 +31,7 @@ export default {
             }
 
             const success = queue.node.setVolume(vol);
-            success ? embed.setDescription(`The queue volume has been set to **${vol}%**.`) : embed.setDescription("An error occurred whilst attempting to set the volume.");
+            embed.setDescription(success ? `The queue volume has been set to **${vol}%**.` : "An error occurred whilst attempting to set the volume.");
         }
 
         return await interaction.reply({ embeds: [embed] });
