@@ -75,6 +75,7 @@ Uptime: ${usageStats.uptime} seconds
                 return initConsole(client);
             case "servers":
                 print(`Your instance of Melody is in ${client.guilds.cache.size} guilds.`);
+                print(`Server List: ${client.guilds.cache.map((g) => g.name).join(", ")}`);
                 return initConsole(client);
             case "stop":
                 return process.exit(0);
