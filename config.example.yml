@@ -30,6 +30,8 @@ player:
     # Off by default because it looks cleaner - the bot wont ever listen
     # to you, but the option is here just in case you want to be sure.
     deafenBot: false
+    # Default volume when joining a VC
+    defaultVolume: 100
 
 # The emojis to be used in buttons for certain embeds
 # See https://github.com/NerdyTechy/Melody/wiki/Using-Custom-Emojis

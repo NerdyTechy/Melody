@@ -47,6 +47,7 @@ export default {
                     client: interaction.guild.members.me,
                     requestedBy: interaction.user,
                 },
+                volume: config.player.defaultVolume,
             });
 
             queue = player.nodes.get(interaction.guild.id);
@@ -66,6 +67,7 @@ export default {
                 try {
                     if (!queue.connection) await queue.connect(interaction.member.voice.channel);
                 } catch (err) {
+                    logger.debug(err);
                     if (queue) queue.delete();
                     embed.setDescription("I can't join that voice channel. It may be full, or I may not have the correct permissions.");
                     return await interaction.editReply({ embeds: [embed] });
