@@ -27,7 +27,7 @@
         "axios": "^1.7.7",
         "date-fns": "^4.1.0",
         "discord-player": "^6.7.1",
-        "discord.js": "^14.16.2",
+        "discord.js": "^14.16.3",
         "ffmpeg-static": "^5.2.0",
         "https-proxy-agent": "^7.0.5",
         "mediaplex": "^0.0.9",
