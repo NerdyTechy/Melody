@@ -84,6 +84,12 @@ If you like Melody, you might like some of my other projects as well! Check out 
 <h2>Star History</h2>
 <img src="https://api.star-history.com/svg?repos=NerdyTechy/Melody&type=Date">
 
+<h2>Supporters</h2>
+<ul>
+  <li>Looking4Oranges - buymeacoffee.com</li>
+</ul>
+<p>The very cool people listed here have donated through the links above to support the project. Thank you very much for your support! <3</p>
+
 <h2>Contributors</h2>
 <a href = "https://github.com/NerdyTechy/Melody/graphs/contributors">
   <img src = "https://contrib.rocks/image?repo=NerdyTechy/Melody"/>
