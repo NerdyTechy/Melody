@@ -42,7 +42,7 @@
         "@types/os-utils": "^0.0.4",
         "@typescript-eslint/eslint-plugin": "^8.11.0",
         "@typescript-eslint/parser": "^8.12.2",
-        "eslint": "^9.13.0",
+        "eslint": "^9.14.0",
         "nodemon": "^3.1.7",
         "prettier": "^3.3.3",
         "ts-node": "^10.9.2"
