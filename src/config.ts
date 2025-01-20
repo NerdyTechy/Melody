@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import logger from "./utils/logger";
 
-interface IConfig {
+let config: Partial<{
     botToken: string;
     clientId: string;
     geniusApiKey: string;
@@ -34,40 +34,7 @@ interface IConfig {
         youtubeCookie: string;
     };
     debug: boolean;
-}
-
-let config: IConfig = {
-    botToken: "",
-    clientId: "",
-    geniusApiKey: "",
-    embedColour: "#2B2D31",
-    enableAnalytics: true,
-    enableAutocomplete: true,
-    player: {
-        leaveOnEndDelay: "5m",
-        leaveOnStopDelay: "5m",
-        leaveOnEmptyDelay: "5m",
-        deafenBot: true,
-        defaultVolume: 100,
-    },
-    emojis: {
-        stop: "⏹",
-        skip: "⏭",
-        queue: "📜",
-        pause: "⏯",
-        lyrics: "📜",
-        back: "⏮",
-    },
-    proxy: {
-        enable: false,
-        connectionUrl: "",
-    },
-    cookies: {
-        useCustomCookie: false,
-        youtubeCookie: "",
-    },
-    debug: false,
-};
+}> = {};
 
 try {
     if (!fs.existsSync(path.join(__dirname, "..", "config.yml"))) {
@@ -75,40 +42,7 @@ try {
         process.exit(1);
     }
 
-    const configFile: any = yaml.load(fs.readFileSync(path.join(__dirname, "..", "config.yml"), "utf8"));
-
-    config = {
-        botToken: configFile.botToken ?? "",
-        clientId: configFile.clientId ?? "",
-        geniusApiKey: configFile.geniusApiKey ?? "",
-        embedColour: configFile.embedColour ?? "#2B2D31",
-        enableAnalytics: configFile.enableAnalytics ?? true,
-        enableAutocomplete: configFile.enableAutocomplete ?? true,
-        player: {
-            leaveOnEndDelay: configFile.player.leaveOnEndDelay ?? "5m",
-            leaveOnStopDelay: configFile.player.leaveOnStopDelay ?? "5m",
-            leaveOnEmptyDelay: configFile.player.leaveOnEmptyDelay ?? "5m",
-            deafenBot: configFile.player.deafenBot ?? true,
-            defaultVolume: configFile.player.defaultVolume ?? 100,
-        },
-        emojis: {
-            stop: configFile.emojis.stop ?? "⏹",
-            skip: configFile.emojis.skip ?? "⏭",
-            queue: configFile.emojis.queue ?? "📜",
-            pause: configFile.emojis.pause ?? "⏯",
-            lyrics: configFile.emojis.lyrics ?? "📜",
-            back: configFile.emojis.back ?? "⏮",
-        },
-        proxy: {
-            enable: configFile.proxy.enable ?? false,
-            connectionUrl: configFile.proxy.connectionUrl ?? "",
-        },
-        cookies: {
-            useCustomCookie: configFile.cookies.useCustomCookie ?? false,
-            youtubeCookie: configFile.cookies.youtubeCookie ?? "",
-        },
-        debug: configFile.debug ?? false,
-    };
+    config = yaml.load(fs.readFileSync(path.join(__dirname, "..", "config.yml"), "utf8"));
 } catch (err) {
     logger.debug(err);
     logger.error("Unable to parse config.yml. Please make sure it is valid YAML.");

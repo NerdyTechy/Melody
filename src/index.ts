@@ -22,7 +22,7 @@ if (!fs.existsSync(path.join(__dirname, "..", "data.json"))) {
 }
 
 let proxy: string = "";
-let agent: any = null;
+let agent: HttpsProxyAgent<string> | null = null;
 
 if (config.proxy.enable) {
     proxy = config.proxy.connectionUrl;
