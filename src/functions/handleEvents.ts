@@ -1,7 +1,6 @@
 import fs from "fs";
 import path from "path";
 import { useMainPlayer } from "discord-player";
-import config from "../config";
 import logger from "../utils/logger";
 import { Client } from "discord.js";
 
@@ -28,6 +27,6 @@ export default (client: Client) => {
         });
 
     player.on("debug", (message) => {
-        if (config.debug) logger.debug(message);
+        logger.debug(message);
     });
 };
