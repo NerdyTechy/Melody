@@ -24,7 +24,7 @@
     },
     "dependencies": {
         "@distube/ytdl-core": "^4.16.4",
-        "axios": "^1.8.2",
+        "axios": "^1.8.3",
         "date-fns": "^4.1.0",
         "discord-player": "^7.1.0",
         "discord.js": "^14.18.0",
