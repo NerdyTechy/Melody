@@ -40,7 +40,7 @@
         "@types/ms": "^2.1.0",
         "@types/node": "^22.15.29",
         "@types/os-utils": "^0.0.4",
-        "@typescript-eslint/eslint-plugin": "^8.35.1",
+        "@typescript-eslint/eslint-plugin": "^8.46.1",
         "@typescript-eslint/parser": "^8.32.1",
         "eslint": "^9.27.0",
         "nodemon": "^3.1.10",
